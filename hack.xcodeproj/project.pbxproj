@@ -8,12 +8,58 @@
 
 /* Begin PBXBuildFile section */
 		4565EF091B567A7F009D0BCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF081B567A7F009D0BCD /* main.m */; };
-		4565EF0C1B567A7F009D0BCD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF0B1B567A7F009D0BCD /* AppDelegate.m */; };
-		4565EF0F1B567A7F009D0BCD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF0E1B567A7F009D0BCD /* ViewController.m */; };
-		4565EF121B567A7F009D0BCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4565EF101B567A7F009D0BCD /* Main.storyboard */; };
+		4565EF0C1B567A7F009D0BCD /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF0B1B567A7F009D0BCD /* AppDelegate.mm */; };
 		4565EF141B567A7F009D0BCD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4565EF131B567A7F009D0BCD /* Images.xcassets */; };
 		4565EF171B567A7F009D0BCD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4565EF151B567A7F009D0BCD /* LaunchScreen.xib */; };
 		4565EF231B567A7F009D0BCD /* hackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF221B567A7F009D0BCD /* hackTests.m */; };
+		4565EF2D1B56A8F0009D0BCD /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4565EF2C1B56A8F0009D0BCD /* BaiduMapAPI.framework */; };
+		4565EF2F1B56A93B009D0BCD /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4565EF2E1B56A93B009D0BCD /* OpenGLES.framework */; };
+		4565EF311B56A943009D0BCD /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4565EF301B56A943009D0BCD /* CoreText.framework */; };
+		4565EF331B56A94D009D0BCD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4565EF321B56A94D009D0BCD /* CFNetwork.framework */; };
+		4565EF351B56A958009D0BCD /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4565EF341B56A958009D0BCD /* libz.dylib */; };
+		4565EF371B56A960009D0BCD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4565EF361B56A960009D0BCD /* CoreGraphics.framework */; };
+		4565EF391B56A968009D0BCD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4565EF381B56A968009D0BCD /* Foundation.framework */; };
+		4565EF3B1B56A96F009D0BCD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4565EF3A1B56A96F009D0BCD /* UIKit.framework */; };
+		4565EF3D1B56A979009D0BCD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4565EF3C1B56A979009D0BCD /* Security.framework */; };
+		4565EF3F1B56A980009D0BCD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4565EF3E1B56A980009D0BCD /* SystemConfiguration.framework */; };
+		4565EF411B56A988009D0BCD /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4565EF401B56A988009D0BCD /* ImageIO.framework */; };
+		4565EF431B56A992009D0BCD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4565EF421B56A992009D0BCD /* QuartzCore.framework */; };
+		4565EF451B56AB2E009D0BCD /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4565EF441B56AB2E009D0BCD /* mapapi.bundle */; };
+		4565EF481B56AC75009D0BCD /* HKMainMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF471B56AC75009D0BCD /* HKMainMapViewController.m */; };
+		4565EF4C1B56AFBE009D0BCD /* UberKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF4B1B56AFBE009D0BCD /* UberKit.m */; };
+		4565EF5E1B56AFCF009D0BCD /* UberRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF4F1B56AFCF009D0BCD /* UberRequest.m */; };
+		4565EF5F1B56AFCF009D0BCD /* UberActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF511B56AFCF009D0BCD /* UberActivity.m */; };
+		4565EF601B56AFCF009D0BCD /* UberPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF531B56AFCF009D0BCD /* UberPrice.m */; };
+		4565EF611B56AFCF009D0BCD /* UberProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF551B56AFCF009D0BCD /* UberProduct.m */; };
+		4565EF621B56AFCF009D0BCD /* UberProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF571B56AFCF009D0BCD /* UberProfile.m */; };
+		4565EF631B56AFCF009D0BCD /* UberPromotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF591B56AFCF009D0BCD /* UberPromotion.m */; };
+		4565EF641B56AFCF009D0BCD /* UberTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF5B1B56AFCF009D0BCD /* UberTime.m */; };
+		4565EF651B56AFCF009D0BCD /* UberMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF5D1B56AFCF009D0BCD /* UberMap.m */; };
+		4565EF6D1B56AFEA009D0BCD /* UberTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF681B56AFEA009D0BCD /* UberTrip.m */; };
+		4565EF6E1B56AFEA009D0BCD /* UberEstimate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF6A1B56AFEA009D0BCD /* UberEstimate.m */; };
+		4565EF6F1B56AFEA009D0BCD /* UberEstimatedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF6C1B56AFEA009D0BCD /* UberEstimatedPrice.m */; };
+		4565EF771B56AFFF009D0BCD /* UberDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF721B56AFFF009D0BCD /* UberDriver.m */; };
+		4565EF781B56AFFF009D0BCD /* UberLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF741B56AFFF009D0BCD /* UberLocation.m */; };
+		4565EF791B56AFFF009D0BCD /* UberVehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF761B56AFFF009D0BCD /* UberVehicle.m */; };
+		4565EF7F1B56B014009D0BCD /* UberCharge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF7C1B56B014009D0BCD /* UberCharge.m */; };
+		4565EF801B56B014009D0BCD /* UberReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF7E1B56B014009D0BCD /* UberReceipt.m */; };
+		4565EFA21B56B02F009D0BCD /* NSData+NXOAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF951B56B02F009D0BCD /* NSData+NXOAuth2.m */; };
+		4565EFA31B56B02F009D0BCD /* NSString+NXOAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF961B56B02F009D0BCD /* NSString+NXOAuth2.m */; };
+		4565EFA41B56B02F009D0BCD /* NSURL+NXOAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF971B56B02F009D0BCD /* NSURL+NXOAuth2.m */; };
+		4565EFA51B56B02F009D0BCD /* NXOAuth2AccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF981B56B02F009D0BCD /* NXOAuth2AccessToken.m */; };
+		4565EFA61B56B02F009D0BCD /* NXOAuth2Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF991B56B02F009D0BCD /* NXOAuth2Account.m */; };
+		4565EFA71B56B02F009D0BCD /* NXOAuth2AccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF9A1B56B02F009D0BCD /* NXOAuth2AccountStore.m */; };
+		4565EFA81B56B02F009D0BCD /* NXOAuth2Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF9B1B56B02F009D0BCD /* NXOAuth2Client.m */; };
+		4565EFA91B56B02F009D0BCD /* NXOAuth2Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF9C1B56B02F009D0BCD /* NXOAuth2Connection.m */; };
+		4565EFAA1B56B02F009D0BCD /* NXOAuth2Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF9D1B56B02F009D0BCD /* NXOAuth2Constants.m */; };
+		4565EFAB1B56B02F009D0BCD /* NXOAuth2FileStreamWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF9E1B56B02F009D0BCD /* NXOAuth2FileStreamWrapper.m */; };
+		4565EFAC1B56B02F009D0BCD /* NXOAuth2PostBodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF9F1B56B02F009D0BCD /* NXOAuth2PostBodyPart.m */; };
+		4565EFAD1B56B02F009D0BCD /* NXOAuth2PostBodyStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EFA01B56B02F009D0BCD /* NXOAuth2PostBodyStream.m */; };
+		4565EFAE1B56B02F009D0BCD /* NXOAuth2Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EFA11B56B02F009D0BCD /* NXOAuth2Request.m */; };
+		4565EFB21B56B1D3009D0BCD /* HKMapPaopaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EFB11B56B1D3009D0BCD /* HKMapPaopaoViewController.m */; };
+		4565EFB61B56B23C009D0BCD /* UIButton+Bobtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EFB51B56B23C009D0BCD /* UIButton+Bobtn.m */; };
+		4565EFB91B56B2F5009D0BCD /* HKAddressTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EFB81B56B2F5009D0BCD /* HKAddressTVC.m */; };
+		4565EFBC1B56B4C6009D0BCD /* HKTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EFBB1B56B4C6009D0BCD /* HKTabBarVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,15 +77,101 @@
 		4565EF071B567A7F009D0BCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4565EF081B567A7F009D0BCD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4565EF0A1B567A7F009D0BCD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		4565EF0B1B567A7F009D0BCD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4565EF0D1B567A7F009D0BCD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		4565EF0E1B567A7F009D0BCD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		4565EF111B567A7F009D0BCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4565EF0B1B567A7F009D0BCD /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		4565EF131B567A7F009D0BCD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4565EF161B567A7F009D0BCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		4565EF1C1B567A7F009D0BCD /* hackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4565EF211B567A7F009D0BCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4565EF221B567A7F009D0BCD /* hackTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = hackTests.m; sourceTree = "<group>"; };
+		4565EF2C1B56A8F0009D0BCD /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
+		4565EF2E1B56A93B009D0BCD /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		4565EF301B56A943009D0BCD /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		4565EF321B56A94D009D0BCD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		4565EF341B56A958009D0BCD /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		4565EF361B56A960009D0BCD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4565EF381B56A968009D0BCD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4565EF3A1B56A96F009D0BCD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		4565EF3C1B56A979009D0BCD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		4565EF3E1B56A980009D0BCD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4565EF401B56A988009D0BCD /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		4565EF421B56A992009D0BCD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		4565EF441B56AB2E009D0BCD /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
+		4565EF461B56AC75009D0BCD /* HKMainMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKMainMapViewController.h; sourceTree = "<group>"; };
+		4565EF471B56AC75009D0BCD /* HKMainMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKMainMapViewController.m; sourceTree = "<group>"; };
+		4565EF4A1B56AFBE009D0BCD /* UberKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberKit.h; sourceTree = "<group>"; };
+		4565EF4B1B56AFBE009D0BCD /* UberKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberKit.m; sourceTree = "<group>"; };
+		4565EF4E1B56AFCF009D0BCD /* UberRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberRequest.h; sourceTree = "<group>"; };
+		4565EF4F1B56AFCF009D0BCD /* UberRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberRequest.m; sourceTree = "<group>"; };
+		4565EF501B56AFCF009D0BCD /* UberActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberActivity.h; sourceTree = "<group>"; };
+		4565EF511B56AFCF009D0BCD /* UberActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberActivity.m; sourceTree = "<group>"; };
+		4565EF521B56AFCF009D0BCD /* UberPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberPrice.h; sourceTree = "<group>"; };
+		4565EF531B56AFCF009D0BCD /* UberPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberPrice.m; sourceTree = "<group>"; };
+		4565EF541B56AFCF009D0BCD /* UberProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberProduct.h; sourceTree = "<group>"; };
+		4565EF551B56AFCF009D0BCD /* UberProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberProduct.m; sourceTree = "<group>"; };
+		4565EF561B56AFCF009D0BCD /* UberProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberProfile.h; sourceTree = "<group>"; };
+		4565EF571B56AFCF009D0BCD /* UberProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberProfile.m; sourceTree = "<group>"; };
+		4565EF581B56AFCF009D0BCD /* UberPromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberPromotion.h; sourceTree = "<group>"; };
+		4565EF591B56AFCF009D0BCD /* UberPromotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberPromotion.m; sourceTree = "<group>"; };
+		4565EF5A1B56AFCF009D0BCD /* UberTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberTime.h; sourceTree = "<group>"; };
+		4565EF5B1B56AFCF009D0BCD /* UberTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberTime.m; sourceTree = "<group>"; };
+		4565EF5C1B56AFCF009D0BCD /* UberMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberMap.h; sourceTree = "<group>"; };
+		4565EF5D1B56AFCF009D0BCD /* UberMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberMap.m; sourceTree = "<group>"; };
+		4565EF671B56AFEA009D0BCD /* UberTrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberTrip.h; sourceTree = "<group>"; };
+		4565EF681B56AFEA009D0BCD /* UberTrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberTrip.m; sourceTree = "<group>"; };
+		4565EF691B56AFEA009D0BCD /* UberEstimate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberEstimate.h; sourceTree = "<group>"; };
+		4565EF6A1B56AFEA009D0BCD /* UberEstimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberEstimate.m; sourceTree = "<group>"; };
+		4565EF6B1B56AFEA009D0BCD /* UberEstimatedPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberEstimatedPrice.h; sourceTree = "<group>"; };
+		4565EF6C1B56AFEA009D0BCD /* UberEstimatedPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberEstimatedPrice.m; sourceTree = "<group>"; };
+		4565EF711B56AFFF009D0BCD /* UberDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberDriver.h; sourceTree = "<group>"; };
+		4565EF721B56AFFF009D0BCD /* UberDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberDriver.m; sourceTree = "<group>"; };
+		4565EF731B56AFFF009D0BCD /* UberLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberLocation.h; sourceTree = "<group>"; };
+		4565EF741B56AFFF009D0BCD /* UberLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberLocation.m; sourceTree = "<group>"; };
+		4565EF751B56AFFF009D0BCD /* UberVehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberVehicle.h; sourceTree = "<group>"; };
+		4565EF761B56AFFF009D0BCD /* UberVehicle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberVehicle.m; sourceTree = "<group>"; };
+		4565EF7B1B56B014009D0BCD /* UberCharge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberCharge.h; sourceTree = "<group>"; };
+		4565EF7C1B56B014009D0BCD /* UberCharge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberCharge.m; sourceTree = "<group>"; };
+		4565EF7D1B56B014009D0BCD /* UberReceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberReceipt.h; sourceTree = "<group>"; };
+		4565EF7E1B56B014009D0BCD /* UberReceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberReceipt.m; sourceTree = "<group>"; };
+		4565EF821B56B02F009D0BCD /* OAuth2Client_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuth2Client_Prefix.pch; sourceTree = "<group>"; };
+		4565EF831B56B02F009D0BCD /* NSData+NXOAuth2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+NXOAuth2.h"; sourceTree = "<group>"; };
+		4565EF841B56B02F009D0BCD /* NSString+NXOAuth2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NXOAuth2.h"; sourceTree = "<group>"; };
+		4565EF851B56B02F009D0BCD /* NSURL+NXOAuth2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+NXOAuth2.h"; sourceTree = "<group>"; };
+		4565EF861B56B02F009D0BCD /* NXOAuth2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2.h; sourceTree = "<group>"; };
+		4565EF871B56B02F009D0BCD /* NXOAuth2AccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2AccessToken.h; sourceTree = "<group>"; };
+		4565EF881B56B02F009D0BCD /* NXOAuth2Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2Account.h; sourceTree = "<group>"; };
+		4565EF891B56B02F009D0BCD /* NXOAuth2Account+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NXOAuth2Account+Private.h"; sourceTree = "<group>"; };
+		4565EF8A1B56B02F009D0BCD /* NXOAuth2AccountStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2AccountStore.h; sourceTree = "<group>"; };
+		4565EF8B1B56B02F009D0BCD /* NXOAuth2Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2Client.h; sourceTree = "<group>"; };
+		4565EF8C1B56B02F009D0BCD /* NXOAuth2ClientDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2ClientDelegate.h; sourceTree = "<group>"; };
+		4565EF8D1B56B02F009D0BCD /* NXOAuth2Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2Connection.h; sourceTree = "<group>"; };
+		4565EF8E1B56B02F009D0BCD /* NXOAuth2ConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2ConnectionDelegate.h; sourceTree = "<group>"; };
+		4565EF8F1B56B02F009D0BCD /* NXOAuth2Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2Constants.h; sourceTree = "<group>"; };
+		4565EF901B56B02F009D0BCD /* NXOAuth2FileStreamWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2FileStreamWrapper.h; sourceTree = "<group>"; };
+		4565EF911B56B02F009D0BCD /* NXOAuth2PostBodyPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2PostBodyPart.h; sourceTree = "<group>"; };
+		4565EF921B56B02F009D0BCD /* NXOAuth2PostBodyStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2PostBodyStream.h; sourceTree = "<group>"; };
+		4565EF931B56B02F009D0BCD /* NXOAuth2Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2Request.h; sourceTree = "<group>"; };
+		4565EF941B56B02F009D0BCD /* NXOAuth2TrustDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2TrustDelegate.h; sourceTree = "<group>"; };
+		4565EF951B56B02F009D0BCD /* NSData+NXOAuth2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+NXOAuth2.m"; sourceTree = "<group>"; };
+		4565EF961B56B02F009D0BCD /* NSString+NXOAuth2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NXOAuth2.m"; sourceTree = "<group>"; };
+		4565EF971B56B02F009D0BCD /* NSURL+NXOAuth2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+NXOAuth2.m"; sourceTree = "<group>"; };
+		4565EF981B56B02F009D0BCD /* NXOAuth2AccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXOAuth2AccessToken.m; sourceTree = "<group>"; };
+		4565EF991B56B02F009D0BCD /* NXOAuth2Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXOAuth2Account.m; sourceTree = "<group>"; };
+		4565EF9A1B56B02F009D0BCD /* NXOAuth2AccountStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXOAuth2AccountStore.m; sourceTree = "<group>"; };
+		4565EF9B1B56B02F009D0BCD /* NXOAuth2Client.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXOAuth2Client.m; sourceTree = "<group>"; };
+		4565EF9C1B56B02F009D0BCD /* NXOAuth2Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXOAuth2Connection.m; sourceTree = "<group>"; };
+		4565EF9D1B56B02F009D0BCD /* NXOAuth2Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXOAuth2Constants.m; sourceTree = "<group>"; };
+		4565EF9E1B56B02F009D0BCD /* NXOAuth2FileStreamWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXOAuth2FileStreamWrapper.m; sourceTree = "<group>"; };
+		4565EF9F1B56B02F009D0BCD /* NXOAuth2PostBodyPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXOAuth2PostBodyPart.m; sourceTree = "<group>"; };
+		4565EFA01B56B02F009D0BCD /* NXOAuth2PostBodyStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXOAuth2PostBodyStream.m; sourceTree = "<group>"; };
+		4565EFA11B56B02F009D0BCD /* NXOAuth2Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXOAuth2Request.m; sourceTree = "<group>"; };
+		4565EFB01B56B1D3009D0BCD /* HKMapPaopaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKMapPaopaoViewController.h; sourceTree = "<group>"; };
+		4565EFB11B56B1D3009D0BCD /* HKMapPaopaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKMapPaopaoViewController.m; sourceTree = "<group>"; };
+		4565EFB41B56B23C009D0BCD /* UIButton+Bobtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Bobtn.h"; sourceTree = "<group>"; };
+		4565EFB51B56B23C009D0BCD /* UIButton+Bobtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Bobtn.m"; sourceTree = "<group>"; };
+		4565EFB71B56B2F5009D0BCD /* HKAddressTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKAddressTVC.h; sourceTree = "<group>"; };
+		4565EFB81B56B2F5009D0BCD /* HKAddressTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKAddressTVC.m; sourceTree = "<group>"; };
+		4565EFBA1B56B4C6009D0BCD /* HKTabBarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKTabBarVC.h; sourceTree = "<group>"; };
+		4565EFBB1B56B4C6009D0BCD /* HKTabBarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKTabBarVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +179,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4565EF431B56A992009D0BCD /* QuartzCore.framework in Frameworks */,
+				4565EF411B56A988009D0BCD /* ImageIO.framework in Frameworks */,
+				4565EF3F1B56A980009D0BCD /* SystemConfiguration.framework in Frameworks */,
+				4565EF3D1B56A979009D0BCD /* Security.framework in Frameworks */,
+				4565EF3B1B56A96F009D0BCD /* UIKit.framework in Frameworks */,
+				4565EF391B56A968009D0BCD /* Foundation.framework in Frameworks */,
+				4565EF371B56A960009D0BCD /* CoreGraphics.framework in Frameworks */,
+				4565EF351B56A958009D0BCD /* libz.dylib in Frameworks */,
+				4565EF331B56A94D009D0BCD /* CFNetwork.framework in Frameworks */,
+				4565EF311B56A943009D0BCD /* CoreText.framework in Frameworks */,
+				4565EF2F1B56A93B009D0BCD /* OpenGLES.framework in Frameworks */,
+				4565EF2D1B56A8F0009D0BCD /* BaiduMapAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,11 +225,11 @@
 		4565EF051B567A7F009D0BCD /* hack */ = {
 			isa = PBXGroup;
 			children = (
+				4565EFB31B56B232009D0BCD /* Categories */,
+				4565EFAF1B56B1AE009D0BCD /* Controllers */,
+				4565EF491B56AFAF009D0BCD /* UberKit */,
 				4565EF0A1B567A7F009D0BCD /* AppDelegate.h */,
-				4565EF0B1B567A7F009D0BCD /* AppDelegate.m */,
-				4565EF0D1B567A7F009D0BCD /* ViewController.h */,
-				4565EF0E1B567A7F009D0BCD /* ViewController.m */,
-				4565EF101B567A7F009D0BCD /* Main.storyboard */,
+				4565EF0B1B567A7F009D0BCD /* AppDelegate.mm */,
 				4565EF131B567A7F009D0BCD /* Images.xcassets */,
 				4565EF151B567A7F009D0BCD /* LaunchScreen.xib */,
 				4565EF061B567A7F009D0BCD /* Supporting Files */,
@@ -96,6 +240,19 @@
 		4565EF061B567A7F009D0BCD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4565EF441B56AB2E009D0BCD /* mapapi.bundle */,
+				4565EF421B56A992009D0BCD /* QuartzCore.framework */,
+				4565EF401B56A988009D0BCD /* ImageIO.framework */,
+				4565EF3E1B56A980009D0BCD /* SystemConfiguration.framework */,
+				4565EF3C1B56A979009D0BCD /* Security.framework */,
+				4565EF3A1B56A96F009D0BCD /* UIKit.framework */,
+				4565EF381B56A968009D0BCD /* Foundation.framework */,
+				4565EF361B56A960009D0BCD /* CoreGraphics.framework */,
+				4565EF341B56A958009D0BCD /* libz.dylib */,
+				4565EF321B56A94D009D0BCD /* CFNetwork.framework */,
+				4565EF301B56A943009D0BCD /* CoreText.framework */,
+				4565EF2E1B56A93B009D0BCD /* OpenGLES.framework */,
+				4565EF2C1B56A8F0009D0BCD /* BaiduMapAPI.framework */,
 				4565EF071B567A7F009D0BCD /* Info.plist */,
 				4565EF081B567A7F009D0BCD /* main.m */,
 			);
@@ -117,6 +274,143 @@
 				4565EF211B567A7F009D0BCD /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4565EF491B56AFAF009D0BCD /* UberKit */ = {
+			isa = PBXGroup;
+			children = (
+				4565EF811B56B022009D0BCD /* OAuth2Client */,
+				4565EF4D1B56AFC5009D0BCD /* Model */,
+				4565EF4A1B56AFBE009D0BCD /* UberKit.h */,
+				4565EF4B1B56AFBE009D0BCD /* UberKit.m */,
+			);
+			name = UberKit;
+			sourceTree = "<group>";
+		};
+		4565EF4D1B56AFC5009D0BCD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4565EF7A1B56B008009D0BCD /* Receipt */,
+				4565EF701B56AFF3009D0BCD /* Details */,
+				4565EF661B56AFDA009D0BCD /* Estimate */,
+				4565EF4E1B56AFCF009D0BCD /* UberRequest.h */,
+				4565EF4F1B56AFCF009D0BCD /* UberRequest.m */,
+				4565EF501B56AFCF009D0BCD /* UberActivity.h */,
+				4565EF511B56AFCF009D0BCD /* UberActivity.m */,
+				4565EF521B56AFCF009D0BCD /* UberPrice.h */,
+				4565EF531B56AFCF009D0BCD /* UberPrice.m */,
+				4565EF541B56AFCF009D0BCD /* UberProduct.h */,
+				4565EF551B56AFCF009D0BCD /* UberProduct.m */,
+				4565EF561B56AFCF009D0BCD /* UberProfile.h */,
+				4565EF571B56AFCF009D0BCD /* UberProfile.m */,
+				4565EF581B56AFCF009D0BCD /* UberPromotion.h */,
+				4565EF591B56AFCF009D0BCD /* UberPromotion.m */,
+				4565EF5A1B56AFCF009D0BCD /* UberTime.h */,
+				4565EF5B1B56AFCF009D0BCD /* UberTime.m */,
+				4565EF5C1B56AFCF009D0BCD /* UberMap.h */,
+				4565EF5D1B56AFCF009D0BCD /* UberMap.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		4565EF661B56AFDA009D0BCD /* Estimate */ = {
+			isa = PBXGroup;
+			children = (
+				4565EF671B56AFEA009D0BCD /* UberTrip.h */,
+				4565EF681B56AFEA009D0BCD /* UberTrip.m */,
+				4565EF691B56AFEA009D0BCD /* UberEstimate.h */,
+				4565EF6A1B56AFEA009D0BCD /* UberEstimate.m */,
+				4565EF6B1B56AFEA009D0BCD /* UberEstimatedPrice.h */,
+				4565EF6C1B56AFEA009D0BCD /* UberEstimatedPrice.m */,
+			);
+			name = Estimate;
+			sourceTree = "<group>";
+		};
+		4565EF701B56AFF3009D0BCD /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				4565EF711B56AFFF009D0BCD /* UberDriver.h */,
+				4565EF721B56AFFF009D0BCD /* UberDriver.m */,
+				4565EF731B56AFFF009D0BCD /* UberLocation.h */,
+				4565EF741B56AFFF009D0BCD /* UberLocation.m */,
+				4565EF751B56AFFF009D0BCD /* UberVehicle.h */,
+				4565EF761B56AFFF009D0BCD /* UberVehicle.m */,
+			);
+			name = Details;
+			sourceTree = "<group>";
+		};
+		4565EF7A1B56B008009D0BCD /* Receipt */ = {
+			isa = PBXGroup;
+			children = (
+				4565EF7B1B56B014009D0BCD /* UberCharge.h */,
+				4565EF7C1B56B014009D0BCD /* UberCharge.m */,
+				4565EF7D1B56B014009D0BCD /* UberReceipt.h */,
+				4565EF7E1B56B014009D0BCD /* UberReceipt.m */,
+			);
+			name = Receipt;
+			sourceTree = "<group>";
+		};
+		4565EF811B56B022009D0BCD /* OAuth2Client */ = {
+			isa = PBXGroup;
+			children = (
+				4565EF821B56B02F009D0BCD /* OAuth2Client_Prefix.pch */,
+				4565EF831B56B02F009D0BCD /* NSData+NXOAuth2.h */,
+				4565EF841B56B02F009D0BCD /* NSString+NXOAuth2.h */,
+				4565EF851B56B02F009D0BCD /* NSURL+NXOAuth2.h */,
+				4565EF861B56B02F009D0BCD /* NXOAuth2.h */,
+				4565EF871B56B02F009D0BCD /* NXOAuth2AccessToken.h */,
+				4565EF881B56B02F009D0BCD /* NXOAuth2Account.h */,
+				4565EF891B56B02F009D0BCD /* NXOAuth2Account+Private.h */,
+				4565EF8A1B56B02F009D0BCD /* NXOAuth2AccountStore.h */,
+				4565EF8B1B56B02F009D0BCD /* NXOAuth2Client.h */,
+				4565EF8C1B56B02F009D0BCD /* NXOAuth2ClientDelegate.h */,
+				4565EF8D1B56B02F009D0BCD /* NXOAuth2Connection.h */,
+				4565EF8E1B56B02F009D0BCD /* NXOAuth2ConnectionDelegate.h */,
+				4565EF8F1B56B02F009D0BCD /* NXOAuth2Constants.h */,
+				4565EF901B56B02F009D0BCD /* NXOAuth2FileStreamWrapper.h */,
+				4565EF911B56B02F009D0BCD /* NXOAuth2PostBodyPart.h */,
+				4565EF921B56B02F009D0BCD /* NXOAuth2PostBodyStream.h */,
+				4565EF931B56B02F009D0BCD /* NXOAuth2Request.h */,
+				4565EF941B56B02F009D0BCD /* NXOAuth2TrustDelegate.h */,
+				4565EF951B56B02F009D0BCD /* NSData+NXOAuth2.m */,
+				4565EF961B56B02F009D0BCD /* NSString+NXOAuth2.m */,
+				4565EF971B56B02F009D0BCD /* NSURL+NXOAuth2.m */,
+				4565EF981B56B02F009D0BCD /* NXOAuth2AccessToken.m */,
+				4565EF991B56B02F009D0BCD /* NXOAuth2Account.m */,
+				4565EF9A1B56B02F009D0BCD /* NXOAuth2AccountStore.m */,
+				4565EF9B1B56B02F009D0BCD /* NXOAuth2Client.m */,
+				4565EF9C1B56B02F009D0BCD /* NXOAuth2Connection.m */,
+				4565EF9D1B56B02F009D0BCD /* NXOAuth2Constants.m */,
+				4565EF9E1B56B02F009D0BCD /* NXOAuth2FileStreamWrapper.m */,
+				4565EF9F1B56B02F009D0BCD /* NXOAuth2PostBodyPart.m */,
+				4565EFA01B56B02F009D0BCD /* NXOAuth2PostBodyStream.m */,
+				4565EFA11B56B02F009D0BCD /* NXOAuth2Request.m */,
+			);
+			name = OAuth2Client;
+			sourceTree = "<group>";
+		};
+		4565EFAF1B56B1AE009D0BCD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4565EF461B56AC75009D0BCD /* HKMainMapViewController.h */,
+				4565EF471B56AC75009D0BCD /* HKMainMapViewController.m */,
+				4565EFB01B56B1D3009D0BCD /* HKMapPaopaoViewController.h */,
+				4565EFB11B56B1D3009D0BCD /* HKMapPaopaoViewController.m */,
+				4565EFB71B56B2F5009D0BCD /* HKAddressTVC.h */,
+				4565EFB81B56B2F5009D0BCD /* HKAddressTVC.m */,
+				4565EFBA1B56B4C6009D0BCD /* HKTabBarVC.h */,
+				4565EFBB1B56B4C6009D0BCD /* HKTabBarVC.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		4565EFB31B56B232009D0BCD /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				4565EFB41B56B23C009D0BCD /* UIButton+Bobtn.h */,
+				4565EFB51B56B23C009D0BCD /* UIButton+Bobtn.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,7 +493,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4565EF121B567A7F009D0BCD /* Main.storyboard in Resources */,
+				4565EF451B56AB2E009D0BCD /* mapapi.bundle in Resources */,
 				4565EF171B567A7F009D0BCD /* LaunchScreen.xib in Resources */,
 				4565EF141B567A7F009D0BCD /* Images.xcassets in Resources */,
 			);
@@ -219,9 +513,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4565EF0F1B567A7F009D0BCD /* ViewController.m in Sources */,
-				4565EF0C1B567A7F009D0BCD /* AppDelegate.m in Sources */,
+				4565EFA71B56B02F009D0BCD /* NXOAuth2AccountStore.m in Sources */,
+				4565EF641B56AFCF009D0BCD /* UberTime.m in Sources */,
+				4565EF771B56AFFF009D0BCD /* UberDriver.m in Sources */,
+				4565EF481B56AC75009D0BCD /* HKMainMapViewController.m in Sources */,
+				4565EF631B56AFCF009D0BCD /* UberPromotion.m in Sources */,
+				4565EFA51B56B02F009D0BCD /* NXOAuth2AccessToken.m in Sources */,
+				4565EF5E1B56AFCF009D0BCD /* UberRequest.m in Sources */,
+				4565EF651B56AFCF009D0BCD /* UberMap.m in Sources */,
+				4565EF801B56B014009D0BCD /* UberReceipt.m in Sources */,
+				4565EF5F1B56AFCF009D0BCD /* UberActivity.m in Sources */,
+				4565EF601B56AFCF009D0BCD /* UberPrice.m in Sources */,
+				4565EFA61B56B02F009D0BCD /* NXOAuth2Account.m in Sources */,
+				4565EFB61B56B23C009D0BCD /* UIButton+Bobtn.m in Sources */,
+				4565EFAD1B56B02F009D0BCD /* NXOAuth2PostBodyStream.m in Sources */,
+				4565EF6D1B56AFEA009D0BCD /* UberTrip.m in Sources */,
+				4565EF0C1B567A7F009D0BCD /* AppDelegate.mm in Sources */,
+				4565EFAB1B56B02F009D0BCD /* NXOAuth2FileStreamWrapper.m in Sources */,
+				4565EFB21B56B1D3009D0BCD /* HKMapPaopaoViewController.m in Sources */,
+				4565EFA21B56B02F009D0BCD /* NSData+NXOAuth2.m in Sources */,
+				4565EF6E1B56AFEA009D0BCD /* UberEstimate.m in Sources */,
+				4565EFA91B56B02F009D0BCD /* NXOAuth2Connection.m in Sources */,
+				4565EF4C1B56AFBE009D0BCD /* UberKit.m in Sources */,
+				4565EFAE1B56B02F009D0BCD /* NXOAuth2Request.m in Sources */,
+				4565EFA41B56B02F009D0BCD /* NSURL+NXOAuth2.m in Sources */,
+				4565EF781B56AFFF009D0BCD /* UberLocation.m in Sources */,
+				4565EF6F1B56AFEA009D0BCD /* UberEstimatedPrice.m in Sources */,
+				4565EF7F1B56B014009D0BCD /* UberCharge.m in Sources */,
+				4565EFBC1B56B4C6009D0BCD /* HKTabBarVC.m in Sources */,
+				4565EF791B56AFFF009D0BCD /* UberVehicle.m in Sources */,
+				4565EF621B56AFCF009D0BCD /* UberProfile.m in Sources */,
 				4565EF091B567A7F009D0BCD /* main.m in Sources */,
+				4565EFA81B56B02F009D0BCD /* NXOAuth2Client.m in Sources */,
+				4565EFAC1B56B02F009D0BCD /* NXOAuth2PostBodyPart.m in Sources */,
+				4565EFAA1B56B02F009D0BCD /* NXOAuth2Constants.m in Sources */,
+				4565EFA31B56B02F009D0BCD /* NSString+NXOAuth2.m in Sources */,
+				4565EF611B56AFCF009D0BCD /* UberProduct.m in Sources */,
+				4565EFB91B56B2F5009D0BCD /* HKAddressTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,14 +572,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		4565EF101B567A7F009D0BCD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4565EF111B567A7F009D0BCD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4565EF151B567A7F009D0BCD /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -349,8 +669,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/hack",
+				);
 				INFOPLIST_FILE = hack/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -359,8 +684,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/hack",
+				);
 				INFOPLIST_FILE = hack/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
