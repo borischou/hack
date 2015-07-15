@@ -11,12 +11,13 @@
 #import "HKMainMapViewController.h"
 #import "HKMapPaopaoViewController.h"
 #import "HKAddressTVC.h"
-#import "HKTabBarVC.h"
 
 #define bWidth [UIScreen mainScreen].bounds.size.width
 #define bHeight [UIScreen mainScreen].bounds.size.height
 
-#define bTabbarHeight 50
+#define bTabbarHeight 100
+#define bScaleBarHeight 30
+#define bFocusBtnHeight 40
 
 @interface HKMainMapViewController () <BMKMapViewDelegate, BMKLocationServiceDelegate, BMKGeoCodeSearchDelegate, HKMapPaopaoViewDelegate>
 
@@ -37,7 +38,6 @@
 
 @property (strong, nonatomic) HKAddressTVC *addressTVC;
 @property (strong, nonatomic) HKMapPaopaoViewController *paopaoVC;
-@property (strong, nonatomic) HKTabBarVC *tbvc;
 
 @end
 
@@ -52,15 +52,13 @@
     _searcher = [[BMKGeoCodeSearch alloc] init];
     _reverseGeoCodeOption = [[BMKReverseGeoCodeOption alloc] init];
     
-    
-    
     _centerPinView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     _centerPinView.center = self.view.center;
     _centerPinView.backgroundColor = [UIColor purpleColor];
     [self.view addSubview:_centerPinView];
     
     _focusBtnView = [[UIImageView alloc] initWithFrame:CGRectZero];
-    _focusBtnView.frame = CGRectMake(10, bHeight - bTabbarHeight * 2 - 50, 40, 40);
+    _focusBtnView.frame = CGRectMake(10, bHeight - bTabbarHeight - bScaleBarHeight - 10 - bFocusBtnHeight, 40, bFocusBtnHeight);
     _focusBtnView.backgroundColor = [UIColor greenColor];
     _focusBtnView.userInteractionEnabled = YES;
     [_focusBtnView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFocus:)]];
@@ -122,7 +120,7 @@
     [self.view addSubview:_mapView];
     _mapView.zoomLevel = 15; //3-19`
     _mapView.showMapScaleBar = YES;
-    _mapView.mapScaleBarPosition = CGPointMake(5, bHeight - self.tabBarController.tabBar.frame.size.height - 25);
+    _mapView.mapScaleBarPosition = CGPointMake(10, bHeight - bTabbarHeight - 30);
 }
 
 
@@ -174,7 +172,6 @@
         } else {
             _paopaoVC.addrLbl.text = _curAddress;
         }
-        
         _curPinView = [[BMKPinAnnotationView alloc] initWithAnnotation:_curAnnotation reuseIdentifier:@"curAnnotation"];
         _curPinView.pinColor = BMKPinAnnotationColorPurple;
         _curPinView.paopaoView = [[BMKActionPaopaoView alloc] initWithCustomView:_paopaoVC.view];

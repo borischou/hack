@@ -59,7 +59,6 @@
 		4565EFB21B56B1D3009D0BCD /* HKMapPaopaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EFB11B56B1D3009D0BCD /* HKMapPaopaoViewController.m */; };
 		4565EFB61B56B23C009D0BCD /* UIButton+Bobtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EFB51B56B23C009D0BCD /* UIButton+Bobtn.m */; };
 		4565EFB91B56B2F5009D0BCD /* HKAddressTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EFB81B56B2F5009D0BCD /* HKAddressTVC.m */; };
-		4565EFBC1B56B4C6009D0BCD /* HKTabBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EFBB1B56B4C6009D0BCD /* HKTabBarVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,8 +169,6 @@
 		4565EFB51B56B23C009D0BCD /* UIButton+Bobtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Bobtn.m"; sourceTree = "<group>"; };
 		4565EFB71B56B2F5009D0BCD /* HKAddressTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKAddressTVC.h; sourceTree = "<group>"; };
 		4565EFB81B56B2F5009D0BCD /* HKAddressTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKAddressTVC.m; sourceTree = "<group>"; };
-		4565EFBA1B56B4C6009D0BCD /* HKTabBarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKTabBarVC.h; sourceTree = "<group>"; };
-		4565EFBB1B56B4C6009D0BCD /* HKTabBarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKTabBarVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -398,8 +395,6 @@
 				4565EFB11B56B1D3009D0BCD /* HKMapPaopaoViewController.m */,
 				4565EFB71B56B2F5009D0BCD /* HKAddressTVC.h */,
 				4565EFB81B56B2F5009D0BCD /* HKAddressTVC.m */,
-				4565EFBA1B56B4C6009D0BCD /* HKTabBarVC.h */,
-				4565EFBB1B56B4C6009D0BCD /* HKTabBarVC.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -540,7 +535,6 @@
 				4565EF781B56AFFF009D0BCD /* UberLocation.m in Sources */,
 				4565EF6F1B56AFEA009D0BCD /* UberEstimatedPrice.m in Sources */,
 				4565EF7F1B56B014009D0BCD /* UberCharge.m in Sources */,
-				4565EFBC1B56B4C6009D0BCD /* HKTabBarVC.m in Sources */,
 				4565EF791B56AFFF009D0BCD /* UberVehicle.m in Sources */,
 				4565EF621B56AFCF009D0BCD /* UberProfile.m in Sources */,
 				4565EF091B567A7F009D0BCD /* main.m in Sources */,
