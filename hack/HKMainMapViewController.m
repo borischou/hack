@@ -9,8 +9,8 @@
 #import <BaiduMapAPI/BMapKit.h>
 
 #import "HKMainMapViewController.h"
-#import "HKMapPaopaoViewController.h"
 #import "HKAddressTVC.h"
+#import "HKPaopaoView.h"
 
 #define bWidth [UIScreen mainScreen].bounds.size.width
 #define bHeight [UIScreen mainScreen].bounds.size.height
@@ -19,7 +19,7 @@
 #define bScaleBarHeight 30
 #define bFocusBtnHeight 40
 
-@interface HKMainMapViewController () <BMKMapViewDelegate, BMKLocationServiceDelegate, BMKGeoCodeSearchDelegate, HKMapPaopaoViewDelegate>
+@interface HKMainMapViewController () <BMKMapViewDelegate, BMKLocationServiceDelegate, BMKGeoCodeSearchDelegate>
 
 @property (strong, nonatomic) BMKMapView *mapView;
 
@@ -36,8 +36,8 @@
 @property (strong, nonatomic) UIImageView *centerPinView;
 @property (strong, nonatomic) UIImageView *focusBtnView;
 
+@property (strong, nonatomic) HKPaopaoView *paopaoView;
 @property (strong, nonatomic) HKAddressTVC *addressTVC;
-@property (strong, nonatomic) HKMapPaopaoViewController *paopaoVC;
 
 @end
 
@@ -123,15 +123,18 @@
     _mapView.mapScaleBarPosition = CGPointMake(10, bHeight - bTabbarHeight - 30);
 }
 
-
-#pragma mark - HKMapPaopaoViewDelegate
-
--(void)pushToAddressView
+-(void)tapLabel:(UITapGestureRecognizer *)tap
 {
+    NSLog(@"label tapped");
     _addressTVC = [[HKAddressTVC alloc] initWithStyle:UITableViewStylePlain];
     _addressTVC.title = @"Addresses";
-    _addressTVC.tableView.backgroundColor = [UIColor whiteColor];
+    _addressTVC.view.backgroundColor = [UIColor whiteColor];
     [self.navigationController pushViewController:_addressTVC animated:YES];
+}
+
+-(void)testBtnPressed:(UIButton *)sender
+{
+    NSLog(@"button pressed");
 }
 
 #pragma mark - BMKGeoCodeSearchDelegate
@@ -140,7 +143,6 @@
 {
     if (error == BMK_SEARCH_NO_ERROR) {
         _curAddress = result.address;
-        _paopaoVC.address = _curAddress;
     } else
     {
         NSLog(@"error: %u", error);
@@ -151,11 +153,13 @@
 
 -(void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
-    _curAnnotation.coordinate = userLocation.location.coordinate;
-    _reverseGeoCodeOption.reverseGeoPoint = _curAnnotation.coordinate;
-    BOOL flag = [_searcher reverseGeoCode:_reverseGeoCodeOption];
-    if (!flag) {
-        NSLog(@"reverseGeoCode failure, flag = %d", flag);
+    if (_curAnnotation.coordinate.latitude <= 0) {
+        _curAnnotation.coordinate = userLocation.location.coordinate;
+        _reverseGeoCodeOption.reverseGeoPoint = _curAnnotation.coordinate;
+        BOOL flag = [_searcher reverseGeoCode:_reverseGeoCodeOption];
+        if (!flag) {
+            NSLog(@"reverseGeoCode failure, flag = %d", flag);
+        }
     }
 }
 
@@ -164,17 +168,20 @@
 -(BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id<BMKAnnotation>)annotation
 {
     if ([annotation isEqual:_curAnnotation]) {
-        _paopaoVC = [[HKMapPaopaoViewController alloc] init];
-        _paopaoVC.view.frame = CGRectMake(0, 0, 200, 200);
-        _paopaoVC.delegate = self;
+        
+        _paopaoView = [[HKPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
         if (!_curAddress) {
-            _paopaoVC.addrLbl.text = @"Loading...";
+            _paopaoView.addrLbl.text = @"Loading...";
         } else {
-            _paopaoVC.addrLbl.text = _curAddress;
+            _paopaoView.addrLbl.text = _curAddress;
         }
+        
+        [_paopaoView.addrLbl addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapLabel:)]];
+        [_paopaoView.testBtn addTarget:self action:@selector(testBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
+
         _curPinView = [[BMKPinAnnotationView alloc] initWithAnnotation:_curAnnotation reuseIdentifier:@"curAnnotation"];
         _curPinView.pinColor = BMKPinAnnotationColorPurple;
-        _curPinView.paopaoView = [[BMKActionPaopaoView alloc] initWithCustomView:_paopaoVC.view];
+        _curPinView.paopaoView = [[BMKActionPaopaoView alloc] initWithCustomView:_paopaoView];
         [_curPinView setSelected:YES animated:YES];
         
         return _curPinView;
