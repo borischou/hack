@@ -7,8 +7,17 @@
 //
 
 #import "HKAddressTVC.h"
+#import <BaiduMapAPI/BMapKit.h>
 
-@interface HKAddressTVC ()
+#define bWidth [UIScreen mainScreen].bounds.size.width
+#define bHeight [UIScreen mainScreen].bounds.size.height
+#define bTableViewHeight bHeight/2
+#define bMapViewHeight bHeight - bTableViewHeight
+
+@interface HKAddressTVC () <UITableViewDataSource, UITableViewDelegate, BMKMapViewDelegate>
+
+@property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) BMKMapView *mapView;
 
 @end
 
@@ -16,12 +25,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, bWidth, bMapViewHeight)];
+    [self.view addSubview:_mapView];
+    
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, bHeight/2, bWidth, bTableViewHeight) style:UITableViewStylePlain];
+    [self.view addSubview:_tableView];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    _mapView.delegate = self;
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    _mapView.delegate = nil;
 }
 
 #pragma mark - Table view data source
@@ -41,7 +70,7 @@
     // Configure the cell...
     cell.contentView.backgroundColor = [UIColor whiteColor];
     cell.textLabel.textColor = [UIColor blueColor];
-    cell.textLabel.text = @"test";
+    cell.textLabel.text = _baseAddress;
     
     return cell;
 }

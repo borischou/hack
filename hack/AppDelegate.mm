@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 Bankwel. All rights reserved.
 //
 
-#import <BaiduMapAPI/BMKMapView.h>
+#import <BaiduMapAPI/BMapKit.h>
 
 #import "AppDelegate.h"
 #import "HKMainMapViewController.h"

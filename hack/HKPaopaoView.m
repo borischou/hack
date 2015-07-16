@@ -21,19 +21,14 @@
 }
 
 -(void)initLayoutWithFrame:(CGRect)frame
-{
-    self.backgroundColor = [UIColor blueColor];
-    
-    _addrLbl = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, frame.size.width - 10, frame.size.height/3)];
-    _addrLbl.numberOfLines = 0;
+{    
+    _addrLbl = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, frame.size.width - 10, frame.size.height - 10)];
+    _addrLbl.numberOfLines = 1;
     _addrLbl.lineBreakMode = NSLineBreakByWordWrapping;
-    _addrLbl.backgroundColor = [UIColor greenColor];
+    _addrLbl.backgroundColor = [UIColor redColor];
     _addrLbl.textColor = [UIColor whiteColor];
     _addrLbl.userInteractionEnabled = YES;
     [self addSubview:_addrLbl];
-    
-    _testBtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 5 + 5 + frame.size.height/3, frame.size.width - 10, frame.size.height/3) andTitle:@"TEST" withBackgroundColor:[UIColor redColor] andTintColor:[UIColor whiteColor]];
-    [self addSubview:_testBtn];
 }
 
 @end

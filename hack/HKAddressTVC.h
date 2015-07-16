@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HKAddressTVC : UITableViewController
+@interface HKAddressTVC : UIViewController
+
+@property (copy, nonatomic) NSString *baseAddress;
 
 @end

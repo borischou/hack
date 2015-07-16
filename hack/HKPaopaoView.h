@@ -11,6 +11,5 @@
 @interface HKPaopaoView : UIView
 
 @property (strong, nonatomic) UILabel *addrLbl;
-@property (strong, nonatomic) UIButton *testBtn;
 
 @end
