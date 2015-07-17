@@ -208,16 +208,16 @@
                 
             }
         }
-        if ([button.titleLabel.text isEqualToString:@"DiDi"]) {
+        if ([button.titleLabel.text isEqualToString:@"滴滴打车"]) {
             NSLog(@"DiDi");
         }
-        if ([button.titleLabel.text isEqualToString:@"KuaiDi"]) {
+        if ([button.titleLabel.text isEqualToString:@"快的打车"]) {
             NSLog(@"KuaiDi");
         }
-        if ([button.titleLabel.text isEqualToString:@"ShenZhou"]) {
+        if ([button.titleLabel.text isEqualToString:@"神州专车"]) {
             NSLog(@"ShenZhou");
         }
-        if ([button.titleLabel.text isEqualToString:@"More"]) {
+        if ([button.titleLabel.text isEqualToString:@"更多"]) {
             NSLog(@"More");
         }
     }
