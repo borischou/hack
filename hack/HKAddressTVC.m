@@ -14,10 +14,9 @@
 #define bTableViewHeight bHeight/2
 #define bMapViewHeight bHeight - bTableViewHeight
 
-@interface HKAddressTVC () <UITableViewDataSource, UITableViewDelegate, BMKMapViewDelegate>
+@interface HKAddressTVC () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, BMKMapViewDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
-@property (strong, nonatomic) BMKMapView *mapView;
 
 @end
 
@@ -26,13 +25,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, bWidth, bMapViewHeight)];
-    [self.view addSubview:_mapView];
+    UISearchBar *searchBar = [[UISearchBar alloc] init];
+    searchBar.placeholder = @"您到底想从哪上车？";
+    searchBar.delegate = self;
+    self.navigationItem.titleView = searchBar;
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, bHeight/2, bWidth, bTableViewHeight) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, bWidth, bHeight) style:UITableViewStylePlain];
     [self.view addSubview:_tableView];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,17 +45,14 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    _mapView.delegate = self;
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
-    _mapView.delegate = nil;
 }
 
-#pragma mark - Table view data source
+#pragma mark - Table view data source & delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -78,6 +77,12 @@
     }
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.delegate userSelectedPoiInfo:[_pickupResult.poiList objectAtIndex:indexPath.row]];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

@@ -22,7 +22,7 @@
 #define bFocusBtnHeight 40
 #define bPaopaoViewHeight 40
 
-@interface HKMainMapViewController () <BMKMapViewDelegate, BMKLocationServiceDelegate, BMKGeoCodeSearchDelegate, BMKPoiSearchDelegate>
+@interface HKMainMapViewController () <BMKMapViewDelegate, BMKLocationServiceDelegate, BMKGeoCodeSearchDelegate, BMKPoiSearchDelegate, HKAddressTVDelegate>
 
 #pragma mark - BaiduMap
 
@@ -32,6 +32,7 @@
 @property (strong, nonatomic) BMKLocationService *locService;
 @property (strong, nonatomic) BMKGeoCodeSearch *searcher;
 @property (strong, nonatomic) BMKReverseGeoCodeResult *reversedPickupResult;
+@property (strong, nonatomic) BMKPoiInfo *userSelectedPoiInfo;
 
 #pragma mark - Custom
 
@@ -44,13 +45,13 @@
 @property (strong, nonatomic) HKAddressTVC *addressTVC;
 @property (strong, nonatomic) HKBottomMenuView *menuView;
 
-@property (nonatomic) CLLocationCoordinate2D pickupCoordinate2D;
 @property (nonatomic) CLLocationCoordinate2D destinationCoordinate2D;
 @property (nonatomic) CGPoint paopaoCenter;
 @property (nonatomic) CGRect mapRect;
 
 @property (nonatomic) BOOL isCenter;
 @property (nonatomic) BOOL isCenterMoved;
+@property (nonatomic) BOOL isInitLoad;
 
 @end
 
@@ -72,7 +73,7 @@
     
     [self initBaiduMapView];
     
-    [self loadTopViews];
+    [self loadMenuView];
     
     _searcher = [[BMKGeoCodeSearch alloc] init];
     
@@ -113,29 +114,9 @@
 
 #pragma mark - Helpers
 
--(void)loadTopViews
+-(void)loadMenuView
 {
-    _centerPinView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    _centerPinView.center = _mapView.center;
-    _centerPinView.backgroundColor = [UIColor purpleColor];
-    [self.view addSubview:_centerPinView];
-    
-    _paopaoView = [[HKPaopaoView alloc] initWithFrame:CGRectMake(0, 0, bPaopaoViewHeight, bPaopaoViewHeight)];
-    _paopaoCenter = CGPointMake(_centerPinView.center.x, _centerPinView.center.y - 40);
-    _paopaoView.center = _paopaoCenter;
-    _paopaoView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_paopaoView];
-    _paopaoView.addrLbl.text = _curAddress;
-    [_paopaoView.addrLbl addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                      action:@selector(tapLabel:)]];
-    
-    _focusBtnView = [[UIImageView alloc] initWithFrame:CGRectZero];
-    _focusBtnView.frame = CGRectMake(10, bHeight - bMenuHeight - bScaleBarHeight - 10 - bFocusBtnHeight, 40, bFocusBtnHeight);
-    _focusBtnView.backgroundColor = [UIColor greenColor];
-    _focusBtnView.userInteractionEnabled = YES;
-    [_focusBtnView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFocus:)]];
-    [self.view addSubview:_focusBtnView];
-    
+    _isInitLoad = YES;
     _menuView = [[HKBottomMenuView alloc] init];
     _menuView.userInteractionEnabled = YES;
     [self.view addSubview:_menuView];
@@ -144,6 +125,33 @@
     [_menuView.kuaidiBtn addTarget:self action:@selector(carTypeBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     [_menuView.shenzhouBtn addTarget:self action:@selector(carTypeBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     [_menuView.moreBtn addTarget:self action:@selector(carTypeBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void)loadFloatViews
+{
+    _centerPinView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    _centerPinView.center = CGPointMake(_mapView.center.x, _mapView.center.y-20);
+    _centerPinView.image = [UIImage imageNamed:@"hk_center_2"];
+    [self.view addSubview:_centerPinView];
+    
+    _paopaoView = [[HKPaopaoView alloc] initWithFrame:CGRectMake(0, 0, bPaopaoViewHeight, bPaopaoViewHeight)];
+    _paopaoCenter = CGPointMake(_centerPinView.center.x, _centerPinView.center.y - 40);
+    _paopaoView.center = _paopaoCenter;
+    _paopaoView.backgroundColor = [UIColor purpleColor];
+    [self.view addSubview:_paopaoView];
+    _paopaoView.addrLbl.text = _curAddress;
+    [_paopaoView.addrLbl addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapLabel:)]];
+    
+    _focusBtnView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    _focusBtnView.frame = CGRectMake(10, bHeight - bMenuHeight - bScaleBarHeight - 10 - bFocusBtnHeight, 40, bFocusBtnHeight);
+    _focusBtnView.userInteractionEnabled = YES;
+    _focusBtnView.backgroundColor = [UIColor whiteColor];
+    _focusBtnView.layer.cornerRadius = 8;
+    _focusBtnView.layer.borderWidth = 1;
+    _focusBtnView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    _focusBtnView.image = [UIImage imageNamed:@"hk_focus_3"];
+    [_focusBtnView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFocus:)]];
+    [self.view addSubview:_focusBtnView];
 }
 
 -(void)detectAvailableCarServices
@@ -215,25 +223,25 @@
 
 -(void)tapLabel:(UITapGestureRecognizer *)tap
 {
-    NSLog(@"label tapped");
-    
-    
     _addressTVC = [[HKAddressTVC alloc] init];
-    _addressTVC.title = @"Addresses";
     _addressTVC.view.backgroundColor = [UIColor whiteColor];
     _addressTVC.pickupResult = _reversedPickupResult;
-    
-    //BMKMapRect pickupRect = [_mapView convertRect:_mapRect toMapRectFromView:_mapView];
-    //_addressTVC.pickupRect = &(pickupRect);
-    //memcpy(&(pickupRect), _addressTVC.pickupRect, sizeof(BMKMapRect));
+    _addressTVC.delegate = self;
     
     [self.navigationController pushViewController:_addressTVC animated:YES];
 }
 
 -(void)tapFocus:(UITapGestureRecognizer *)tap
 {
-    NSLog(@"focus tapped");
     [_mapView setCenterCoordinate:_curAnnotation.coordinate animated:YES];
+}
+
+#pragma mark - HKAddressTVCDelegate
+
+-(void)userSelectedPoiInfo:(BMKPoiInfo *)info
+{
+    _userSelectedPoiInfo = info;
+    [_mapView setCenterCoordinate:info.pt animated:YES];
 }
 
 #pragma mark - BMKGeoCodeSearchDelegate
@@ -246,9 +254,8 @@
         
         BMKPoiInfo *pickupInfo = [result.poiList firstObject];
         NSString *pickupAddress = pickupInfo.name;
-        _pickupCoordinate2D = CLLocationCoordinate2DMake(pickupInfo.pt.latitude, pickupInfo.pt.longitude);
+        _paopaoView.addrLbl.text = [NSString stringWithFormat:@"从%@上车", pickupAddress];
         
-        _paopaoView.addrLbl.text = [NSString stringWithFormat:@"从%@上车..", pickupAddress];
         [_paopaoView.addrLbl sizeToFit];
         _paopaoView.frame = CGRectMake(0, 0, _paopaoView.addrLbl.frame.size.width + 10, _paopaoView.addrLbl.frame.size.height + 10);
         _paopaoView.center = _paopaoCenter;
@@ -268,21 +275,18 @@
         BMKMapStatus *status = [[BMKMapStatus alloc] init];
         status.fLevel = 19;
         status.targetGeoPt = _curAnnotation.coordinate;
-        [_mapView setMapStatus:status withAnimation:YES withAnimationTime:1000];
+        [_mapView setMapStatus:status withAnimation:YES withAnimationTime:500];
         _isCenter = YES;
     }
     
     if (_isCenterMoved) {
         CLLocationCoordinate2D centerCoor = [_mapView convertPoint:_centerPinView.center toCoordinateFromView:_mapView];
-        
         BMKReverseGeoCodeOption *reverseGeoCodeOption = [[BMKReverseGeoCodeOption alloc] init];
         reverseGeoCodeOption.reverseGeoPoint = centerCoor;
-        
         BOOL aflag = [_searcher reverseGeoCode:reverseGeoCodeOption];
         if (!aflag) {
             NSLog(@"reverseGeoCode failure, flag = %d", aflag);
         }
-        
         _isCenterMoved = NO;
     }
 }
@@ -291,23 +295,24 @@
 
 -(void)mapViewDidFinishLoading:(BMKMapView *)mapView
 {
-    NSLog(@"mapViewDidFinishLoading");
     _isCenterMoved = YES;
 }
 
 -(void)mapView:(BMKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    NSLog(@"regionDidChangeAnimated");
+    if (_isInitLoad) {
+        [self loadFloatViews];
+        _isInitLoad = NO;
+    }
     _isCenterMoved = YES;
 }
 
 -(BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id<BMKAnnotation>)annotation
 {
     if ([annotation isEqual:_curAnnotation]) {
-
         _curPinView = [[BMKPinAnnotationView alloc] initWithAnnotation:_curAnnotation reuseIdentifier:@"curAnnotation"];
         _curPinView.pinColor = BMKPinAnnotationColorPurple;
-        
+        _curPinView.image = [UIImage imageNamed:@"hk_cur_11"];
         return _curPinView;
     }
     

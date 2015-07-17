@@ -9,9 +9,17 @@
 #import <UIKit/UIKit.h>
 #import <BaiduMapAPI/BMapKit.h>
 
+@protocol HKAddressTVDelegate <NSObject>
+
+@required
+-(void)userSelectedPoiInfo:(BMKPoiInfo *)info;
+
+@end
+
 @interface HKAddressTVC : UIViewController
 
-@property (nonatomic) BMKMapRect *pickupRect;
+@property (weak, nonatomic) id <HKAddressTVDelegate> delegate;
+
 @property (strong, nonatomic) BMKReverseGeoCodeResult *pickupResult;
 
 @end

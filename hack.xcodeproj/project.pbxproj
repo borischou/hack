@@ -60,6 +60,9 @@
 		4565EFAE1B56B02F009D0BCD /* NXOAuth2Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EFA11B56B02F009D0BCD /* NXOAuth2Request.m */; };
 		4565EFB61B56B23C009D0BCD /* UIButton+Bobtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EFB51B56B23C009D0BCD /* UIButton+Bobtn.m */; };
 		4565EFB91B56B2F5009D0BCD /* HKAddressTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EFB81B56B2F5009D0BCD /* HKAddressTVC.m */; };
+		458725C81B58F2EE003608DB /* hk_center_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 458725C71B58F2EE003608DB /* hk_center_2.png */; };
+		458725D81B58F895003608DB /* hk_focus_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 458725D71B58F895003608DB /* hk_focus_3.png */; };
+		458725DC1B58F942003608DB /* hk_cur_11.png in Resources */ = {isa = PBXBuildFile; fileRef = 458725DB1B58F942003608DB /* hk_cur_11.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +175,9 @@
 		4565EFB51B56B23C009D0BCD /* UIButton+Bobtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Bobtn.m"; sourceTree = "<group>"; };
 		4565EFB71B56B2F5009D0BCD /* HKAddressTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKAddressTVC.h; sourceTree = "<group>"; };
 		4565EFB81B56B2F5009D0BCD /* HKAddressTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKAddressTVC.m; sourceTree = "<group>"; };
+		458725C71B58F2EE003608DB /* hk_center_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_center_2.png; sourceTree = "<group>"; };
+		458725D71B58F895003608DB /* hk_focus_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_focus_3.png; sourceTree = "<group>"; };
+		458725DB1B58F942003608DB /* hk_cur_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_cur_11.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,8 +242,9 @@
 		4565EF051B567A7F009D0BCD /* hack */ = {
 			isa = PBXGroup;
 			children = (
-				456223901B57391A00F31AE5 /* Views */,
 				4565EFB31B56B232009D0BCD /* Categories */,
+				458725BC1B58EB19003608DB /* Images */,
+				456223901B57391A00F31AE5 /* Views */,
 				4565EFAF1B56B1AE009D0BCD /* Controllers */,
 				4565EF491B56AFAF009D0BCD /* UberKit */,
 				4565EF0A1B567A7F009D0BCD /* AppDelegate.h */,
@@ -421,6 +428,16 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
+		458725BC1B58EB19003608DB /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				458725C71B58F2EE003608DB /* hk_center_2.png */,
+				458725DB1B58F942003608DB /* hk_cur_11.png */,
+				458725D71B58F895003608DB /* hk_focus_3.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -502,8 +519,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4565EF451B56AB2E009D0BCD /* mapapi.bundle in Resources */,
+				458725DC1B58F942003608DB /* hk_cur_11.png in Resources */,
 				4565EF171B567A7F009D0BCD /* LaunchScreen.xib in Resources */,
 				4565EF141B567A7F009D0BCD /* Images.xcassets in Resources */,
+				458725D81B58F895003608DB /* hk_focus_3.png in Resources */,
+				458725C81B58F2EE003608DB /* hk_center_2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

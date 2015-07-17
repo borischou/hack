@@ -21,13 +21,16 @@
 }
 
 -(void)initLayoutWithFrame:(CGRect)frame
-{    
+{
+    self.layer.cornerRadius = 8;
+    self.layer.masksToBounds = YES;
+    
     _addrLbl = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, frame.size.width - 10, frame.size.height - 10)];
     _addrLbl.numberOfLines = 1;
     _addrLbl.lineBreakMode = NSLineBreakByWordWrapping;
-    _addrLbl.backgroundColor = [UIColor redColor];
     _addrLbl.textColor = [UIColor whiteColor];
     _addrLbl.userInteractionEnabled = YES;
+    
     [self addSubview:_addrLbl];
 }
 
