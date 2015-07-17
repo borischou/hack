@@ -160,7 +160,7 @@
     if (!delegate.isLoggedIn) {
         [[[UIAlertView alloc] initWithTitle:@"Login Status" message:@"Please log in first." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Login", nil] show];
     } else {
-        
+        //login success
     }
 }
 
@@ -168,7 +168,9 @@
 {
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"uber_token"]) {
         return NO;
-    } else return YES;
+    } else {
+        return YES;
+    }
 }
 
 -(void)startBaiduLocationService
