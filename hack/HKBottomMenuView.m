@@ -34,29 +34,30 @@
     _uberBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, bBtnWidth, bBtnHeight) andTitle:@"UBER" withBackgroundColor:[UIColor redColor] andTintColor:[UIColor whiteColor]];
     [self addSubview:_uberBtn];
     
-    _didiBtn = [[UIButton alloc] initWithFrame:CGRectMake(bBtnWidth, 0, bBtnWidth, bBtnHeight) andTitle:@"DiDi" withBackgroundColor:[UIColor greenColor] andTintColor:[UIColor whiteColor]];
+    _didiBtn = [[UIButton alloc] initWithFrame:CGRectMake(bBtnWidth, 0, bBtnWidth, bBtnHeight) andTitle:@"滴滴打车" withBackgroundColor:[UIColor magentaColor] andTintColor:[UIColor whiteColor]];
     [self addSubview:_didiBtn];
     
-    _kuaidiBtn = [[UIButton alloc] initWithFrame:CGRectMake(bBtnWidth*2, 0, bBtnWidth, bBtnHeight) andTitle:@"KuaiDi" withBackgroundColor:[UIColor blueColor] andTintColor:[UIColor whiteColor]];
+    _kuaidiBtn = [[UIButton alloc] initWithFrame:CGRectMake(bBtnWidth*2, 0, bBtnWidth, bBtnHeight) andTitle:@"快的打车" withBackgroundColor:[UIColor blueColor] andTintColor:[UIColor whiteColor]];
     [self addSubview:_kuaidiBtn];
     
-    _shenzhouBtn = [[UIButton alloc] initWithFrame:CGRectMake(bBtnWidth*3, 0, bBtnWidth, bBtnHeight) andTitle:@"ShenZhou" withBackgroundColor:[UIColor purpleColor] andTintColor:[UIColor whiteColor]];
+    _shenzhouBtn = [[UIButton alloc] initWithFrame:CGRectMake(bBtnWidth*3, 0, bBtnWidth, bBtnHeight) andTitle:@"神州专车" withBackgroundColor:[UIColor purpleColor] andTintColor:[UIColor whiteColor]];
     [self addSubview:_shenzhouBtn];
     
-    _moreBtn = [[UIButton alloc] initWithFrame:CGRectMake(bBtnWidth*4, 0, bBtnWidth, bBtnHeight) andTitle:@"More" withBackgroundColor:[UIColor yellowColor] andTintColor:[UIColor whiteColor]];
+    _moreBtn = [[UIButton alloc] initWithFrame:CGRectMake(bBtnWidth*4, 0, bBtnWidth, bBtnHeight) andTitle:@"更多" withBackgroundColor:[UIColor orangeColor] andTintColor:[UIColor whiteColor]];
     [self addSubview:_moreBtn];
     
-    _microphoneBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, bBtnHeight, bBtnWidth, bBtnHeight) andTitle:@"TALK" withBackgroundColor:[UIColor grayColor] andTintColor:[UIColor purpleColor]];
-    [self addSubview:_microphoneBtn];
+    _compareBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, bBtnHeight, bBtnWidth, bBtnHeight) andTitle:@"比一比" withBackgroundColor:[UIColor grayColor] andTintColor:[UIColor purpleColor]];
+    [self addSubview:_compareBtn];
     
-    _destLbl = [[UILabel alloc] initWithFrame:CGRectMake(bBtnWidth, bBtnHeight, bBtnWidth*2, bBtnHeight)];
+    _requestBtn = [[UIButton alloc] initWithFrame:CGRectMake(bBtnWidth*4, bBtnHeight, bBtnWidth, bBtnHeight) andTitle:@"立即叫车" withBackgroundColor:[UIColor blackColor] andTintColor:[UIColor whiteColor]];
+    [self addSubview:_requestBtn];
+    
+    _destLbl = [[UILabel alloc] initWithFrame:CGRectMake(bBtnWidth, bBtnHeight, bBtnWidth*3, bBtnHeight)];
     _destLbl.backgroundColor = [UIColor lightGrayColor];
     _destLbl.textColor = [UIColor whiteColor];
-    _destLbl.text = @"Where to?";
+    _destLbl.text = @"请输入目的地";
+    _destLbl.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_destLbl];
-    
-    _compareBtn = [[UIButton alloc] initWithFrame:CGRectMake(bBtnWidth*3, bBtnHeight, bBtnWidth*2, bBtnHeight) andTitle:@"COMPARE" withBackgroundColor:[UIColor blackColor] andTintColor:[UIColor whiteColor]];
-    [self addSubview:_compareBtn];
 }
 
 @end

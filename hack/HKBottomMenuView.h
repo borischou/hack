@@ -17,7 +17,7 @@
 @property (strong, nonatomic) UIButton *moreBtn;
 
 @property (strong, nonatomic) UIButton *compareBtn;
-@property (strong, nonatomic) UIButton *microphoneBtn;
+@property (strong, nonatomic) UIButton *requestBtn;
 @property (strong, nonatomic) UILabel *destLbl;
 
 @end
