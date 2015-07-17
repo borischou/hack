@@ -134,8 +134,8 @@
     _centerPinView.image = [UIImage imageNamed:@"hk_center_2"];
     [self.view addSubview:_centerPinView];
     
-    _paopaoView = [[HKPaopaoView alloc] initWithFrame:CGRectMake(0, 0, bPaopaoViewHeight, bPaopaoViewHeight)];
-    _paopaoCenter = CGPointMake(_centerPinView.center.x, _centerPinView.center.y - 40);
+    _paopaoView = [[HKPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+    _paopaoCenter = CGPointMake(_centerPinView.center.x, _centerPinView.center.y - 35);
     _paopaoView.center = _paopaoCenter;
     _paopaoView.backgroundColor = [UIColor purpleColor];
     [self.view addSubview:_paopaoView];
@@ -188,12 +188,6 @@
     [self.view addSubview:_mapView];
     _mapView.showMapScaleBar = YES;
     _mapView.mapScaleBarPosition = CGPointMake(10, bHeight - bMenuHeight - 30);
-}
-
--(CGFloat)adjustedWidthForViewWithString:(NSString *)string
-{
-    CGSize sizeToFit = [string boundingRectWithSize:CGSizeMake(MAXFLOAT, bPaopaoViewHeight) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.f]} context:nil].size;
-    return sizeToFit.width;
 }
 
 #pragma mark - Button & Gesture callbacks
@@ -257,7 +251,6 @@
         BMKPoiInfo *pickupInfo = [result.poiList firstObject];
         NSString *pickupAddress = pickupInfo.name;
         _paopaoView.addrLbl.text = [NSString stringWithFormat:@"从%@上车", pickupAddress];
-        
         [_paopaoView.addrLbl sizeToFit];
         _paopaoView.frame = CGRectMake(0, 0, _paopaoView.addrLbl.frame.size.width + 10, _paopaoView.addrLbl.frame.size.height + 10);
         _paopaoView.center = _paopaoCenter;
