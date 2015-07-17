@@ -245,10 +245,26 @@
 - (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
 {
     if (error == BMK_SEARCH_NO_ERROR) {
-        
         _reversedPickupResult = result;
         
-        BMKPoiInfo *pickupInfo = [result.poiList firstObject];
+        //Make sure it is the closest BMKPoiInfo in the poiList
+        NSMutableDictionary *poiDict = [[NSMutableDictionary alloc] init];
+        for (BMKPoiInfo *poiInfo in result.poiList) {
+            BMKMapPoint listPt = BMKMapPointForCoordinate(poiInfo.pt);
+            BMKMapPoint resultPt = BMKMapPointForCoordinate(result.location);
+            CLLocationDistance distance = BMKMetersBetweenMapPoints(listPt, resultPt);
+            [poiDict setObject:poiInfo forKey:@(distance)];
+        }
+        NSArray *distances = [poiDict allKeys];
+        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES];
+        NSArray *sortedDistances = [distances sortedArrayUsingDescriptors:@[descriptor]];
+        
+        NSMutableArray *sortedPoiList = @[].mutableCopy;
+        for (NSString *distance in sortedDistances) {
+            [sortedPoiList addObject:[poiDict objectForKey:distance]];
+        }
+
+        BMKPoiInfo *pickupInfo = [sortedPoiList firstObject];
         NSString *pickupAddress = pickupInfo.name;
         _paopaoView.addrLbl.text = [NSString stringWithFormat:@"从%@上车", pickupAddress];
         [_paopaoView.addrLbl sizeToFit];
