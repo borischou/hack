@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <BaiduMapAPI/BMapKit.h>
 
 @interface HKAddressTVC : UIViewController
 
-@property (copy, nonatomic) NSString *baseAddress;
+@property (nonatomic) BMKMapRect *pickupRect;
+@property (strong, nonatomic) BMKReverseGeoCodeResult *pickupResult;
 
 @end

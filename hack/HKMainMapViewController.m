@@ -31,7 +31,7 @@
 @property (strong, nonatomic) BMKPinAnnotationView *curPinView;
 @property (strong, nonatomic) BMKLocationService *locService;
 @property (strong, nonatomic) BMKGeoCodeSearch *searcher;
-@property (nonatomic) BMKMapRect pickupMapRect;
+@property (strong, nonatomic) BMKReverseGeoCodeResult *reversedPickupResult;
 
 #pragma mark - Custom
 
@@ -46,17 +46,25 @@
 
 @property (nonatomic) CLLocationCoordinate2D pickupCoordinate2D;
 @property (nonatomic) CLLocationCoordinate2D destinationCoordinate2D;
-
-@property (copy, nonatomic) NSString *pickupAddress;
-@property (copy, nonatomic) NSString *destinationAddr;
-
 @property (nonatomic) CGPoint paopaoCenter;
+@property (nonatomic) CGRect mapRect;
+
 @property (nonatomic) BOOL isCenter;
 @property (nonatomic) BOOL isCenterMoved;
 
 @end
 
 @implementation HKMainMapViewController
+
+#pragma mark - Lazy boys
+
+-(BMKReverseGeoCodeResult *)reversedPickupResult
+{
+    if (!_reversedPickupResult) {
+        _reversedPickupResult = [[BMKReverseGeoCodeResult alloc] init];
+    }
+    return _reversedPickupResult;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -165,9 +173,9 @@
 -(void)initBaiduMapView
 {
     _isCenter = NO;
-    _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, bWidth, bHeight - bMenuHeight)];
+    _mapRect = CGRectMake(0, 0, bWidth, bHeight - bMenuHeight);
+    _mapView = [[BMKMapView alloc] initWithFrame:_mapRect];
     [self.view addSubview:_mapView];
-    _mapView.zoomLevel = 19; //3-19
     _mapView.showMapScaleBar = YES;
     _mapView.mapScaleBarPosition = CGPointMake(10, bHeight - bMenuHeight - 30);
 }
@@ -208,17 +216,24 @@
 -(void)tapLabel:(UITapGestureRecognizer *)tap
 {
     NSLog(@"label tapped");
+    
+    
     _addressTVC = [[HKAddressTVC alloc] init];
     _addressTVC.title = @"Addresses";
     _addressTVC.view.backgroundColor = [UIColor whiteColor];
-    _addressTVC.baseAddress = _pickupAddress;
+    _addressTVC.pickupResult = _reversedPickupResult;
+    
+    //BMKMapRect pickupRect = [_mapView convertRect:_mapRect toMapRectFromView:_mapView];
+    //_addressTVC.pickupRect = &(pickupRect);
+    //memcpy(&(pickupRect), _addressTVC.pickupRect, sizeof(BMKMapRect));
+    
     [self.navigationController pushViewController:_addressTVC animated:YES];
 }
 
 -(void)tapFocus:(UITapGestureRecognizer *)tap
 {
     NSLog(@"focus tapped");
-    _mapView.centerCoordinate = _curAnnotation.coordinate;
+    [_mapView setCenterCoordinate:_curAnnotation.coordinate animated:YES];
 }
 
 #pragma mark - BMKGeoCodeSearchDelegate
@@ -226,11 +241,14 @@
 - (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
 {
     if (error == BMK_SEARCH_NO_ERROR) {
-        BMKPoiInfo *info = [result.poiList firstObject];
-        _pickupAddress = info.name;
-        _pickupCoordinate2D = CLLocationCoordinate2DMake(info.pt.latitude, info.pt.longitude);
         
-        _paopaoView.addrLbl.text = [NSString stringWithFormat:@"从%@上车..", _pickupAddress];
+        _reversedPickupResult = result;
+        
+        BMKPoiInfo *pickupInfo = [result.poiList firstObject];
+        NSString *pickupAddress = pickupInfo.name;
+        _pickupCoordinate2D = CLLocationCoordinate2DMake(pickupInfo.pt.latitude, pickupInfo.pt.longitude);
+        
+        _paopaoView.addrLbl.text = [NSString stringWithFormat:@"从%@上车..", pickupAddress];
         [_paopaoView.addrLbl sizeToFit];
         _paopaoView.frame = CGRectMake(0, 0, _paopaoView.addrLbl.frame.size.width + 10, _paopaoView.addrLbl.frame.size.height + 10);
         _paopaoView.center = _paopaoCenter;
@@ -247,7 +265,10 @@
 {
     _curAnnotation.coordinate = userLocation.location.coordinate;
     if (!_isCenter) {
-        _mapView.centerCoordinate = _curAnnotation.coordinate;
+        BMKMapStatus *status = [[BMKMapStatus alloc] init];
+        status.fLevel = 19;
+        status.targetGeoPt = _curAnnotation.coordinate;
+        [_mapView setMapStatus:status withAnimation:YES withAnimationTime:1000];
         _isCenter = YES;
     }
     

@@ -60,17 +60,22 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return [_pickupResult.poiList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"reuse"];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuse" forIndexPath:indexPath];
+    cell.textLabel.textColor = [UIColor darkGrayColor];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    // Configure the cell...
-    cell.contentView.backgroundColor = [UIColor whiteColor];
-    cell.textLabel.textColor = [UIColor blueColor];
-    cell.textLabel.text = _baseAddress;
+    BMKPoiInfo *poiInfo = [_pickupResult.poiList objectAtIndex:indexPath.row];
+    if (0 == indexPath.row) {
+        cell.textLabel.text = [NSString stringWithFormat:@"当前: %@", poiInfo.name];
+        cell.textLabel.textColor = [UIColor blueColor];
+    } else {
+        cell.textLabel.text = poiInfo.name;
+    }
     
     return cell;
 }
