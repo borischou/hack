@@ -14,9 +14,11 @@
 #define bTableViewHeight bHeight/2
 #define bMapViewHeight bHeight - bTableViewHeight
 
-@interface HKAddressTVC () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, BMKMapViewDelegate>
+@interface HKAddressTVC () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, BMKMapViewDelegate, BMKSuggestionSearchDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) BMKSuggestionSearch *searcher;
+@property (strong, nonatomic) BMKSuggestionResult *suggestionResult;
 
 @end
 
@@ -26,9 +28,11 @@
     [super viewDidLoad];
     
     UISearchBar *searchBar = [[UISearchBar alloc] init];
-    searchBar.placeholder = @"您到底想从哪上车？";
+    searchBar.placeholder = @"您想从哪上车？";
     searchBar.delegate = self;
     self.navigationItem.titleView = searchBar;
+    
+    _searcher = [[BMKSuggestionSearch alloc] init];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, bWidth, bHeight) style:UITableViewStylePlain];
     [self.view addSubview:_tableView];
@@ -45,11 +49,51 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    _searcher.delegate = self;
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    _searcher.delegate = nil;
+}
+
+#pragma mark - UISearchBarDelegate
+
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    NSLog(@"searchBarTextDidBeginEditing");
+}
+
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    NSLog(@"searchBarTextDidEndEditing");
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    BMKSuggestionSearchOption* option = [[BMKSuggestionSearchOption alloc] init];
+    option.cityname = @"北京";
+    option.keyword  = searchText;
+    BOOL flag = [_searcher suggestionSearch:option];
+    if(!flag)
+    {
+        NSLog(@"建议检索发送失败");
+    }
+}
+
+#pragma mark - BMKSuggestionSearchDelegate
+
+-(void)onGetSuggestionResult:(BMKSuggestionSearch *)searcher result:(BMKSuggestionResult *)result errorCode:(BMKSearchErrorCode)error
+{
+    if (error == BMK_SEARCH_NO_ERROR) {
+        //在此处理正常结果
+        _suggestionResult = result;
+        [self.tableView reloadData];
+    }
+    else {
+        NSLog(@"抱歉，未找到结果");
+    }
 }
 
 #pragma mark - Table view data source & delegate
@@ -59,7 +103,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_pickupResult.poiList count];
+    if (_suggestionResult) {
+        return [_suggestionResult.keyList count];
+    } else
+    {
+        return [_pickupResult.poiList count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -68,12 +117,18 @@
     cell.textLabel.textColor = [UIColor darkGrayColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    BMKPoiInfo *poiInfo = [_pickupResult.poiList objectAtIndex:indexPath.row];
-    if (0 == indexPath.row) {
-        cell.textLabel.text = [NSString stringWithFormat:@"当前: %@", poiInfo.name];
-        cell.textLabel.textColor = [UIColor blueColor];
-    } else {
-        cell.textLabel.text = poiInfo.name;
+    if (_suggestionResult) {
+        cell.textLabel.text = [_suggestionResult.keyList objectAtIndex:indexPath.row];
+    }
+    else
+    {
+        BMKPoiInfo *poiInfo = [_pickupResult.poiList objectAtIndex:indexPath.row];
+        if (0 == indexPath.row) {
+            cell.textLabel.text = [NSString stringWithFormat:@"当前: %@", poiInfo.name];
+            cell.textLabel.textColor = [UIColor blueColor];
+        } else {
+            cell.textLabel.text = poiInfo.name;
+        }
     }
     
     return cell;
@@ -81,7 +136,16 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.delegate userSelectedPoiInfo:[_pickupResult.poiList objectAtIndex:indexPath.row]];
+    if (_suggestionResult) {
+        CLLocationCoordinate2D pt;
+        [[_suggestionResult.ptList objectAtIndex:indexPath.row] getValue:&pt];
+        [self.delegate userSelectedPoiPt:pt];
+    }
+    else
+    {
+        BMKPoiInfo *info = [_pickupResult.poiList objectAtIndex:indexPath.row];
+        [self.delegate userSelectedPoiPt:info.pt];
+    }
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

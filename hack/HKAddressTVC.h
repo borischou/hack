@@ -12,7 +12,7 @@
 @protocol HKAddressTVDelegate <NSObject>
 
 @required
--(void)userSelectedPoiInfo:(BMKPoiInfo *)info;
+-(void)userSelectedPoiPt:(CLLocationCoordinate2D)pt;
 
 @end
 

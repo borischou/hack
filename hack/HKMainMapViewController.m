@@ -234,10 +234,9 @@
 
 #pragma mark - HKAddressTVCDelegate
 
--(void)userSelectedPoiInfo:(BMKPoiInfo *)info
+-(void)userSelectedPoiPt:(CLLocationCoordinate2D)pt
 {
-    _userSelectedPoiInfo = info;
-    [_mapView setCenterCoordinate:info.pt animated:YES];
+    [_mapView setCenterCoordinate:pt animated:YES];
 }
 
 #pragma mark - BMKGeoCodeSearchDelegate
