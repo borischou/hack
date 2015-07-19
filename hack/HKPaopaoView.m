@@ -22,6 +22,7 @@
 
 -(void)initLayoutWithFrame:(CGRect)frame
 {
+    self.backgroundColor = [UIColor purpleColor];
     self.layer.cornerRadius = 8;
     self.layer.masksToBounds = YES;
     

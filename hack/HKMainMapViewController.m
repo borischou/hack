@@ -13,6 +13,8 @@
 #import "HKPaopaoView.h"
 #import "HKBottomMenuView.h"
 #import "AppDelegate.h"
+#import "HKFocusImageView.h"
+#import "HKCenterPinView.h"
 
 #define bWidth [UIScreen mainScreen].bounds.size.width
 #define bHeight [UIScreen mainScreen].bounds.size.height
@@ -38,12 +40,11 @@
 
 @property (copy, nonatomic) NSString *curAddress;
 
-@property (strong, nonatomic) UIImageView *centerPinView;
-@property (strong, nonatomic) UIImageView *focusBtnView;
-
 @property (strong, nonatomic) HKPaopaoView *paopaoView;
 @property (strong, nonatomic) HKAddressTVC *addressTVC;
 @property (strong, nonatomic) HKBottomMenuView *menuView;
+@property (strong, nonatomic) HKFocusImageView *focusImageView;
+@property (strong, nonatomic) HKCenterPinView *centerPinView;
 
 @property (nonatomic) CLLocationCoordinate2D destinationCoordinate2D;
 @property (nonatomic) CGPoint paopaoCenter;
@@ -129,29 +130,21 @@
 
 -(void)loadFloatViews
 {
-    _centerPinView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    _centerPinView = [[HKCenterPinView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
     _centerPinView.center = CGPointMake(_mapView.center.x, _mapView.center.y-20);
-    _centerPinView.image = [UIImage imageNamed:@"hk_center_2"];
     [self.view addSubview:_centerPinView];
     
     _paopaoView = [[HKPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
     _paopaoCenter = CGPointMake(_centerPinView.center.x, _centerPinView.center.y - 35);
     _paopaoView.center = _paopaoCenter;
-    _paopaoView.backgroundColor = [UIColor purpleColor];
-    [self.view addSubview:_paopaoView];
     _paopaoView.addrLbl.text = _curAddress;
     [_paopaoView.addrLbl addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapLabel:)]];
+
+    [self.view addSubview:_paopaoView];
     
-    _focusBtnView = [[UIImageView alloc] initWithFrame:CGRectZero];
-    _focusBtnView.frame = CGRectMake(10, bHeight - bMenuHeight - bScaleBarHeight - 10 - bFocusBtnHeight, 40, bFocusBtnHeight);
-    _focusBtnView.userInteractionEnabled = YES;
-    _focusBtnView.backgroundColor = [UIColor whiteColor];
-    _focusBtnView.layer.cornerRadius = 8;
-    _focusBtnView.layer.borderWidth = 1;
-    _focusBtnView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    _focusBtnView.image = [UIImage imageNamed:@"hk_focus_3"];
-    [_focusBtnView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFocus:)]];
-    [self.view addSubview:_focusBtnView];
+    _focusImageView = [[HKFocusImageView alloc] init];
+    [_focusImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFocus:)]];
+    [self.view addSubview:_focusImageView];
 }
 
 -(void)detectAvailableCarServices
