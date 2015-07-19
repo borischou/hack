@@ -213,15 +213,16 @@
 
 -(void)tapDestinationLabel:(UITapGestureRecognizer *)tap
 {
-    NSLog(@"destination");
-    _addressTVC = [[HKAddressTVC alloc] init];
-    _addressTVC.view.backgroundColor = [UIColor whiteColor];
-    _addressTVC.pickupResult = _reversedPickupResult;
-    _addressTVC.delegate = self;
-    _addressTVC.searchBar.placeholder = @"您想去哪？";
-    _addressTVC.isDestination = YES;
-    
-    [self.navigationController pushViewController:_addressTVC animated:YES];
+    if (_isCenter) {
+        _addressTVC = [[HKAddressTVC alloc] init];
+        _addressTVC.view.backgroundColor = [UIColor whiteColor];
+        _addressTVC.pickupResult = _reversedPickupResult;
+        _addressTVC.delegate = self;
+        _addressTVC.searchBar.placeholder = @"您想去哪？";
+        _addressTVC.isDestination = YES;
+        
+        [self.navigationController pushViewController:_addressTVC animated:YES];
+    }
 }
 
 -(void)tapLabel:(UITapGestureRecognizer *)tap
