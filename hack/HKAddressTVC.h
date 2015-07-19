@@ -12,7 +12,7 @@
 @protocol HKAddressTVDelegate <NSObject>
 
 @required
--(void)userSelectedPoiPt:(CLLocationCoordinate2D)pt;
+-(void)userSelectedPoiPt:(CLLocationCoordinate2D)pt poiName:(NSString *)name forDestination:(BOOL)isDestination;
 
 @end
 
@@ -21,5 +21,7 @@
 @property (weak, nonatomic) id <HKAddressTVDelegate> delegate;
 
 @property (strong, nonatomic) BMKReverseGeoCodeResult *pickupResult;
+@property (strong, nonatomic) UISearchBar *searchBar;
+@property (nonatomic) BOOL isDestination;
 
 @end

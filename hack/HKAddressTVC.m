@@ -27,10 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UISearchBar *searchBar = [[UISearchBar alloc] init];
-    searchBar.placeholder = @"您想从哪上车？";
-    searchBar.delegate = self;
-    self.navigationItem.titleView = searchBar;
+    _searchBar = [[UISearchBar alloc] init];
+    _searchBar.delegate = self;
+    self.navigationItem.titleView = _searchBar;
     
     _searcher = [[BMKSuggestionSearch alloc] init];
     
@@ -139,12 +138,12 @@
     if (_suggestionResult) {
         CLLocationCoordinate2D pt;
         [[_suggestionResult.ptList objectAtIndex:indexPath.row] getValue:&pt];
-        [self.delegate userSelectedPoiPt:pt];
+        [self.delegate userSelectedPoiPt:pt poiName:[_suggestionResult.keyList objectAtIndex:indexPath.row] forDestination:_isDestination];
     }
     else
     {
         BMKPoiInfo *info = [_pickupResult.poiList objectAtIndex:indexPath.row];
-        [self.delegate userSelectedPoiPt:info.pt];
+        [self.delegate userSelectedPoiPt:info.pt poiName:[_suggestionResult.keyList objectAtIndex:indexPath.row] forDestination:_isDestination];
     }
     [self.navigationController popToRootViewControllerAnimated:YES];
 }

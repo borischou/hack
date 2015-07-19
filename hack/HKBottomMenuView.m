@@ -57,6 +57,7 @@
     _destLbl.textColor = [UIColor whiteColor];
     _destLbl.text = @"请输入目的地";
     _destLbl.textAlignment = NSTextAlignmentCenter;
+    _destLbl.userInteractionEnabled = YES;
     [self addSubview:_destLbl];
 }
 

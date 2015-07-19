@@ -126,6 +126,7 @@
     [_menuView.kuaidiBtn addTarget:self action:@selector(carTypeBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     [_menuView.shenzhouBtn addTarget:self action:@selector(carTypeBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     [_menuView.moreBtn addTarget:self action:@selector(carTypeBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [_menuView.destLbl addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDestinationLabel:)]];
 }
 
 -(void)loadFloatViews
@@ -210,12 +211,27 @@
     }
 }
 
+-(void)tapDestinationLabel:(UITapGestureRecognizer *)tap
+{
+    NSLog(@"destination");
+    _addressTVC = [[HKAddressTVC alloc] init];
+    _addressTVC.view.backgroundColor = [UIColor whiteColor];
+    _addressTVC.pickupResult = _reversedPickupResult;
+    _addressTVC.delegate = self;
+    _addressTVC.searchBar.placeholder = @"您想去哪？";
+    _addressTVC.isDestination = YES;
+    
+    [self.navigationController pushViewController:_addressTVC animated:YES];
+}
+
 -(void)tapLabel:(UITapGestureRecognizer *)tap
 {
     _addressTVC = [[HKAddressTVC alloc] init];
     _addressTVC.view.backgroundColor = [UIColor whiteColor];
     _addressTVC.pickupResult = _reversedPickupResult;
     _addressTVC.delegate = self;
+    _addressTVC.searchBar.placeholder = @"您想从哪上车？";
+    _addressTVC.isDestination = NO;
     
     [self.navigationController pushViewController:_addressTVC animated:YES];
 }
@@ -227,9 +243,15 @@
 
 #pragma mark - HKAddressTVCDelegate
 
--(void)userSelectedPoiPt:(CLLocationCoordinate2D)pt
+-(void)userSelectedPoiPt:(CLLocationCoordinate2D)pt poiName:(NSString *)name forDestination:(BOOL)isDestination
 {
-    [_mapView setCenterCoordinate:pt animated:YES];
+    if (!isDestination) {
+        [_mapView setCenterCoordinate:pt animated:YES];
+    } else {
+        //set the destination label
+        _destinationCoordinate2D = pt;
+        _menuView.destLbl.text = [NSString stringWithFormat:@"目的地：%@", name];
+    }
 }
 
 #pragma mark - BMKGeoCodeSearchDelegate

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		455680AB1B5BBCA600CDB9A1 /* HKFocusImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 455680AA1B5BBCA600CDB9A1 /* HKFocusImageView.m */; };
 		455680AE1B5BBE0500CDB9A1 /* HKCenterPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 455680AD1B5BBE0500CDB9A1 /* HKCenterPinView.m */; };
+		455680B41B5BC79900CDB9A1 /* hk_focus_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 455680B31B5BC79900CDB9A1 /* hk_focus_6.png */; };
 		456223931B57392E00F31AE5 /* HKPaopaoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 456223921B57392E00F31AE5 /* HKPaopaoView.m */; };
 		456223961B57461800F31AE5 /* HKBottomMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 456223951B57461800F31AE5 /* HKBottomMenuView.m */; };
 		4565EF091B567A7F009D0BCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF081B567A7F009D0BCD /* main.m */; };
@@ -63,7 +64,6 @@
 		4565EFB61B56B23C009D0BCD /* UIButton+Bobtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EFB51B56B23C009D0BCD /* UIButton+Bobtn.m */; };
 		4565EFB91B56B2F5009D0BCD /* HKAddressTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EFB81B56B2F5009D0BCD /* HKAddressTVC.m */; };
 		458725C81B58F2EE003608DB /* hk_center_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 458725C71B58F2EE003608DB /* hk_center_2.png */; };
-		458725D81B58F895003608DB /* hk_focus_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 458725D71B58F895003608DB /* hk_focus_3.png */; };
 		458725DC1B58F942003608DB /* hk_cur_11.png in Resources */ = {isa = PBXBuildFile; fileRef = 458725DB1B58F942003608DB /* hk_cur_11.png */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +82,7 @@
 		455680AA1B5BBCA600CDB9A1 /* HKFocusImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKFocusImageView.m; sourceTree = "<group>"; };
 		455680AC1B5BBE0500CDB9A1 /* HKCenterPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKCenterPinView.h; sourceTree = "<group>"; };
 		455680AD1B5BBE0500CDB9A1 /* HKCenterPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKCenterPinView.m; sourceTree = "<group>"; };
+		455680B31B5BC79900CDB9A1 /* hk_focus_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_focus_6.png; sourceTree = "<group>"; };
 		456223911B57392E00F31AE5 /* HKPaopaoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKPaopaoView.h; sourceTree = "<group>"; };
 		456223921B57392E00F31AE5 /* HKPaopaoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKPaopaoView.m; sourceTree = "<group>"; };
 		456223941B57461800F31AE5 /* HKBottomMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKBottomMenuView.h; sourceTree = "<group>"; };
@@ -182,7 +183,6 @@
 		4565EFB71B56B2F5009D0BCD /* HKAddressTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKAddressTVC.h; sourceTree = "<group>"; };
 		4565EFB81B56B2F5009D0BCD /* HKAddressTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKAddressTVC.m; sourceTree = "<group>"; };
 		458725C71B58F2EE003608DB /* hk_center_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_center_2.png; sourceTree = "<group>"; };
-		458725D71B58F895003608DB /* hk_focus_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_focus_3.png; sourceTree = "<group>"; };
 		458725DB1B58F942003608DB /* hk_cur_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_cur_11.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -443,7 +443,7 @@
 			children = (
 				458725C71B58F2EE003608DB /* hk_center_2.png */,
 				458725DB1B58F942003608DB /* hk_cur_11.png */,
-				458725D71B58F895003608DB /* hk_focus_3.png */,
+				455680B31B5BC79900CDB9A1 /* hk_focus_6.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -532,8 +532,8 @@
 				458725DC1B58F942003608DB /* hk_cur_11.png in Resources */,
 				4565EF171B567A7F009D0BCD /* LaunchScreen.xib in Resources */,
 				4565EF141B567A7F009D0BCD /* Images.xcassets in Resources */,
-				458725D81B58F895003608DB /* hk_focus_3.png in Resources */,
 				458725C81B58F2EE003608DB /* hk_center_2.png in Resources */,
+				455680B41B5BC79900CDB9A1 /* hk_focus_6.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

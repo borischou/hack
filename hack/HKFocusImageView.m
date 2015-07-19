@@ -28,7 +28,7 @@
         self.layer.cornerRadius = 8;
         self.layer.borderWidth = 1;
         self.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        self.image = [UIImage imageNamed:@"hk_focus_3"];
+        self.image = [UIImage imageNamed:@"hk_focus_6"];
     }
     return self;
 }
