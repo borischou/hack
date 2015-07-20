@@ -143,7 +143,7 @@
     else
     {
         BMKPoiInfo *info = [_pickupResult.poiList objectAtIndex:indexPath.row];
-        [self.delegate userSelectedPoiPt:info.pt poiName:[_suggestionResult.keyList objectAtIndex:indexPath.row] forDestination:_isDestination];
+        [self.delegate userSelectedPoiPt:info.pt poiName:info.name forDestination:_isDestination];
     }
     [self.navigationController popToRootViewControllerAnimated:YES];
 }

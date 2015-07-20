@@ -251,7 +251,7 @@
     } else {
         //set the destination label
         _destinationCoordinate2D = pt;
-        _menuView.destLbl.text = [NSString stringWithFormat:@"目的地：%@", name];
+        _menuView.destLbl.text = [NSString stringWithFormat:@"您选择的目的地：%@", name];
     }
 }
 
