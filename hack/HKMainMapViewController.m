@@ -77,7 +77,13 @@
     imageView.userInteractionEnabled = YES;
     imageView.image = [UIImage imageNamed:@"hk_profile_4"];
     UIBarButtonItem *profileBarbutton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+    UIImageView *settingsView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 23, 23)];
+    [settingsView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(settingsBarbuttonPressed)]];
+    settingsView.userInteractionEnabled = YES;
+    settingsView.image = [UIImage imageNamed:@"hk_settings"];
+    UIBarButtonItem *settingsBarbutton = [[UIBarButtonItem alloc] initWithCustomView:settingsView];
     
+    self.navigationItem.rightBarButtonItem = settingsBarbutton;
     self.navigationItem.leftBarButtonItem = profileBarbutton;
     
     [self initBaiduMapView];
@@ -193,6 +199,11 @@
 -(void)profileBarButtonPressed
 {
     NSLog(@"profileBarButtomPressed");
+}
+
+-(void)settingsBarbuttonPressed
+{
+    NSLog(@"settingsBarbuttonPressed");
 }
 
 -(void)carTypeBtnPressed:(UIButton *)sender
