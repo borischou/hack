@@ -307,8 +307,18 @@
         NSString *pickupAddress = pickupInfo.name;
         _paopaoView.addrLbl.text = [NSString stringWithFormat:@"从%@上车", pickupAddress];
         [_paopaoView.addrLbl sizeToFit];
-        _paopaoView.frame = CGRectMake(0, 0, _paopaoView.addrLbl.frame.size.width + 10, _paopaoView.addrLbl.frame.size.height + 10);
-        _paopaoView.center = _paopaoCenter;
+        [UIView animateWithDuration:0.4
+                              delay:0.0
+             usingSpringWithDamping:0.5
+              initialSpringVelocity:10.0
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             _paopaoView.frame = CGRectMake(0, 0, _paopaoView.addrLbl.frame.size.width + 10, _paopaoView.addrLbl.frame.size.height + 10);
+                             _paopaoView.center = _paopaoCenter;
+        }
+                         completion:^(BOOL finished) {
+        }];
+        
     }
     else
     {

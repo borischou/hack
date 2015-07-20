@@ -28,8 +28,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, frame.size.width - 10, frame.size.height - 10)];
-        _imageView.image = [UIImage imageNamed:@"hk_focus_6"];
+        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(3, 3, frame.size.width - 6, frame.size.height - 6)];
+        _imageView.image = [UIImage imageNamed:@"hk_focus_8"];
         [self addSubview:_imageView];
         self.backgroundColor = [UIColor whiteColor];
         self.userInteractionEnabled = YES;
