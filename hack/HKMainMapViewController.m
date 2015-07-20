@@ -13,8 +13,8 @@
 #import "HKPaopaoView.h"
 #import "HKBottomMenuView.h"
 #import "AppDelegate.h"
-#import "HKFocusImageView.h"
 #import "HKCenterPinView.h"
+#import "HKFocusView.h"
 
 #define bWidth [UIScreen mainScreen].bounds.size.width
 #define bHeight [UIScreen mainScreen].bounds.size.height
@@ -43,8 +43,8 @@
 @property (strong, nonatomic) HKPaopaoView *paopaoView;
 @property (strong, nonatomic) HKAddressTVC *addressTVC;
 @property (strong, nonatomic) HKBottomMenuView *menuView;
-@property (strong, nonatomic) HKFocusImageView *focusImageView;
 @property (strong, nonatomic) HKCenterPinView *centerPinView;
+@property (strong, nonatomic) HKFocusView *focusView;
 
 @property (nonatomic) CLLocationCoordinate2D destinationCoordinate2D;
 @property (nonatomic) CGPoint paopaoCenter;
@@ -70,7 +70,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     _searcher = [[BMKGeoCodeSearch alloc] init];
     
     [self loadBarbuttonItems];
@@ -155,12 +155,11 @@
     _paopaoView.center = _paopaoCenter;
     _paopaoView.addrLbl.text = _curAddress;
     [_paopaoView.addrLbl addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapLabel:)]];
-
     [self.view addSubview:_paopaoView];
-    
-    _focusImageView = [[HKFocusImageView alloc] init];
-    [_focusImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFocus:)]];
-    [self.view addSubview:_focusImageView];
+
+    _focusView = [[HKFocusView alloc] initWithFrame:CGRectMake(10, bHeight - bMenuHeight - bScaleBarHeight - 10 - bFocusBtnHeight, 40, bFocusBtnHeight)];
+    [_focusView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFocus:)]];
+    [self.view addSubview:_focusView];
 }
 
 -(void)detectAvailableCarServices

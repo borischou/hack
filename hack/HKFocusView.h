@@ -1,13 +1,13 @@
 //
-//  HKFocusImageView.h
+//  HKFocusView.h
 //  hack
 //
-//  Created by Zhouboli on 15/7/19.
+//  Created by Zhouboli on 15/7/20.
 //  Copyright (c) 2015年 Bankwel. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface HKFocusImageView : UIImageView
+@interface HKFocusView : UIView
 
 @end

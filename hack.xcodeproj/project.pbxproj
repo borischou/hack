@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		455680AB1B5BBCA600CDB9A1 /* HKFocusImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 455680AA1B5BBCA600CDB9A1 /* HKFocusImageView.m */; };
 		455680AE1B5BBE0500CDB9A1 /* HKCenterPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 455680AD1B5BBE0500CDB9A1 /* HKCenterPinView.m */; };
 		455680B41B5BC79900CDB9A1 /* hk_focus_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 455680B31B5BC79900CDB9A1 /* hk_focus_6.png */; };
 		45599E1F1B5C98C60023CA02 /* hk_profile_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 45599E1E1B5C98C60023CA02 /* hk_profile_4.png */; };
 		45599E2F1B5CC4960023CA02 /* Default@3x-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 45599E2E1B5CC4960023CA02 /* Default@3x-2.png */; };
 		45599E311B5CC60B0023CA02 /* hk_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 45599E301B5CC60B0023CA02 /* hk_settings.png */; };
+		45599E341B5CDD5B0023CA02 /* HKFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45599E331B5CDD5B0023CA02 /* HKFocusView.m */; };
 		456223931B57392E00F31AE5 /* HKPaopaoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 456223921B57392E00F31AE5 /* HKPaopaoView.m */; };
 		456223961B57461800F31AE5 /* HKBottomMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 456223951B57461800F31AE5 /* HKBottomMenuView.m */; };
 		4565EF091B567A7F009D0BCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF081B567A7F009D0BCD /* main.m */; };
@@ -81,14 +81,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		455680A91B5BBCA600CDB9A1 /* HKFocusImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKFocusImageView.h; sourceTree = "<group>"; };
-		455680AA1B5BBCA600CDB9A1 /* HKFocusImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKFocusImageView.m; sourceTree = "<group>"; };
 		455680AC1B5BBE0500CDB9A1 /* HKCenterPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKCenterPinView.h; sourceTree = "<group>"; };
 		455680AD1B5BBE0500CDB9A1 /* HKCenterPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKCenterPinView.m; sourceTree = "<group>"; };
 		455680B31B5BC79900CDB9A1 /* hk_focus_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_focus_6.png; sourceTree = "<group>"; };
 		45599E1E1B5C98C60023CA02 /* hk_profile_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_profile_4.png; sourceTree = "<group>"; };
 		45599E2E1B5CC4960023CA02 /* Default@3x-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@3x-2.png"; sourceTree = "<group>"; };
 		45599E301B5CC60B0023CA02 /* hk_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_settings.png; sourceTree = "<group>"; };
+		45599E321B5CDD5B0023CA02 /* HKFocusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKFocusView.h; sourceTree = "<group>"; };
+		45599E331B5CDD5B0023CA02 /* HKFocusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKFocusView.m; sourceTree = "<group>"; };
 		456223911B57392E00F31AE5 /* HKPaopaoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKPaopaoView.h; sourceTree = "<group>"; };
 		456223921B57392E00F31AE5 /* HKPaopaoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKPaopaoView.m; sourceTree = "<group>"; };
 		456223941B57461800F31AE5 /* HKBottomMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKBottomMenuView.h; sourceTree = "<group>"; };
@@ -229,10 +229,10 @@
 				456223921B57392E00F31AE5 /* HKPaopaoView.m */,
 				456223941B57461800F31AE5 /* HKBottomMenuView.h */,
 				456223951B57461800F31AE5 /* HKBottomMenuView.m */,
-				455680A91B5BBCA600CDB9A1 /* HKFocusImageView.h */,
-				455680AA1B5BBCA600CDB9A1 /* HKFocusImageView.m */,
 				455680AC1B5BBE0500CDB9A1 /* HKCenterPinView.h */,
 				455680AD1B5BBE0500CDB9A1 /* HKCenterPinView.m */,
+				45599E321B5CDD5B0023CA02 /* HKFocusView.h */,
+				45599E331B5CDD5B0023CA02 /* HKFocusView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -569,6 +569,7 @@
 				4565EF481B56AC75009D0BCD /* HKMainMapViewController.m in Sources */,
 				4565EF631B56AFCF009D0BCD /* UberPromotion.m in Sources */,
 				4565EFA51B56B02F009D0BCD /* NXOAuth2AccessToken.m in Sources */,
+				45599E341B5CDD5B0023CA02 /* HKFocusView.m in Sources */,
 				4565EF5E1B56AFCF009D0BCD /* UberRequest.m in Sources */,
 				4565EF651B56AFCF009D0BCD /* UberMap.m in Sources */,
 				456223931B57392E00F31AE5 /* HKPaopaoView.m in Sources */,
@@ -587,7 +588,6 @@
 				4565EF4C1B56AFBE009D0BCD /* UberKit.m in Sources */,
 				4565EFAE1B56B02F009D0BCD /* NXOAuth2Request.m in Sources */,
 				4565EFA41B56B02F009D0BCD /* NSURL+NXOAuth2.m in Sources */,
-				455680AB1B5BBCA600CDB9A1 /* HKFocusImageView.m in Sources */,
 				4565EF781B56AFFF009D0BCD /* UberLocation.m in Sources */,
 				4565EF6F1B56AFEA009D0BCD /* UberEstimatedPrice.m in Sources */,
 				4565EF7F1B56B014009D0BCD /* UberCharge.m in Sources */,

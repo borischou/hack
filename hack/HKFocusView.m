@@ -1,12 +1,12 @@
 //
-//  HKFocusImageView.m
+//  HKFocusView.m
 //  hack
 //
-//  Created by Zhouboli on 15/7/19.
+//  Created by Zhouboli on 15/7/20.
 //  Copyright (c) 2015年 Bankwel. All rights reserved.
 //
 
-#import "HKFocusImageView.h"
+#import "HKFocusView.h"
 
 #define bWidth [UIScreen mainScreen].bounds.size.width
 #define bHeight [UIScreen mainScreen].bounds.size.height
@@ -16,22 +16,28 @@
 #define bFocusBtnHeight 40
 #define bPaopaoViewHeight 40
 
-@implementation HKFocusImageView
+@interface HKFocusView ()
 
--(id)init
+@property (strong, nonatomic) UIImageView *imageView;
+
+@end
+
+@implementation HKFocusView
+
+-(id)initWithFrame:(CGRect)frame
 {
-    self = [super init];
+    self = [super initWithFrame:frame];
     if (self) {
-        self.frame = CGRectMake(10, bHeight - bMenuHeight - bScaleBarHeight - 10 - bFocusBtnHeight, 40, bFocusBtnHeight);
-        self.userInteractionEnabled = YES;
+        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, frame.size.width - 10, frame.size.height - 10)];
+        _imageView.image = [UIImage imageNamed:@"hk_focus_6"];
+        [self addSubview:_imageView];
         self.backgroundColor = [UIColor whiteColor];
+        self.userInteractionEnabled = YES;
         self.layer.cornerRadius = 8;
         self.layer.borderWidth = 1;
         self.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        self.image = [UIImage imageNamed:@"hk_focus_6"];
     }
     return self;
 }
 
 @end
-
