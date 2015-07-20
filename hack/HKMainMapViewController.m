@@ -72,20 +72,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _searcher = [[BMKGeoCodeSearch alloc] init];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 23, 23)];
-    [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(profileBarButtonPressed)]];
-    imageView.userInteractionEnabled = YES;
-    imageView.image = [UIImage imageNamed:@"hk_profile_4"];
-    UIBarButtonItem *profileBarbutton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
-    UIImageView *settingsView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 23, 23)];
-    [settingsView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(settingsBarbuttonPressed)]];
-    settingsView.userInteractionEnabled = YES;
-    settingsView.image = [UIImage imageNamed:@"hk_settings"];
-    UIBarButtonItem *settingsBarbutton = [[UIBarButtonItem alloc] initWithCustomView:settingsView];
     
-    self.navigationItem.rightBarButtonItem = settingsBarbutton;
-    self.navigationItem.leftBarButtonItem = profileBarbutton;
-    
+    [self loadBarbuttonItems];
     [self initBaiduMapView];
     [self loadMenuView];
     [self startBaiduLocationService];
@@ -124,6 +112,23 @@
 }
 
 #pragma mark - Helpers
+
+-(void)loadBarbuttonItems
+{
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 23, 23)];
+    [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(profileBarButtonPressed)]];
+    imageView.userInteractionEnabled = YES;
+    imageView.image = [UIImage imageNamed:@"hk_profile_4"];
+    UIBarButtonItem *profileBarbutton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+    UIImageView *settingsView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 23, 23)];
+    [settingsView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(settingsBarbuttonPressed)]];
+    settingsView.userInteractionEnabled = YES;
+    settingsView.image = [UIImage imageNamed:@"hk_settings"];
+    UIBarButtonItem *settingsBarbutton = [[UIBarButtonItem alloc] initWithCustomView:settingsView];
+    
+    self.navigationItem.rightBarButtonItem = settingsBarbutton;
+    self.navigationItem.leftBarButtonItem = profileBarbutton;
+}
 
 -(void)loadMenuView
 {
