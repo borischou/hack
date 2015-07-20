@@ -15,6 +15,8 @@
 		45599E341B5CDD5B0023CA02 /* HKFocusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45599E331B5CDD5B0023CA02 /* HKFocusView.m */; };
 		45599E361B5CE8100023CA02 /* hk_focus_7.png in Resources */ = {isa = PBXBuildFile; fileRef = 45599E351B5CE8100023CA02 /* hk_focus_7.png */; };
 		45599E381B5CE8510023CA02 /* hk_focus_8.png in Resources */ = {isa = PBXBuildFile; fileRef = 45599E371B5CE8510023CA02 /* hk_focus_8.png */; };
+		45599E3B1B5D4C270023CA02 /* HKCarTypeCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45599E3A1B5D4C270023CA02 /* HKCarTypeCollectionView.m */; };
+		45599E3E1B5D4DD30023CA02 /* HKCarTypeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 45599E3D1B5D4DD30023CA02 /* HKCarTypeCollectionViewCell.m */; };
 		456223931B57392E00F31AE5 /* HKPaopaoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 456223921B57392E00F31AE5 /* HKPaopaoView.m */; };
 		456223961B57461800F31AE5 /* HKBottomMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 456223951B57461800F31AE5 /* HKBottomMenuView.m */; };
 		4565EF091B567A7F009D0BCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF081B567A7F009D0BCD /* main.m */; };
@@ -93,6 +95,10 @@
 		45599E331B5CDD5B0023CA02 /* HKFocusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKFocusView.m; sourceTree = "<group>"; };
 		45599E351B5CE8100023CA02 /* hk_focus_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_focus_7.png; sourceTree = "<group>"; };
 		45599E371B5CE8510023CA02 /* hk_focus_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_focus_8.png; sourceTree = "<group>"; };
+		45599E391B5D4C270023CA02 /* HKCarTypeCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKCarTypeCollectionView.h; sourceTree = "<group>"; };
+		45599E3A1B5D4C270023CA02 /* HKCarTypeCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKCarTypeCollectionView.m; sourceTree = "<group>"; };
+		45599E3C1B5D4DD30023CA02 /* HKCarTypeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKCarTypeCollectionViewCell.h; sourceTree = "<group>"; };
+		45599E3D1B5D4DD30023CA02 /* HKCarTypeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKCarTypeCollectionViewCell.m; sourceTree = "<group>"; };
 		456223911B57392E00F31AE5 /* HKPaopaoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKPaopaoView.h; sourceTree = "<group>"; };
 		456223921B57392E00F31AE5 /* HKPaopaoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKPaopaoView.m; sourceTree = "<group>"; };
 		456223941B57461800F31AE5 /* HKBottomMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKBottomMenuView.h; sourceTree = "<group>"; };
@@ -237,6 +243,10 @@
 				455680AD1B5BBE0500CDB9A1 /* HKCenterPinView.m */,
 				45599E321B5CDD5B0023CA02 /* HKFocusView.h */,
 				45599E331B5CDD5B0023CA02 /* HKFocusView.m */,
+				45599E391B5D4C270023CA02 /* HKCarTypeCollectionView.h */,
+				45599E3A1B5D4C270023CA02 /* HKCarTypeCollectionView.m */,
+				45599E3C1B5D4DD30023CA02 /* HKCarTypeCollectionViewCell.h */,
+				45599E3D1B5D4DD30023CA02 /* HKCarTypeCollectionViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -581,6 +591,7 @@
 				4565EF5E1B56AFCF009D0BCD /* UberRequest.m in Sources */,
 				4565EF651B56AFCF009D0BCD /* UberMap.m in Sources */,
 				456223931B57392E00F31AE5 /* HKPaopaoView.m in Sources */,
+				45599E3E1B5D4DD30023CA02 /* HKCarTypeCollectionViewCell.m in Sources */,
 				4565EF801B56B014009D0BCD /* UberReceipt.m in Sources */,
 				4565EF5F1B56AFCF009D0BCD /* UberActivity.m in Sources */,
 				4565EF601B56AFCF009D0BCD /* UberPrice.m in Sources */,
@@ -609,6 +620,7 @@
 				4565EFAA1B56B02F009D0BCD /* NXOAuth2Constants.m in Sources */,
 				4565EFA31B56B02F009D0BCD /* NSString+NXOAuth2.m in Sources */,
 				4565EF611B56AFCF009D0BCD /* UberProduct.m in Sources */,
+				45599E3B1B5D4C270023CA02 /* HKCarTypeCollectionView.m in Sources */,
 				4565EFB91B56B2F5009D0BCD /* HKAddressTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
