@@ -15,6 +15,16 @@
 #import "AppDelegate.h"
 #import "HKCenterPinView.h"
 #import "HKFocusView.h"
+#import "UberKit.h"
+
+#define uClientId @"VieNQg1vwK3c-bs5Tcl9topkGNvY1eVT"
+#define uServerToken @"Qi84DnjRVqadY7adLowTCFJU6Swa_8N-eVMdhzfU"
+#define uSecret @"sEWQB8Bj0IWX5Wwdddve4Mr4wK2MsnGzik01ShIi"
+#define uAppName @"hack"
+
+#define uAuthUrl @"https://login.uber.com/oauth/authorize"
+#define uAccessTokenUrl @"https://login.uber.com/oauth/token"
+#define uRedirectUrl @"hack://redirect/auth" //redirect back to Bobo iOS app from Safari website
 
 #define bWidth [UIScreen mainScreen].bounds.size.width
 #define bHeight [UIScreen mainScreen].bounds.size.height
@@ -45,6 +55,8 @@
 @property (strong, nonatomic) HKBottomMenuView *menuView;
 @property (strong, nonatomic) HKCenterPinView *centerPinView;
 @property (strong, nonatomic) HKFocusView *focusView;
+
+@property (copy, nonatomic) NSString *accessToken;
 
 @property (nonatomic) CLLocationCoordinate2D destinationCoordinate2D;
 @property (nonatomic) CGPoint paopaoCenter;
@@ -109,6 +121,34 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Uber
+
+-(void)calculateUberEstimatePickupTime:(CLLocationCoordinate2D)pickupCoordinate
+{
+    UberKit *uberKit = [[UberKit alloc] initWithServerToken:uServerToken];
+    CLLocation *pickupLocation = [[CLLocation alloc] initWithLatitude:pickupCoordinate.latitude longitude:pickupCoordinate.longitude];
+    [uberKit getTimeForProductArrivalWithLocation:pickupLocation withCompletionHandler:^(NSArray *times, NSURLResponse *response, NSError *error) {
+        if(!error)
+        {
+            if ([times count]) {
+                NSMutableArray *estimatedTimes = @[].mutableCopy;
+                for (UberTime *time in times) {
+                    [estimatedTimes addObject:@(time.estimate)];
+                }
+                NSSortDescriptor *sortedDescriptor = [[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES];
+                NSArray *sortedTimes = [estimatedTimes sortedArrayUsingDescriptors:@[sortedDescriptor]];
+  
+                NSNumber *soonest = [sortedTimes firstObject];
+                [_menuView.uberBtn setTitle:[NSString stringWithFormat:@"%.1fmin", soonest.floatValue/60] forState:UIControlStateNormal];
+            }
+        }
+        else
+        {
+            NSLog(@"Error %@", error);
+        }
+    }];
 }
 
 #pragma mark - Helpers
@@ -307,18 +347,12 @@
         NSString *pickupAddress = pickupInfo.name;
         _paopaoView.addrLbl.text = [NSString stringWithFormat:@"从%@上车", pickupAddress];
         [_paopaoView.addrLbl sizeToFit];
-        [UIView animateWithDuration:0.4
-                              delay:0.0
-             usingSpringWithDamping:0.5
-              initialSpringVelocity:10.0
-                            options:UIViewAnimationOptionCurveEaseInOut
-                         animations:^{
-                             _paopaoView.frame = CGRectMake(0, 0, _paopaoView.addrLbl.frame.size.width + 10, _paopaoView.addrLbl.frame.size.height + 10);
-                             _paopaoView.center = _paopaoCenter;
-        }
-                         completion:^(BOOL finished) {
+
+        [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:10.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            _paopaoView.frame = CGRectMake(0, 0, _paopaoView.addrLbl.frame.size.width + 10, _paopaoView.addrLbl.frame.size.height + 10);
+            _paopaoView.center = _paopaoCenter;
+        } completion:^(BOOL finished) {
         }];
-        
     }
     else
     {
@@ -343,6 +377,7 @@
         CLLocationCoordinate2D centerCoor = [_mapView convertPoint:_centerPinView.center toCoordinateFromView:_mapView];
         BMKReverseGeoCodeOption *reverseGeoCodeOption = [[BMKReverseGeoCodeOption alloc] init];
         reverseGeoCodeOption.reverseGeoPoint = centerCoor;
+        [self calculateUberEstimatePickupTime:centerCoor];
         BOOL aflag = [_searcher reverseGeoCode:reverseGeoCodeOption];
         if (!aflag) {
             NSLog(@"reverseGeoCode failure, flag = %d", aflag);
