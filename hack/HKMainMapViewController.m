@@ -71,13 +71,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _searcher = [[BMKGeoCodeSearch alloc] init];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 23, 23)];
+    [imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(profileBarButtonPressed)]];
+    imageView.userInteractionEnabled = YES;
+    imageView.image = [UIImage imageNamed:@"hk_profile_4"];
+    UIBarButtonItem *profileBarbutton = [[UIBarButtonItem alloc] initWithCustomView:imageView];
+    
+    self.navigationItem.leftBarButtonItem = profileBarbutton;
     
     [self initBaiduMapView];
-    
     [self loadMenuView];
-    
-    _searcher = [[BMKGeoCodeSearch alloc] init];
-    
     [self startBaiduLocationService];
 }
 
@@ -185,6 +189,11 @@
 }
 
 #pragma mark - Button & Gesture callbacks
+
+-(void)profileBarButtonPressed
+{
+    NSLog(@"profileBarButtomPressed");
+}
 
 -(void)carTypeBtnPressed:(UIButton *)sender
 {
