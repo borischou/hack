@@ -31,7 +31,8 @@
     _brandTextLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_brandTextLabel];
     
-    _brandIconView = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2+unitHeight, unitWidth, unitHeight*2)];
+    _brandIconView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, unitHeight*2, unitHeight*2)];
+    _brandIconView.center = self.contentView.center;
     [self.contentView addSubview:_brandIconView];
     
     _waitingTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(2, 2+unitHeight*3, unitWidth, unitHeight)];

@@ -158,7 +158,7 @@
                     NSArray *sortedTimes = [estimatedTimes sortedArrayUsingDescriptors:@[sortedDescriptor]];
                     
                     NSNumber *soonest = [sortedTimes firstObject];
-                    _uberWaitingMins = [NSString stringWithFormat:@"%.1f分接驾", soonest.floatValue/60];
+                    _uberWaitingMins = [NSString stringWithFormat:@"%.1f分后可接驾", soonest.floatValue/60];
                     [_carTypeCollectionView reloadData];
                 });
             }
@@ -260,6 +260,12 @@
     [self.view addSubview:_mapView];
     _mapView.showMapScaleBar = YES;
     _mapView.mapScaleBarPosition = CGPointMake(10, bHeight - bMenuHeight - 30);
+}
+
+-(NSAttributedString *)attributedStringForBrandLabel:(NSString *)string
+{
+    NSAttributedString *aString = [[NSAttributedString alloc] initWithString:string attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13.f]}];
+    return aString;
 }
 
 #pragma mark - Button & Gesture callbacks
@@ -438,27 +444,32 @@
     
     switch (indexPath.row) {
         case 0: //Uber
-            cell.brandTextLabel.text = @"UBER";
+            cell.brandTextLabel.attributedText = [self attributedStringForBrandLabel:@"UBER"];
+            cell.brandIconView.image = [UIImage imageNamed:@"hk_uber_icon"];
             if (_uberWaitingMins) {
-                cell.waitingTimeLabel.text = _uberWaitingMins;
+                cell.waitingTimeLabel.attributedText = [[NSAttributedString alloc] initWithString:_uberWaitingMins attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:10.f]}];
             } else {
                 cell.waitingTimeLabel.text = @"";
             }
             break;
         case 1: //滴滴打车
-            cell.brandTextLabel.text = @"滴滴打车";
+            cell.brandTextLabel.attributedText = [self attributedStringForBrandLabel:@"滴滴打车"];
+            cell.brandIconView.image = [UIImage imageNamed:@"hk_didi_icon"];
             cell.waitingTimeLabel.text = @"";
             break;
         case 2:
-            cell.brandTextLabel.text = @"快的打车";
+            cell.brandTextLabel.attributedText = [self attributedStringForBrandLabel:@"快的打车"];
+            cell.brandIconView.image = [UIImage imageNamed:@"hk_kuaidi_icon"];
             cell.waitingTimeLabel.text = @"";
             break;
         case 3:
-            cell.brandTextLabel.text = @"神州专车";
+            cell.brandTextLabel.attributedText = [self attributedStringForBrandLabel:@"神州专车"];
+            cell.brandIconView.image = [UIImage imageNamed:@"hk_shenzhou_icon"];
             cell.waitingTimeLabel.text = @"";
             break;
         case 4:
-            cell.brandTextLabel.text = @"51用车";
+            cell.brandTextLabel.attributedText = [self attributedStringForBrandLabel:@"51用车"];
+            cell.brandIconView.image = [UIImage imageNamed:@"hk_51_icon"];
             cell.waitingTimeLabel.text = @"";
             break;
             

@@ -31,7 +31,7 @@
 {
     self.backgroundColor = [UIColor whiteColor];
     
-    _compareBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, bBigGap, bBtnWidth, bBtnHeight) andTitle:@"比一比" withBackgroundColor:[UIColor grayColor] andTintColor:[UIColor purpleColor]];
+    _compareBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, bBigGap, bBtnWidth, bBtnHeight) andTitle:@"语音" withBackgroundColor:[UIColor grayColor] andTintColor:[UIColor purpleColor]];
     [self addSubview:_compareBtn];
     
     _requestBtn = [[UIButton alloc] initWithFrame:CGRectMake(bBtnWidth*4, bBigGap, bBtnWidth, bBtnHeight) andTitle:@"立即叫车" withBackgroundColor:[UIColor blackColor] andTintColor:[UIColor whiteColor]];
