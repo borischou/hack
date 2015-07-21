@@ -10,12 +10,6 @@
 
 @interface HKBottomMenuView : UIView
 
-@property (strong, nonatomic) UIButton *uberBtn;
-@property (strong, nonatomic) UIButton *didiBtn;
-@property (strong, nonatomic) UIButton *kuaidiBtn;
-@property (strong, nonatomic) UIButton *shenzhouBtn;
-@property (strong, nonatomic) UIButton *moreBtn;
-
 @property (strong, nonatomic) UIButton *compareBtn;
 @property (strong, nonatomic) UIButton *requestBtn;
 @property (strong, nonatomic) UILabel *destLbl;

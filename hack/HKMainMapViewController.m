@@ -16,6 +16,8 @@
 #import "HKCenterPinView.h"
 #import "HKFocusView.h"
 #import "UberKit.h"
+#import "HKCarTypeCollectionView.h"
+#import "HKCarTypeCollectionViewCell.h"
 
 #define uClientId @"VieNQg1vwK3c-bs5Tcl9topkGNvY1eVT"
 #define uServerToken @"Qi84DnjRVqadY7adLowTCFJU6Swa_8N-eVMdhzfU"
@@ -34,7 +36,7 @@
 #define bFocusBtnHeight 40
 #define bPaopaoViewHeight 40
 
-@interface HKMainMapViewController () <BMKMapViewDelegate, BMKLocationServiceDelegate, BMKGeoCodeSearchDelegate, BMKPoiSearchDelegate, HKAddressTVDelegate>
+@interface HKMainMapViewController () <BMKMapViewDelegate, BMKLocationServiceDelegate, BMKGeoCodeSearchDelegate, BMKPoiSearchDelegate, HKAddressTVDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 
 #pragma mark - BaiduMap
 
@@ -55,8 +57,10 @@
 @property (strong, nonatomic) HKBottomMenuView *menuView;
 @property (strong, nonatomic) HKCenterPinView *centerPinView;
 @property (strong, nonatomic) HKFocusView *focusView;
+@property (strong, nonatomic) HKCarTypeCollectionView *carTypeCollectionView;
 
 @property (copy, nonatomic) NSString *accessToken;
+@property (copy, nonatomic) NSString *uberWaitingMins;
 
 @property (nonatomic) CLLocationCoordinate2D destinationCoordinate2D;
 @property (nonatomic) CGPoint paopaoCenter;
@@ -88,6 +92,7 @@
     [self loadBarbuttonItems];
     [self initBaiduMapView];
     [self loadMenuView];
+    [self loadCollectionView];
     [self startBaiduLocationService];
 }
 
@@ -127,21 +132,35 @@
 
 -(void)calculateUberEstimatePickupTime:(CLLocationCoordinate2D)pickupCoordinate
 {
+    _uberWaitingMins = @"计算中..";
+    [_carTypeCollectionView reloadData];
     UberKit *uberKit = [[UberKit alloc] initWithServerToken:uServerToken];
     CLLocation *pickupLocation = [[CLLocation alloc] initWithLatitude:pickupCoordinate.latitude longitude:pickupCoordinate.longitude];
     [uberKit getTimeForProductArrivalWithLocation:pickupLocation withCompletionHandler:^(NSArray *times, NSURLResponse *response, NSError *error) {
         if(!error)
         {
             if ([times count]) {
-                NSMutableArray *estimatedTimes = @[].mutableCopy;
-                for (UberTime *time in times) {
-                    [estimatedTimes addObject:@(time.estimate)];
+                
+                NSLog(@"Time response: %@", response);
+                NSLog(@"Time count: %ld", [times count]);
+                if ([times count]) {
+                    for (UberTime *time in times) {
+                        NSLog(@"Time estimate: %f", time.estimate);
+                    }
                 }
-                NSSortDescriptor *sortedDescriptor = [[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES];
-                NSArray *sortedTimes = [estimatedTimes sortedArrayUsingDescriptors:@[sortedDescriptor]];
-  
-                NSNumber *soonest = [sortedTimes firstObject];
-                [_menuView.uberBtn setTitle:[NSString stringWithFormat:@"%.1fmin", soonest.floatValue/60] forState:UIControlStateNormal];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSMutableArray *estimatedTimes = @[].mutableCopy;
+                    for (UberTime *time in times) {
+                        [estimatedTimes addObject:@(time.estimate)];
+                    }
+                    NSSortDescriptor *sortedDescriptor = [[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES];
+                    NSArray *sortedTimes = [estimatedTimes sortedArrayUsingDescriptors:@[sortedDescriptor]];
+                    
+                    NSNumber *soonest = [sortedTimes firstObject];
+                    _uberWaitingMins = [NSString stringWithFormat:@"%.1f分接驾", soonest.floatValue/60];
+                    [_carTypeCollectionView reloadData];
+                });
             }
         }
         else
@@ -152,6 +171,15 @@
 }
 
 #pragma mark - Helpers
+
+-(void)loadCollectionView
+{
+    _carTypeCollectionView = [[HKCarTypeCollectionView alloc] initWithFrame:CGRectMake(0, bHeight - bMenuHeight, bWidth, bMenuHeight/2) collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+    [_carTypeCollectionView registerClass:[HKCarTypeCollectionViewCell class] forCellWithReuseIdentifier:@"reuseCell"];
+    _carTypeCollectionView.dataSource = self;
+    _carTypeCollectionView.delegate = self;
+    [self.view addSubview:_carTypeCollectionView];
+}
 
 -(void)loadBarbuttonItems
 {
@@ -176,11 +204,7 @@
     _menuView = [[HKBottomMenuView alloc] init];
     _menuView.userInteractionEnabled = YES;
     [self.view addSubview:_menuView];
-    [_menuView.uberBtn addTarget:self action:@selector(carTypeBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [_menuView.didiBtn addTarget:self action:@selector(carTypeBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [_menuView.kuaidiBtn addTarget:self action:@selector(carTypeBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [_menuView.shenzhouBtn addTarget:self action:@selector(carTypeBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [_menuView.moreBtn addTarget:self action:@selector(carTypeBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
+
     [_menuView.destLbl addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDestinationLabel:)]];
 }
 
@@ -248,31 +272,6 @@
 -(void)settingsBarbuttonPressed
 {
     NSLog(@"settingsBarbuttonPressed");
-}
-
--(void)carTypeBtnPressed:(UIButton *)sender
-{
-    if ([sender isKindOfClass:[UIButton class]]) {
-        UIButton *button = (UIButton *)sender;
-        if ([button.titleLabel.text isEqualToString:@"UBER"]) {
-            NSLog(@"UBER");
-            if (![self isUberAvailable]) {
-                
-            }
-        }
-        if ([button.titleLabel.text isEqualToString:@"滴滴打车"]) {
-            NSLog(@"DiDi");
-        }
-        if ([button.titleLabel.text isEqualToString:@"快的打车"]) {
-            NSLog(@"KuaiDi");
-        }
-        if ([button.titleLabel.text isEqualToString:@"神州专车"]) {
-            NSLog(@"ShenZhou");
-        }
-        if ([button.titleLabel.text isEqualToString:@"更多"]) {
-            NSLog(@"More");
-        }
-    }
 }
 
 -(void)tapDestinationLabel:(UITapGestureRecognizer *)tap
@@ -419,6 +418,62 @@
     if ([view isEqual:_curPinView]) {
         mapView.centerCoordinate = view.annotation.coordinate;
     }
+}
+
+#pragma mark - UICollectionViewDataSource
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    HKCarTypeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"reuseCell" forIndexPath:indexPath];
+    
+    switch (indexPath.row) {
+        case 0: //Uber
+            cell.brandTextLabel.text = @"UBER";
+            if (_uberWaitingMins) {
+                cell.waitingTimeLabel.text = _uberWaitingMins;
+            } else {
+                cell.waitingTimeLabel.text = @"";
+            }
+            break;
+        case 1: //滴滴打车
+            cell.brandTextLabel.text = @"滴滴打车";
+            cell.waitingTimeLabel.text = @"";
+            break;
+        case 2:
+            cell.brandTextLabel.text = @"快的打车";
+            cell.waitingTimeLabel.text = @"";
+            break;
+        case 3:
+            cell.brandTextLabel.text = @"神州专车";
+            cell.waitingTimeLabel.text = @"";
+            break;
+        case 4:
+            cell.brandTextLabel.text = @"51用车";
+            cell.waitingTimeLabel.text = @"";
+            break;
+            
+        default:
+            break;
+    }
+    
+    return cell;
+}
+
+#pragma mark - UICollectionViewDelegate
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"selected %ld", indexPath.row);
 }
 
 @end

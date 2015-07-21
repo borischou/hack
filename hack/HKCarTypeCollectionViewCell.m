@@ -8,6 +8,9 @@
 
 #import "HKCarTypeCollectionViewCell.h"
 
+#define unitHeight (self.contentView.frame.size.height-4)/4
+#define unitWidth self.contentView.frame.size.width - 4
+
 @implementation HKCarTypeCollectionViewCell
 
 -(id)initWithFrame:(CGRect)frame
@@ -23,18 +26,18 @@
 {
     self.backgroundColor = [UIColor whiteColor];
     
-    _brandTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(3, 3, self.contentView.frame.size.width - 6, (self.contentView.frame.size.height - 3 * 4)/4)];
-    _brandTextLabel.textColor = [UIColor lightTextColor];
-    _brandTextLabel.backgroundColor = [UIColor redColor];
+    _brandTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(2, 2, unitWidth, unitHeight)];
+    _brandTextLabel.textColor = [UIColor darkGrayColor];
+    _brandTextLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_brandTextLabel];
     
-    _brandIconView = [[UIImageView alloc] initWithFrame:CGRectMake(3, 3 + self.contentView.frame.size.height + 3, self.contentView.frame.size.width - 6, (self.contentView.frame.size.height - 3 * 4)/2)];
-    _brandIconView.backgroundColor = [UIColor greenColor];
+    _brandIconView = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2+unitHeight, unitWidth, unitHeight*2)];
     [self.contentView addSubview:_brandIconView];
     
-    _waitingTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(3, 3*3 + (self.contentView.frame.size.height - 3*4)*3/4, self.contentView.frame.size.width - 6, (self.contentView.frame.size.height - 3 * 4)/4)];
-    _waitingTimeLabel.textColor = [UIColor lightTextColor];
-    _waitingTimeLabel.backgroundColor = [UIColor blueColor];
+    _waitingTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(2, 2+unitHeight*3, unitWidth, unitHeight)];
+    _waitingTimeLabel.textColor = [UIColor darkGrayColor];
+    _waitingTimeLabel.textAlignment = NSTextAlignmentCenter;
+    [self.contentView addSubview:_waitingTimeLabel];
 }
 
 @end
