@@ -154,12 +154,14 @@
 
 #pragma mark - Uber
 
--(void)calculateUberEstimatePickupTime:(CLLocationCoordinate2D)pickupCoordinate
+-(void)calculateUberEstimatePickupTime:(CLLocationCoordinate2D)bd_coords
 {
     _uberWaitingMins = @"计算中..";
     [_carTypeCollectionView reloadData];
     UberKit *uberKit = [[UberKit alloc] initWithServerToken:uServerToken];
-    CLLocation *pickupLocation = [[CLLocation alloc] initWithLatitude:pickupCoordinate.latitude longitude:pickupCoordinate.longitude];
+    
+    CLLocation *pickupLocation = [[CLLocation alloc] initWithLatitude:bd_coords.latitude longitude:bd_coords.longitude];
+    
     [uberKit getTimeForProductArrivalWithLocation:pickupLocation withCompletionHandler:^(NSArray *times, NSURLResponse *response, NSError *error) {
         if(!error)
         {
