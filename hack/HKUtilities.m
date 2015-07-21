@@ -19,6 +19,7 @@ static double ee = 0.00669342162296594323;
 // 计算百度坐标参数
 static double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
 
+//百度->火星
 -(CLLocationCoordinate2D)transformToMarsCoordsFromBaiduCoords:(CLLocationCoordinate2D)bd_coords
 {
     double x = bd_coords.latitude - 0.0065, y = bd_coords.longitude - 0.006;
@@ -27,6 +28,7 @@ static double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
     return CLLocationCoordinate2DMake(z * cos(theta), z * sin(theta));
 }
 
+//地球->火星
 -(CLLocationCoordinate2D)transformToMarsCoordsFromGPSCoords:(CLLocationCoordinate2D)gps_coords
 {
     if ([self outOfChina:gps_coords]) {
@@ -47,6 +49,7 @@ static double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
     return CLLocationCoordinate2DMake(gps_coords.latitude+dLat, gps_coords.longitude+dLon);
 }
 
+//火星->地球
 -(CLLocationCoordinate2D)transformToGPSCoordsFromMarsCoords:(CLLocationCoordinate2D)mars_coords
 {
     double gLat, gLon;
