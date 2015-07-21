@@ -482,6 +482,19 @@
 
 #pragma mark - UICollectionViewDelegate
 
+-(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (!_isCenter) {
+        cell.contentView.transform = CGAffineTransformMakeScale(0.2f, 0.2f);
+        [UIView beginAnimations:nil context:UIGraphicsGetCurrentContext()];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        [UIView setAnimationDuration:0.7];
+        cell.contentView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+        [UIView commitAnimations];
+    }
+    
+}
+
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"selected %ld", indexPath.row);
