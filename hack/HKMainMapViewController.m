@@ -485,10 +485,10 @@
 -(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (!_isCenter) {
-        cell.contentView.transform = CGAffineTransformMakeScale(0.2f, 0.2f);
+        cell.contentView.transform = CGAffineTransformMakeScale(0.5, 0.5);
         [UIView beginAnimations:nil context:UIGraphicsGetCurrentContext()];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-        [UIView setAnimationDuration:0.7];
+        [UIView setAnimationDuration:1.0];
         cell.contentView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
         [UIView commitAnimations];
     }
