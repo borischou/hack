@@ -43,8 +43,8 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    _startAddressLabel.text = [NSString stringWithFormat:@"上车：%@", _startLocation[@"start_name"]];
-    _destAddressLabel.text = [NSString stringWithFormat:@"目的地：%@", _destLocation[@"dest_name"]];
+    _startAddressLabel.text = [NSString stringWithFormat:@"上车：%@ %@", [_startLocation[@"start_array"] firstObject], [_startLocation[@"start_array"] objectAtIndex:1]];
+    _destAddressLabel.text = [NSString stringWithFormat:@"目的地：%@ %@", [_destLocation[@"dest_array"] firstObject],[_destLocation[@"dest_array"] objectAtIndex:1]];
 }
 
 #pragma mark - UIButtons

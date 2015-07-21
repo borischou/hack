@@ -46,6 +46,7 @@
 @property (strong, nonatomic) BMKPinAnnotationView *curPinView;
 @property (strong, nonatomic) BMKLocationService *locService;
 @property (strong, nonatomic) BMKGeoCodeSearch *searcher;
+@property (strong, nonatomic) BMKGeoCodeSearch *searcherForDestination;
 @property (strong, nonatomic) BMKReverseGeoCodeResult *reversedPickupResult;
 @property (strong, nonatomic) BMKPoiInfo *userSelectedPoiInfo;
 
@@ -108,6 +109,7 @@
     self.title = @"打车神器(内测版)";
     
     _searcher = [[BMKGeoCodeSearch alloc] init];
+    _searcherForDestination = [[BMKGeoCodeSearch alloc] init];
     
     [self loadBarbuttonItems];
     [self initBaiduMapView];
@@ -121,6 +123,7 @@
     [super viewWillAppear:animated];
     _mapView.delegate = self;
     _searcher.delegate = self;
+    _searcherForDestination.delegate = self;
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -133,6 +136,7 @@
     
     _mapView.delegate = nil;
     _searcher.delegate = nil;
+    _searcherForDestination.delegate = nil;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -345,8 +349,10 @@
         [_mapView setCenterCoordinate:pt animated:YES];
     } else {
         //set the destination label
-        _menuView.destLbl.text = [NSString stringWithFormat:@"您的目的地：%@", name];
-        _destLocation = @{@"dest_name": name, @"dest_pt": [[CLLocation alloc] initWithLatitude:pt.latitude longitude:pt.longitude]}.mutableCopy;
+        _menuView.destLbl.attributedText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"您的目的地:%@", name] attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13.f]}];
+        NSMutableArray *addressArray = [NSMutableArray array];
+        [addressArray addObject:name];
+        _destLocation = @{@"dest_array": addressArray, @"dest_pt": [[CLLocation alloc] initWithLatitude:pt.latitude longitude:pt.longitude]}.mutableCopy;
     }
 }
 
@@ -356,7 +362,7 @@
 {
     if (error == BMK_SEARCH_NO_ERROR) {
         _reversedPickupResult = result;
-        
+    
         //Make sure it is the closest BMKPoiInfo in the poiList
         NSMutableDictionary *poiDict = [[NSMutableDictionary alloc] init];
         for (BMKPoiInfo *poiInfo in result.poiList) {
@@ -375,17 +381,26 @@
         }
 
         BMKPoiInfo *pickupInfo = [sortedPoiList firstObject];
-        NSString *pickupAddress = pickupInfo.name;
-        _paopaoView.addrLbl.text = [NSString stringWithFormat:@"从%@上车", pickupAddress];
-        [_paopaoView.addrLbl sizeToFit];
-
-        [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:10.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            _paopaoView.frame = CGRectMake(0, 0, _paopaoView.addrLbl.frame.size.width + 10, _paopaoView.addrLbl.frame.size.height + 10);
-            _paopaoView.center = _paopaoCenter;
-        } completion:^(BOOL finished) {
-        }];
         
-        _startLocation = @{@"start_name": pickupAddress, @"start_pt": [[CLLocation alloc] initWithLatitude:pickupInfo.pt.latitude longitude:pickupInfo.pt.longitude], @"start_address": pickupInfo.address}.mutableCopy;
+        if ([searcher isEqual:_searcherForDestination]) {
+            [_destLocation[@"dest_array"] addObject:pickupInfo.address];
+        }
+        else
+        {
+            NSString *pickupAddress = pickupInfo.name;
+            _paopaoView.addrLbl.text = [NSString stringWithFormat:@"从%@上车", pickupAddress];
+            [_paopaoView.addrLbl sizeToFit];
+            
+            [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:10.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                _paopaoView.frame = CGRectMake(0, 0, _paopaoView.addrLbl.frame.size.width + 10, _paopaoView.addrLbl.frame.size.height + 10);
+                _paopaoView.center = _paopaoCenter;
+            } completion:^(BOOL finished) {
+            }];
+            NSMutableArray *startArray = [NSMutableArray array];
+            [startArray addObject:pickupAddress];
+            [startArray addObject:pickupInfo.address];
+            _startLocation = @{@"start_array": startArray, @"start_pt": [[CLLocation alloc] initWithLatitude:pickupInfo.pt.latitude longitude:pickupInfo.pt.longitude]}.mutableCopy;
+        }
     }
     else
     {
@@ -416,6 +431,17 @@
         if (!aflag) {
             NSLog(@"reverseGeoCode failure, flag = %d", aflag);
         }
+        
+        if (_destLocation[@"dest_pt"]) {
+            BMKReverseGeoCodeOption *reverseDestOption = [[BMKReverseGeoCodeOption alloc] init];
+            CLLocation *destLoc = _destLocation[@"dest_pt"];
+            reverseDestOption.reverseGeoPoint = destLoc.coordinate;
+            BOOL flag = [_searcherForDestination reverseGeoCode:reverseDestOption];
+            if (!flag) {
+                NSLog(@"destination reverseGeoCode failure, flag = %d", flag);
+            }
+        }
+        
         _isCenterMoved = NO;
     }
 }
@@ -526,7 +552,7 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"selected %ld", indexPath.row);
-    NSLog(@"select start: %@, end: %@", _startLocation[@"start_name"], _destLocation[@"dest_name"]);
+    NSLog(@"select start: %@ %@, end: %@ %@", [_startLocation[@"start_array"] firstObject], [_startLocation[@"start_array"] objectAtIndex:1], [_destLocation[@"start_array"] firstObject], [_destLocation[@"dest_array"] objectAtIndex:1]);
 
     if (0 == indexPath.row) { //UBER
         if (![self isUberTokenAvailable]) {
@@ -534,7 +560,7 @@
             [_alertView show];
         } else {
             //直接跳转Uber
-            if (_startLocation[@"start_name"] && _destLocation[@"dest_name"]) {
+            if (_startLocation[@"start_array"] && _destLocation[@"dest_array"]) {
                 HKDetailViewController *detailVC = [[HKDetailViewController alloc] init];
                 detailVC.view.backgroundColor = [UIColor whiteColor];
                 detailVC.startLocation = [[NSDictionary alloc] initWithDictionary:_startLocation];
