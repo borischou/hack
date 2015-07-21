@@ -22,14 +22,14 @@
 
 -(void)initLayoutWithFrame:(CGRect)frame
 {
-    self.backgroundColor = [UIColor purpleColor];
+    self.backgroundColor = [UIColor whiteColor];
     self.layer.cornerRadius = 8;
     self.layer.masksToBounds = YES;
     
     _addrLbl = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, frame.size.width - 10, frame.size.height - 10)];
     _addrLbl.numberOfLines = 1;
     _addrLbl.lineBreakMode = NSLineBreakByWordWrapping;
-    _addrLbl.textColor = [UIColor whiteColor];
+    _addrLbl.textColor = [UIColor darkGrayColor];
     _addrLbl.userInteractionEnabled = YES;
     
     [self addSubview:_addrLbl];

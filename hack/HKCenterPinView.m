@@ -14,7 +14,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.image = [UIImage imageNamed:@"hk_center_2"];
+        self.image = [UIImage imageNamed:@"hk_center_3"];
     }
     return self;
 }

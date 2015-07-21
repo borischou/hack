@@ -412,7 +412,7 @@
     if ([annotation isEqual:_curAnnotation]) {
         _curPinView = [[BMKPinAnnotationView alloc] initWithAnnotation:_curAnnotation reuseIdentifier:@"curAnnotation"];
         _curPinView.pinColor = BMKPinAnnotationColorPurple;
-        _curPinView.image = [UIImage imageNamed:@"hk_cur_11"];
+        _curPinView.image = [UIImage imageNamed:@"hk_cur_12"];
         return _curPinView;
     }
     
