@@ -75,8 +75,6 @@
 		4565EFAE1B56B02F009D0BCD /* NXOAuth2Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EFA11B56B02F009D0BCD /* NXOAuth2Request.m */; };
 		4565EFB61B56B23C009D0BCD /* UIButton+Bobtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EFB51B56B23C009D0BCD /* UIButton+Bobtn.m */; };
 		4565EFB91B56B2F5009D0BCD /* HKAddressTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EFB81B56B2F5009D0BCD /* HKAddressTVC.m */; };
-		458725C81B58F2EE003608DB /* hk_center_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 458725C71B58F2EE003608DB /* hk_center_2.png */; };
-		458725DC1B58F942003608DB /* hk_cur_11.png in Resources */ = {isa = PBXBuildFile; fileRef = 458725DB1B58F942003608DB /* hk_cur_11.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,8 +206,6 @@
 		4565EFB51B56B23C009D0BCD /* UIButton+Bobtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Bobtn.m"; sourceTree = "<group>"; };
 		4565EFB71B56B2F5009D0BCD /* HKAddressTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKAddressTVC.h; sourceTree = "<group>"; };
 		4565EFB81B56B2F5009D0BCD /* HKAddressTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKAddressTVC.m; sourceTree = "<group>"; };
-		458725C71B58F2EE003608DB /* hk_center_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_center_2.png; sourceTree = "<group>"; };
-		458725DB1B58F942003608DB /* hk_cur_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_cur_11.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -484,8 +480,6 @@
 			isa = PBXGroup;
 			children = (
 				4554838C1B5DEC4B00400E48 /* CarIconImage */,
-				458725C71B58F2EE003608DB /* hk_center_2.png */,
-				458725DB1B58F942003608DB /* hk_cur_11.png */,
 				4554838F1B5DEFBC00400E48 /* hk_cur_12.png */,
 				4554838D1B5DEF0100400E48 /* hk_center_3.png */,
 				45599E301B5CC60B0023CA02 /* hk_settings.png */,
@@ -582,14 +576,12 @@
 				455483881B5DEC4700400E48 /* hk_didi_icon.png in Resources */,
 				4554838A1B5DEC4700400E48 /* hk_shenzhou_icon.png in Resources */,
 				4554838E1B5DEF0100400E48 /* hk_center_3.png in Resources */,
-				458725DC1B58F942003608DB /* hk_cur_11.png in Resources */,
 				4565EF171B567A7F009D0BCD /* LaunchScreen.xib in Resources */,
 				455483871B5DEC4700400E48 /* hk_51_icon.png in Resources */,
 				45599E381B5CE8510023CA02 /* hk_focus_8.png in Resources */,
 				4565EF141B567A7F009D0BCD /* Images.xcassets in Resources */,
 				4554838B1B5DEC4700400E48 /* hk_uber_icon.png in Resources */,
 				45599E311B5CC60B0023CA02 /* hk_settings.png in Resources */,
-				458725C81B58F2EE003608DB /* hk_center_2.png in Resources */,
 				455483901B5DEFBC00400E48 /* hk_cur_12.png in Resources */,
 				455483891B5DEC4700400E48 /* hk_kuaidi_icon.png in Resources */,
 			);
