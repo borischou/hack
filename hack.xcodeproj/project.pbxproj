@@ -14,6 +14,7 @@
 		4554838B1B5DEC4700400E48 /* hk_uber_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 455483861B5DEC4700400E48 /* hk_uber_icon.png */; };
 		4554838E1B5DEF0100400E48 /* hk_center_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 4554838D1B5DEF0100400E48 /* hk_center_3.png */; };
 		455483901B5DEFBC00400E48 /* hk_cur_12.png in Resources */ = {isa = PBXBuildFile; fileRef = 4554838F1B5DEFBC00400E48 /* hk_cur_12.png */; };
+		455483921B5E1CD800400E48 /* hk_voice_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 455483911B5E1CD800400E48 /* hk_voice_icon.png */; };
 		455680AE1B5BBE0500CDB9A1 /* HKCenterPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 455680AD1B5BBE0500CDB9A1 /* HKCenterPinView.m */; };
 		45599E1F1B5C98C60023CA02 /* hk_profile_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 45599E1E1B5C98C60023CA02 /* hk_profile_4.png */; };
 		45599E2F1B5CC4960023CA02 /* Default@3x-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 45599E2E1B5CC4960023CA02 /* Default@3x-2.png */; };
@@ -95,6 +96,7 @@
 		455483861B5DEC4700400E48 /* hk_uber_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_uber_icon.png; sourceTree = "<group>"; };
 		4554838D1B5DEF0100400E48 /* hk_center_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_center_3.png; sourceTree = "<group>"; };
 		4554838F1B5DEFBC00400E48 /* hk_cur_12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_cur_12.png; sourceTree = "<group>"; };
+		455483911B5E1CD800400E48 /* hk_voice_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_voice_icon.png; sourceTree = "<group>"; };
 		455680AC1B5BBE0500CDB9A1 /* HKCenterPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKCenterPinView.h; sourceTree = "<group>"; };
 		455680AD1B5BBE0500CDB9A1 /* HKCenterPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKCenterPinView.m; sourceTree = "<group>"; };
 		45599E1E1B5C98C60023CA02 /* hk_profile_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_profile_4.png; sourceTree = "<group>"; };
@@ -482,6 +484,7 @@
 				4554838C1B5DEC4B00400E48 /* CarIconImage */,
 				4554838F1B5DEFBC00400E48 /* hk_cur_12.png */,
 				4554838D1B5DEF0100400E48 /* hk_center_3.png */,
+				455483911B5E1CD800400E48 /* hk_voice_icon.png */,
 				45599E301B5CC60B0023CA02 /* hk_settings.png */,
 				45599E371B5CE8510023CA02 /* hk_focus_8.png */,
 				45599E1E1B5C98C60023CA02 /* hk_profile_4.png */,
@@ -577,6 +580,7 @@
 				4554838A1B5DEC4700400E48 /* hk_shenzhou_icon.png in Resources */,
 				4554838E1B5DEF0100400E48 /* hk_center_3.png in Resources */,
 				4565EF171B567A7F009D0BCD /* LaunchScreen.xib in Resources */,
+				455483921B5E1CD800400E48 /* hk_voice_icon.png in Resources */,
 				455483871B5DEC4700400E48 /* hk_51_icon.png in Resources */,
 				45599E381B5CE8510023CA02 /* hk_focus_8.png in Resources */,
 				4565EF141B567A7F009D0BCD /* Images.xcassets in Resources */,

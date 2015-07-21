@@ -13,8 +13,9 @@
 #define bHeight [UIScreen mainScreen].bounds.size.height
 #define bMenuHeight bHeight/10
 #define bBigGap 5
-#define bBtnWidth bWidth/5
-#define bBtnHeight (bMenuHeight - 2*bBigGap)
+#define bBtnWidth (bWidth-10-10)/5
+#define bBtnHeight (bMenuHeight - 4*bBigGap)
+#define bBtnColor [UIColor colorWithRed:0.f green:187/255.f blue:156/255.f alpha:1]
 
 @implementation HKBottomMenuView
 
@@ -31,15 +32,19 @@
 {
     self.backgroundColor = [UIColor whiteColor];
     
-    _compareBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, bBigGap, bBtnWidth, bBtnHeight) andTitle:@"语音" withBackgroundColor:[UIColor grayColor] andTintColor:[UIColor purpleColor]];
+    _compareBtn = [[UIButton alloc] initWithFrame:CGRectMake(bBigGap, bBigGap, bBtnWidth, bBtnHeight) andTitle:@"比一比" withBackgroundColor:bBtnColor andTintColor:[UIColor purpleColor]];
+    _compareBtn.layer.cornerRadius = 5;
     [self addSubview:_compareBtn];
     
-    _requestBtn = [[UIButton alloc] initWithFrame:CGRectMake(bBtnWidth*4, bBigGap, bBtnWidth, bBtnHeight) andTitle:@"立即叫车" withBackgroundColor:[UIColor blackColor] andTintColor:[UIColor whiteColor]];
+    _requestBtn = [[UIButton alloc] initWithFrame:CGRectMake(bBtnWidth*4+bBigGap*3, bBigGap, bBtnWidth, bBtnHeight) andTitle:@"立即叫车" withBackgroundColor:bBtnColor andTintColor:[UIColor lightTextColor]];
+    _requestBtn.layer.cornerRadius = 5;
     [self addSubview:_requestBtn];
     
-    _destLbl = [[UILabel alloc] initWithFrame:CGRectMake(bBtnWidth, bBigGap, bBtnWidth*3, bBtnHeight)];
-    _destLbl.backgroundColor = [UIColor lightGrayColor];
-    _destLbl.textColor = [UIColor whiteColor];
+    _destLbl = [[UILabel alloc] initWithFrame:CGRectMake(bBtnWidth+bBigGap*2, bBigGap, bBtnWidth*3, bBtnHeight)];
+    _destLbl.backgroundColor = [UIColor whiteColor];
+    _destLbl.textColor = [UIColor darkGrayColor];
+    _destLbl.layer.borderWidth = 1.f;
+    _destLbl.layer.borderColor = bBtnColor.CGColor;
     _destLbl.text = @"请输入目的地";
     _destLbl.textAlignment = NSTextAlignmentCenter;
     _destLbl.userInteractionEnabled = YES;

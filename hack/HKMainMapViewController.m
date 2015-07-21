@@ -320,7 +320,7 @@
     } else {
         //set the destination label
         _destinationCoordinate2D = pt;
-        _menuView.destLbl.text = [NSString stringWithFormat:@"您选择的目的地：%@", name];
+        _menuView.destLbl.text = [NSString stringWithFormat:@"您的目的地：%@", name];
     }
 }
 
@@ -488,7 +488,7 @@
         cell.contentView.transform = CGAffineTransformMakeScale(0.5, 0.5);
         [UIView beginAnimations:nil context:UIGraphicsGetCurrentContext()];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-        [UIView setAnimationDuration:1.0];
+        [UIView setAnimationDuration:2.0];
         cell.contentView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
         [UIView commitAnimations];
     }
