@@ -223,6 +223,7 @@
     [self.view addSubview:_menuView];
 
     [_menuView.destLbl addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDestinationLabel:)]];
+    [_menuView.requestBtn addTarget:self action:@selector(requestButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)loadFloatViews
@@ -298,7 +299,43 @@
     [uberKit startLogin];
 }
 
-#pragma mark - Button & Gesture callbacks
+-(void)startDestReverseGeoCode
+{
+    BMKReverseGeoCodeOption *reverseDestOption = [[BMKReverseGeoCodeOption alloc] init];
+    CLLocation *destLoc = _destLocation[@"dest_pt"];
+    reverseDestOption.reverseGeoPoint = destLoc.coordinate;
+    BOOL flag = [_searcherForDestination reverseGeoCode:reverseDestOption];
+    if (!flag) {
+        NSLog(@"destination reverseGeoCode failure, flag = %d", flag);
+    }
+}
+
+-(void)startReverseGeoCode
+{
+    CLLocationCoordinate2D centerCoor = [_mapView convertPoint:_centerPinView.center toCoordinateFromView:_mapView];
+    BMKReverseGeoCodeOption *reverseGeoCodeOption = [[BMKReverseGeoCodeOption alloc] init];
+    reverseGeoCodeOption.reverseGeoPoint = centerCoor;
+    [self calculateUberEstimatePickupTime:centerCoor];
+    BOOL aflag = [_searcher reverseGeoCode:reverseGeoCodeOption];
+    if (!aflag) {
+        NSLog(@"reverseGeoCode failure, flag = %d", aflag);
+    }
+}
+
+#pragma mark - UIButtons & Gesture callbacks
+
+-(void)requestButtonPressed:(UIButton *)sender
+{
+    if (_startLocation[@"start_array"] && _destLocation[@"dest_array"]) {
+        HKDetailViewController *detailVC = [[HKDetailViewController alloc] init];
+        detailVC.view.backgroundColor = [UIColor whiteColor];
+        detailVC.startLocation = [[NSDictionary alloc] initWithDictionary:_startLocation];
+        detailVC.destLocation = [[NSDictionary alloc] initWithDictionary:_destLocation];
+        [self.navigationController pushViewController:detailVC animated:YES];
+    } else {
+        [[[UIAlertView alloc] initWithTitle:@"信息不完整" message:@"请确认上车地点和目的地。" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    }
+}
 
 -(void)profileBarButtonPressed
 {
@@ -353,6 +390,7 @@
         NSMutableArray *addressArray = [NSMutableArray array];
         [addressArray addObject:name];
         _destLocation = @{@"dest_array": addressArray, @"dest_pt": [[CLLocation alloc] initWithLatitude:pt.latitude longitude:pt.longitude]}.mutableCopy;
+        [self startDestReverseGeoCode];
     }
 }
 
@@ -423,23 +461,10 @@
     }
     
     if (_isCenterMoved) {
-        CLLocationCoordinate2D centerCoor = [_mapView convertPoint:_centerPinView.center toCoordinateFromView:_mapView];
-        BMKReverseGeoCodeOption *reverseGeoCodeOption = [[BMKReverseGeoCodeOption alloc] init];
-        reverseGeoCodeOption.reverseGeoPoint = centerCoor;
-        [self calculateUberEstimatePickupTime:centerCoor];
-        BOOL aflag = [_searcher reverseGeoCode:reverseGeoCodeOption];
-        if (!aflag) {
-            NSLog(@"reverseGeoCode failure, flag = %d", aflag);
-        }
         
+        [self startReverseGeoCode];
         if (_destLocation[@"dest_pt"]) {
-            BMKReverseGeoCodeOption *reverseDestOption = [[BMKReverseGeoCodeOption alloc] init];
-            CLLocation *destLoc = _destLocation[@"dest_pt"];
-            reverseDestOption.reverseGeoPoint = destLoc.coordinate;
-            BOOL flag = [_searcherForDestination reverseGeoCode:reverseDestOption];
-            if (!flag) {
-                NSLog(@"destination reverseGeoCode failure, flag = %d", flag);
-            }
+            [self startDestReverseGeoCode];
         }
         
         _isCenterMoved = NO;
@@ -552,23 +577,15 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"selected %ld", indexPath.row);
-    NSLog(@"select start: %@ %@, end: %@ %@", [_startLocation[@"start_array"] firstObject], [_startLocation[@"start_array"] objectAtIndex:1], [_destLocation[@"start_array"] firstObject], [_destLocation[@"dest_array"] objectAtIndex:1]);
+    NSLog(@"select start: %@ %@, end: %@ %@", [_startLocation[@"start_array"] firstObject], [_startLocation[@"start_array"] objectAtIndex:1], [_destLocation[@"dest_array"] firstObject], [_destLocation[@"dest_array"] objectAtIndex:1]);
 
     if (0 == indexPath.row) { //UBER
         if (![self isUberTokenAvailable]) {
             _alertView = [[UIAlertView alloc] initWithTitle:@"登陆" message:@"您尚未授权优步账号，请先登陆授权后使用。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"登陆优步", nil];
             [_alertView show];
         } else {
-            //直接跳转Uber
-            if (_startLocation[@"start_array"] && _destLocation[@"dest_array"]) {
-                HKDetailViewController *detailVC = [[HKDetailViewController alloc] init];
-                detailVC.view.backgroundColor = [UIColor whiteColor];
-                detailVC.startLocation = [[NSDictionary alloc] initWithDictionary:_startLocation];
-                detailVC.destLocation = [[NSDictionary alloc] initWithDictionary:_destLocation];
-                [self.navigationController pushViewController:detailVC animated:YES];
-            } else {
-                [[[UIAlertView alloc] initWithTitle:@"信息不完整" message:@"请确认上车地点和目的地。" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-            }
+            //可跳转Uber 设置优步绿色标志位
+            [[[UIAlertView alloc] initWithTitle:@"已授权" message:@"您已授权打车神器使用您的优步账号，请点击叫车按键进行叫车。" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         }
     }
 }
