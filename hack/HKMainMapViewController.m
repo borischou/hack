@@ -18,6 +18,7 @@
 #import "UberKit.h"
 #import "HKCarTypeCollectionView.h"
 #import "HKCarTypeCollectionViewCell.h"
+#import "HKDetailViewController.h"
 
 #define uClientId @"VieNQg1vwK3c-bs5Tcl9topkGNvY1eVT"
 #define uServerToken @"Qi84DnjRVqadY7adLowTCFJU6Swa_8N-eVMdhzfU"
@@ -36,7 +37,7 @@
 #define bFocusBtnHeight 40
 #define bPaopaoViewHeight 40
 
-@interface HKMainMapViewController () <BMKMapViewDelegate, BMKLocationServiceDelegate, BMKGeoCodeSearchDelegate, BMKPoiSearchDelegate, HKAddressTVDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
+@interface HKMainMapViewController () <UberKitDelegate, BMKMapViewDelegate, BMKLocationServiceDelegate, BMKGeoCodeSearchDelegate, BMKPoiSearchDelegate, HKAddressTVDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIAlertViewDelegate>
 
 #pragma mark - BaiduMap
 
@@ -61,8 +62,10 @@
 
 @property (copy, nonatomic) NSString *accessToken;
 @property (copy, nonatomic) NSString *uberWaitingMins;
+@property (strong, nonatomic) UIAlertView *alertView;
+@property (strong, nonatomic) NSMutableDictionary *startLocation;
+@property (strong, nonatomic) NSMutableDictionary *destLocation;
 
-@property (nonatomic) CLLocationCoordinate2D destinationCoordinate2D;
 @property (nonatomic) CGPoint paopaoCenter;
 @property (nonatomic) CGRect mapRect;
 
@@ -84,8 +87,25 @@
     return _reversedPickupResult;
 }
 
+-(NSMutableDictionary *)startLocation
+{
+    if (!_startLocation) {
+        _startLocation = @{}.mutableCopy;
+    }
+    return _startLocation;
+}
+
+-(NSMutableDictionary *)destLocation
+{
+    if (!_destLocation) {
+        _destLocation = @{}.mutableCopy;
+    }
+    return _destLocation;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"打车神器(内测版)";
     
     _searcher = [[BMKGeoCodeSearch alloc] init];
     
@@ -141,14 +161,6 @@
         {
             if ([times count]) {
                 
-                NSLog(@"Time response: %@", response);
-                NSLog(@"Time count: %ld", [times count]);
-                if ([times count]) {
-                    for (UberTime *time in times) {
-                        NSLog(@"Time estimate: %f", time.estimate);
-                    }
-                }
-                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSMutableArray *estimatedTimes = @[].mutableCopy;
                     for (UberTime *time in times) {
@@ -166,6 +178,7 @@
         else
         {
             NSLog(@"Error %@", error);
+            [[[UIAlertView alloc] initWithTitle:@"错误" message:[NSString stringWithFormat:@"错误信息：\n%@", error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         }
     }];
 }
@@ -236,9 +249,9 @@
     }
 }
 
--(BOOL)isUberAvailable
+-(BOOL)isUberTokenAvailable
 {
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"uber_token"]) {
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"uber_token"]) {
         return NO;
     } else {
         return YES;
@@ -266,6 +279,19 @@
 {
     NSAttributedString *aString = [[NSAttributedString alloc] initWithString:string attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13.f]}];
     return aString;
+}
+
+-(void)setUberAuthParams
+{
+    [[UberKit sharedInstance] setClientID:uClientId];
+    [[UberKit sharedInstance] setClientSecret:uSecret];
+    [[UberKit sharedInstance] setRedirectURL:uRedirectUrl];
+    [[UberKit sharedInstance] setApplicationName:uAppName];
+    [[UberKit sharedInstance] setServerToken:uServerToken];
+    
+    UberKit *uberKit = [UberKit sharedInstance];
+    uberKit.delegate = self;
+    [uberKit startLogin];
 }
 
 #pragma mark - Button & Gesture callbacks
@@ -319,8 +345,8 @@
         [_mapView setCenterCoordinate:pt animated:YES];
     } else {
         //set the destination label
-        _destinationCoordinate2D = pt;
         _menuView.destLbl.text = [NSString stringWithFormat:@"您的目的地：%@", name];
+        _destLocation = @{@"dest_name": name, @"dest_pt": [[CLLocation alloc] initWithLatitude:pt.latitude longitude:pt.longitude]}.mutableCopy;
     }
 }
 
@@ -358,10 +384,13 @@
             _paopaoView.center = _paopaoCenter;
         } completion:^(BOOL finished) {
         }];
+        
+        _startLocation = @{@"start_name": pickupAddress, @"start_pt": [[CLLocation alloc] initWithLatitude:pickupInfo.pt.latitude longitude:pickupInfo.pt.longitude], @"start_address": pickupInfo.address}.mutableCopy;
     }
     else
     {
         NSLog(@"error: %u", error);
+        [[[UIAlertView alloc] initWithTitle:@"错误" message:[NSString stringWithFormat:@"错误信息：\n%u", error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
     }
 }
 
@@ -444,7 +473,7 @@
     
     switch (indexPath.row) {
         case 0: //Uber
-            cell.brandTextLabel.attributedText = [self attributedStringForBrandLabel:@"UBER"];
+            cell.brandTextLabel.attributedText = [self attributedStringForBrandLabel:@"优步"];
             cell.brandIconView.image = [UIImage imageNamed:@"hk_uber_icon"];
             if (_uberWaitingMins) {
                 cell.waitingTimeLabel.attributedText = [[NSAttributedString alloc] initWithString:_uberWaitingMins attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:10.f]}];
@@ -492,12 +521,58 @@
         cell.contentView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
         [UIView commitAnimations];
     }
-    
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"selected %ld", indexPath.row);
+    NSLog(@"select start: %@, end: %@", _startLocation[@"start_name"], _destLocation[@"dest_name"]);
+
+    if (0 == indexPath.row) { //UBER
+        if (![self isUberTokenAvailable]) {
+            _alertView = [[UIAlertView alloc] initWithTitle:@"登陆" message:@"您尚未授权优步账号，请先登陆授权后使用。" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"登陆优步", nil];
+            [_alertView show];
+        } else {
+            //直接跳转Uber
+            if (_startLocation[@"start_name"] && _destLocation[@"dest_name"]) {
+                HKDetailViewController *detailVC = [[HKDetailViewController alloc] init];
+                detailVC.view.backgroundColor = [UIColor whiteColor];
+                detailVC.startLocation = [[NSDictionary alloc] initWithDictionary:_startLocation];
+                detailVC.destLocation = [[NSDictionary alloc] initWithDictionary:_destLocation];
+                [self.navigationController pushViewController:detailVC animated:YES];
+            } else {
+                [[[UIAlertView alloc] initWithTitle:@"信息不完整" message:@"请确认上车地点和目的地。" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            }
+        }
+    }
+}
+
+#pragma mark - UberKitDelegate
+
+-(void)uberKit:(UberKit *)uberKit didReceiveAccessToken:(NSString *)accessToken
+{
+    NSLog(@"Received access token: %@", accessToken);
+    _accessToken = accessToken;
+    [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:@"uber_token"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(void)uberKit:(UberKit *)uberKit loginFailedWithError:(NSError *)error
+{
+    NSLog(@"Failed with error: %@", error);
+    [[[UIAlertView alloc] initWithTitle:@"错误" message:[NSString stringWithFormat:@"错误信息：\n%@", error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+}
+
+#pragma mark - UIAlertViewDelegate
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([alertView isEqual:_alertView]) {
+        if (1 == buttonIndex) {
+            //login uber
+            [self setUberAuthParams];
+        }
+    }
 }
 
 @end

@@ -15,6 +15,9 @@
 		4554838E1B5DEF0100400E48 /* hk_center_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 4554838D1B5DEF0100400E48 /* hk_center_3.png */; };
 		455483901B5DEFBC00400E48 /* hk_cur_12.png in Resources */ = {isa = PBXBuildFile; fileRef = 4554838F1B5DEFBC00400E48 /* hk_cur_12.png */; };
 		455483921B5E1CD800400E48 /* hk_voice_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 455483911B5E1CD800400E48 /* hk_voice_icon.png */; };
+		455483971B5E2D9C00400E48 /* hk_uber_ready.png in Resources */ = {isa = PBXBuildFile; fileRef = 455483961B5E2D9C00400E48 /* hk_uber_ready.png */; };
+		4554839A1B5E353B00400E48 /* HKDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 455483991B5E353B00400E48 /* HKDetailViewController.m */; };
+		455483A01B5E477900400E48 /* HKMainMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4554839F1B5E477900400E48 /* HKMainMapViewController.m */; };
 		455680AE1B5BBE0500CDB9A1 /* HKCenterPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 455680AD1B5BBE0500CDB9A1 /* HKCenterPinView.m */; };
 		45599E1F1B5C98C60023CA02 /* hk_profile_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 45599E1E1B5C98C60023CA02 /* hk_profile_4.png */; };
 		45599E2F1B5CC4960023CA02 /* Default@3x-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 45599E2E1B5CC4960023CA02 /* Default@3x-2.png */; };
@@ -43,7 +46,6 @@
 		4565EF411B56A988009D0BCD /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4565EF401B56A988009D0BCD /* ImageIO.framework */; };
 		4565EF431B56A992009D0BCD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4565EF421B56A992009D0BCD /* QuartzCore.framework */; };
 		4565EF451B56AB2E009D0BCD /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4565EF441B56AB2E009D0BCD /* mapapi.bundle */; };
-		4565EF481B56AC75009D0BCD /* HKMainMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF471B56AC75009D0BCD /* HKMainMapViewController.m */; };
 		4565EF4C1B56AFBE009D0BCD /* UberKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF4B1B56AFBE009D0BCD /* UberKit.m */; };
 		4565EF5E1B56AFCF009D0BCD /* UberRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF4F1B56AFCF009D0BCD /* UberRequest.m */; };
 		4565EF5F1B56AFCF009D0BCD /* UberActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF511B56AFCF009D0BCD /* UberActivity.m */; };
@@ -97,6 +99,10 @@
 		4554838D1B5DEF0100400E48 /* hk_center_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_center_3.png; sourceTree = "<group>"; };
 		4554838F1B5DEFBC00400E48 /* hk_cur_12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_cur_12.png; sourceTree = "<group>"; };
 		455483911B5E1CD800400E48 /* hk_voice_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_voice_icon.png; sourceTree = "<group>"; };
+		455483961B5E2D9C00400E48 /* hk_uber_ready.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_uber_ready.png; sourceTree = "<group>"; };
+		455483981B5E353B00400E48 /* HKDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKDetailViewController.h; sourceTree = "<group>"; };
+		455483991B5E353B00400E48 /* HKDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKDetailViewController.m; sourceTree = "<group>"; };
+		4554839F1B5E477900400E48 /* HKMainMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKMainMapViewController.m; sourceTree = "<group>"; };
 		455680AC1B5BBE0500CDB9A1 /* HKCenterPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKCenterPinView.h; sourceTree = "<group>"; };
 		455680AD1B5BBE0500CDB9A1 /* HKCenterPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKCenterPinView.m; sourceTree = "<group>"; };
 		45599E1E1B5C98C60023CA02 /* hk_profile_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_profile_4.png; sourceTree = "<group>"; };
@@ -137,7 +143,6 @@
 		4565EF421B56A992009D0BCD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4565EF441B56AB2E009D0BCD /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		4565EF461B56AC75009D0BCD /* HKMainMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKMainMapViewController.h; sourceTree = "<group>"; };
-		4565EF471B56AC75009D0BCD /* HKMainMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKMainMapViewController.m; sourceTree = "<group>"; };
 		4565EF4A1B56AFBE009D0BCD /* UberKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberKit.h; sourceTree = "<group>"; };
 		4565EF4B1B56AFBE009D0BCD /* UberKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberKit.m; sourceTree = "<group>"; };
 		4565EF4E1B56AFCF009D0BCD /* UberRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberRequest.h; sourceTree = "<group>"; };
@@ -248,8 +253,36 @@
 				455483841B5DEC4700400E48 /* hk_kuaidi_icon.png */,
 				455483851B5DEC4700400E48 /* hk_shenzhou_icon.png */,
 				455483861B5DEC4700400E48 /* hk_uber_icon.png */,
+				455483961B5E2D9C00400E48 /* hk_uber_ready.png */,
 			);
 			name = CarIconImage;
+			sourceTree = "<group>";
+		};
+		455483951B5E2A1F00400E48 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4565EF441B56AB2E009D0BCD /* mapapi.bundle */,
+				4565EF421B56A992009D0BCD /* QuartzCore.framework */,
+				4565EF401B56A988009D0BCD /* ImageIO.framework */,
+				4565EF3E1B56A980009D0BCD /* SystemConfiguration.framework */,
+				4565EF3C1B56A979009D0BCD /* Security.framework */,
+				4565EF3A1B56A96F009D0BCD /* UIKit.framework */,
+				4565EF381B56A968009D0BCD /* Foundation.framework */,
+				4565EF361B56A960009D0BCD /* CoreGraphics.framework */,
+				4565EF341B56A958009D0BCD /* libz.dylib */,
+				4565EF321B56A94D009D0BCD /* CFNetwork.framework */,
+				4565EF301B56A943009D0BCD /* CoreText.framework */,
+				4565EF2E1B56A93B009D0BCD /* OpenGLES.framework */,
+				4565EF2C1B56A8F0009D0BCD /* BaiduMapAPI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4554839B1B5E372000400E48 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		456223901B57391A00F31AE5 /* Views */ = {
@@ -292,6 +325,7 @@
 		4565EF051B567A7F009D0BCD /* hack */ = {
 			isa = PBXGroup;
 			children = (
+				4554839B1B5E372000400E48 /* Model */,
 				4565EFB31B56B232009D0BCD /* Categories */,
 				458725BC1B58EB19003608DB /* Images */,
 				456223901B57391A00F31AE5 /* Views */,
@@ -309,19 +343,7 @@
 		4565EF061B567A7F009D0BCD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4565EF441B56AB2E009D0BCD /* mapapi.bundle */,
-				4565EF421B56A992009D0BCD /* QuartzCore.framework */,
-				4565EF401B56A988009D0BCD /* ImageIO.framework */,
-				4565EF3E1B56A980009D0BCD /* SystemConfiguration.framework */,
-				4565EF3C1B56A979009D0BCD /* Security.framework */,
-				4565EF3A1B56A96F009D0BCD /* UIKit.framework */,
-				4565EF381B56A968009D0BCD /* Foundation.framework */,
-				4565EF361B56A960009D0BCD /* CoreGraphics.framework */,
-				4565EF341B56A958009D0BCD /* libz.dylib */,
-				4565EF321B56A94D009D0BCD /* CFNetwork.framework */,
-				4565EF301B56A943009D0BCD /* CoreText.framework */,
-				4565EF2E1B56A93B009D0BCD /* OpenGLES.framework */,
-				4565EF2C1B56A8F0009D0BCD /* BaiduMapAPI.framework */,
+				455483951B5E2A1F00400E48 /* Frameworks */,
 				4565EF071B567A7F009D0BCD /* Info.plist */,
 				4565EF081B567A7F009D0BCD /* main.m */,
 			);
@@ -462,9 +484,11 @@
 			isa = PBXGroup;
 			children = (
 				4565EF461B56AC75009D0BCD /* HKMainMapViewController.h */,
-				4565EF471B56AC75009D0BCD /* HKMainMapViewController.m */,
+				4554839F1B5E477900400E48 /* HKMainMapViewController.m */,
 				4565EFB71B56B2F5009D0BCD /* HKAddressTVC.h */,
 				4565EFB81B56B2F5009D0BCD /* HKAddressTVC.m */,
+				455483981B5E353B00400E48 /* HKDetailViewController.h */,
+				455483991B5E353B00400E48 /* HKDetailViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -581,6 +605,7 @@
 				4554838E1B5DEF0100400E48 /* hk_center_3.png in Resources */,
 				4565EF171B567A7F009D0BCD /* LaunchScreen.xib in Resources */,
 				455483921B5E1CD800400E48 /* hk_voice_icon.png in Resources */,
+				455483971B5E2D9C00400E48 /* hk_uber_ready.png in Resources */,
 				455483871B5DEC4700400E48 /* hk_51_icon.png in Resources */,
 				45599E381B5CE8510023CA02 /* hk_focus_8.png in Resources */,
 				4565EF141B567A7F009D0BCD /* Images.xcassets in Resources */,
@@ -608,9 +633,9 @@
 				4565EFA71B56B02F009D0BCD /* NXOAuth2AccountStore.m in Sources */,
 				4565EF641B56AFCF009D0BCD /* UberTime.m in Sources */,
 				4565EF771B56AFFF009D0BCD /* UberDriver.m in Sources */,
-				4565EF481B56AC75009D0BCD /* HKMainMapViewController.m in Sources */,
 				4565EF631B56AFCF009D0BCD /* UberPromotion.m in Sources */,
 				4565EFA51B56B02F009D0BCD /* NXOAuth2AccessToken.m in Sources */,
+				4554839A1B5E353B00400E48 /* HKDetailViewController.m in Sources */,
 				45599E341B5CDD5B0023CA02 /* HKFocusView.m in Sources */,
 				4565EF5E1B56AFCF009D0BCD /* UberRequest.m in Sources */,
 				4565EF651B56AFCF009D0BCD /* UberMap.m in Sources */,
@@ -626,6 +651,7 @@
 				4565EF0C1B567A7F009D0BCD /* AppDelegate.mm in Sources */,
 				4565EFAB1B56B02F009D0BCD /* NXOAuth2FileStreamWrapper.m in Sources */,
 				4565EFA21B56B02F009D0BCD /* NSData+NXOAuth2.m in Sources */,
+				455483A01B5E477900400E48 /* HKMainMapViewController.m in Sources */,
 				4565EF6E1B56AFEA009D0BCD /* UberEstimate.m in Sources */,
 				4565EFA91B56B02F009D0BCD /* NXOAuth2Connection.m in Sources */,
 				4565EF4C1B56AFBE009D0BCD /* UberKit.m in Sources */,

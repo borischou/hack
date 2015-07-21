@@ -138,6 +138,7 @@
     if (_suggestionResult) {
         CLLocationCoordinate2D pt;
         [[_suggestionResult.ptList objectAtIndex:indexPath.row] getValue:&pt];
+        
         [self.delegate userSelectedPoiPt:pt poiName:[_suggestionResult.keyList objectAtIndex:indexPath.row] forDestination:_isDestination];
     }
     else

@@ -31,8 +31,8 @@
 -(void)initMenuLayout
 {
     self.backgroundColor = [UIColor whiteColor];
-    
-    _compareBtn = [[UIButton alloc] initWithFrame:CGRectMake(bBigGap, bBigGap, bBtnWidth, bBtnHeight) andTitle:@"比一比" withBackgroundColor:bBtnColor andTintColor:[UIColor purpleColor]];
+
+    _compareBtn = [[UIButton alloc] initWithFrame:CGRectMake(bBigGap, bBigGap, bBtnWidth, bBtnHeight) andTitle:@"比一比" withBackgroundColor:[UIColor colorWithRed:61/255.f green:134/255.f blue:198/255.f alpha:1] andTintColor:[UIColor purpleColor]];
     _compareBtn.layer.cornerRadius = 5;
     [self addSubview:_compareBtn];
     
