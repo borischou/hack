@@ -20,7 +20,7 @@ static double ee = 0.00669342162296594323;
 static double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
 
 //百度->火星
--(CLLocationCoordinate2D)transformToMarsCoordsFromBaiduCoords:(CLLocationCoordinate2D)bd_coords
++(CLLocationCoordinate2D)transformToMarsCoordsFromBaiduCoords:(CLLocationCoordinate2D)bd_coords
 {
     double x = bd_coords.latitude - 0.0065, y = bd_coords.longitude - 0.006;
     double z = sqrt(x * x + y * y) - 0.00002 * sin(y * x_pi);
@@ -29,7 +29,7 @@ static double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
 }
 
 //地球->火星
--(CLLocationCoordinate2D)transformToMarsCoordsFromGPSCoords:(CLLocationCoordinate2D)gps_coords
++(CLLocationCoordinate2D)transformToMarsCoordsFromGPSCoords:(CLLocationCoordinate2D)gps_coords
 {
     if ([self outOfChina:gps_coords]) {
         return CLLocationCoordinate2DMake(gps_coords.latitude, gps_coords.longitude);
@@ -50,7 +50,7 @@ static double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
 }
 
 //火星->地球
--(CLLocationCoordinate2D)transformToGPSCoordsFromMarsCoords:(CLLocationCoordinate2D)mars_coords
++(CLLocationCoordinate2D)transformToGPSCoordsFromMarsCoords:(CLLocationCoordinate2D)mars_coords
 {
     double gLat, gLon;
     CLLocationCoordinate2D gpsCoords = CLLocationCoordinate2DMake(mars_coords.latitude, mars_coords.longitude);
@@ -60,7 +60,7 @@ static double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
     return CLLocationCoordinate2DMake(gLat, gLon);
 }
 
--(double)transformLatitudeX:(double)x Y:(double)y
++(double)transformLatitudeX:(double)x Y:(double)y
 {
     double ret;
     
@@ -74,7 +74,7 @@ static double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
     return ret;
 }
 
--(double)transformLongitudeX:(double)x Y:(double)y
++(double)transformLongitudeX:(double)x Y:(double)y
 {
     double ret;
     
@@ -89,7 +89,7 @@ static double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
     return ret;
 }
 
--(BOOL)outOfChina:(CLLocationCoordinate2D)coords
++(BOOL)outOfChina:(CLLocationCoordinate2D)coords
 {
     if (coords.longitude < 72.004 || coords.longitude > 137.8347) {
         return YES;
