@@ -197,6 +197,7 @@ static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
 {
     _uberWaitingMins = @"计算中..";
     [_carTypeCollectionView reloadData];
+    
     UberKit *uberKit = [[UberKit alloc] initWithServerToken:uServerToken];
     
     CLLocation *pickupLocation = [[CLLocation alloc] initWithLatitude:bd_coords.latitude longitude:bd_coords.longitude];
@@ -219,10 +220,12 @@ static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
                             NSLog(@"Time estimate: %f Type: %@ Id: %@", time.estimate, time.displayName, time.productID);
                         }
                     }
+                    
 //                    NSSortDescriptor *sortedDescriptor = [[NSSortDescriptor alloc] initWithKey:@"estimate" ascending:YES];
 //                    NSArray *sortedTimes = [estimatedTimes sortedArrayUsingDescriptors:@[sortedDescriptor]];
 //                    UberTime *soonest = [sortedTimes firstObject];
 //                    _estimateTime = soonest;
+                    
                     _uberWaitingMins = [NSString stringWithFormat:@"%.1f分后可接驾", _estimateTime.estimate/60];
                     [_carTypeCollectionView reloadData];
                 });
