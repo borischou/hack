@@ -83,6 +83,8 @@
 		4565EFB91B56B2F5009D0BCD /* HKAddressTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EFB81B56B2F5009D0BCD /* HKAddressTVC.m */; };
 		45F5B9161B5F661900D64CED /* hk_driver_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F5B9151B5F661900D64CED /* hk_driver_avatar.png */; };
 		45F5B9181B5F6A1600D64CED /* hk_vehicle_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F5B9171B5F6A1600D64CED /* hk_vehicle_avatar.png */; };
+		45F5B91C1B5F948B00D64CED /* UberSurgeConfirmation.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F5B91B1B5F948B00D64CED /* UberSurgeConfirmation.m */; };
+		45F5B9221B5F95AF00D64CED /* UberSurgeErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F5B9211B5F95AF00D64CED /* UberSurgeErrorResponse.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -224,6 +226,10 @@
 		4565EFB81B56B2F5009D0BCD /* HKAddressTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKAddressTVC.m; sourceTree = "<group>"; };
 		45F5B9151B5F661900D64CED /* hk_driver_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_driver_avatar.png; sourceTree = "<group>"; };
 		45F5B9171B5F6A1600D64CED /* hk_vehicle_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_vehicle_avatar.png; sourceTree = "<group>"; };
+		45F5B91A1B5F948B00D64CED /* UberSurgeConfirmation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberSurgeConfirmation.h; sourceTree = "<group>"; };
+		45F5B91B1B5F948B00D64CED /* UberSurgeConfirmation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberSurgeConfirmation.m; sourceTree = "<group>"; };
+		45F5B9201B5F95AF00D64CED /* UberSurgeErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberSurgeErrorResponse.h; sourceTree = "<group>"; };
+		45F5B9211B5F95AF00D64CED /* UberSurgeErrorResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberSurgeErrorResponse.m; sourceTree = "<group>"; };
 		626B85DFC28656F27B12ADDD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		95BE1F6A29D873A659762491 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D68FD8DE0BBE6502E8F388 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -427,6 +433,10 @@
 				4565EF5B1B56AFCF009D0BCD /* UberTime.m */,
 				4565EF5C1B56AFCF009D0BCD /* UberMap.h */,
 				4565EF5D1B56AFCF009D0BCD /* UberMap.m */,
+				45F5B91A1B5F948B00D64CED /* UberSurgeConfirmation.h */,
+				45F5B91B1B5F948B00D64CED /* UberSurgeConfirmation.m */,
+				45F5B9201B5F95AF00D64CED /* UberSurgeErrorResponse.h */,
+				45F5B9211B5F95AF00D64CED /* UberSurgeErrorResponse.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -735,6 +745,7 @@
 				4565EFAD1B56B02F009D0BCD /* NXOAuth2PostBodyStream.m in Sources */,
 				4565EF6D1B56AFEA009D0BCD /* UberTrip.m in Sources */,
 				4565EF0C1B567A7F009D0BCD /* AppDelegate.mm in Sources */,
+				45F5B9221B5F95AF00D64CED /* UberSurgeErrorResponse.m in Sources */,
 				4565EFAB1B56B02F009D0BCD /* NXOAuth2FileStreamWrapper.m in Sources */,
 				4565EFA21B56B02F009D0BCD /* NSData+NXOAuth2.m in Sources */,
 				455483A01B5E477900400E48 /* HKMainMapViewController.m in Sources */,
@@ -758,6 +769,7 @@
 				4565EFA31B56B02F009D0BCD /* NSString+NXOAuth2.m in Sources */,
 				4565EF611B56AFCF009D0BCD /* UberProduct.m in Sources */,
 				45599E3B1B5D4C270023CA02 /* HKCarTypeCollectionView.m in Sources */,
+				45F5B91C1B5F948B00D64CED /* UberSurgeConfirmation.m in Sources */,
 				4565EFB91B56B2F5009D0BCD /* HKAddressTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

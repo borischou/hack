@@ -25,7 +25,9 @@
         if (![dictionary[@"location"] isEqual:[NSNull null]]) {
             _location = [[UberLocation alloc] initWithDictionary:dictionary[@"location"]];
         }
-        _eta = [dictionary[@"eta"] integerValue];
+        if (![dictionary[@"eta"] isEqual:[NSNull null]]) {
+            _eta = [dictionary[@"eta"] integerValue];
+        }
         _surge_multiplier = [dictionary[@"surge_multiplier"] floatValue];
     }
     return self;

@@ -279,9 +279,15 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
         if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) { //OK
             UberRequest *requestResult = [[UberRequest alloc] initWithDictionary:requestDictionary];
-            handler(requestResult, response, error);
-        } else {
-            handler(nil, response, error);
+            handler(requestResult, nil, response, error);
+        }
+        if (409 == httpResponse.statusCode) { //needs surge confirmation
+            UberSurgeErrorResponse *surgeErrorResponse = [[UberSurgeErrorResponse alloc] initWithDictionary:requestDictionary];
+            handler(nil, surgeErrorResponse, response, error);
+        }
+        else
+        {
+            handler(nil, nil, response, error);
         }
     }];
 }
@@ -340,11 +346,11 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
         if(detailDictionary)
         {
             UberRequest *requestDetail = [[UberRequest alloc] initWithDictionary:detailDictionary];
-            handler(requestDetail, response, error);
+            handler(requestDetail, nil, response, error);
         }
         else
         {
-            handler(nil, response, error);
+            handler(nil, nil, response, error);
         }
     }];
 }

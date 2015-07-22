@@ -37,6 +37,7 @@
 #import "UberEstimate.h"
 #import "UberMap.h"
 #import "UberReceipt.h"
+#import "UberSurgeErrorResponse.h"
 
 @class UberKit;
 
@@ -50,7 +51,7 @@
 typedef void (^CompletionHandler) (NSArray *resultsArray, NSURLResponse *response, NSError *error);
 typedef void (^ProfileHandler) (UberProfile *profile, NSURLResponse *response, NSError *error);
 typedef void (^PromotionHandler) (UberPromotion *promotion, NSURLResponse *response, NSError *error);
-typedef void (^RequestHandler) (UberRequest *requestResult, NSURLResponse *response, NSError *error);
+typedef void (^RequestHandler) (UberRequest *requestResult, UberSurgeErrorResponse *surgeErrorResponse, NSURLResponse *response, NSError *error);
 typedef void (^EstimateHandler) (UberEstimate *estimateResult, NSURLResponse *response, NSError *error);
 typedef void (^CancelHandler) (NSURLResponse *response, NSError *error);
 typedef void (^MapHandler) (UberMap *mapResult, NSURLResponse *response, NSError *error);
