@@ -9,6 +9,8 @@
 #import "HKPaopaoView.h"
 #import "UIButton+Bobtn.h"
 
+#define bBtnColor [UIColor colorWithRed:0.f green:187/255.f blue:156/255.f alpha:1]
+
 @implementation HKPaopaoView
 
 -(id)initWithFrame:(CGRect)frame
@@ -25,6 +27,8 @@
     self.backgroundColor = [UIColor whiteColor];
     self.layer.cornerRadius = 8;
     self.layer.masksToBounds = YES;
+    self.layer.borderWidth = 1.f;
+    self.layer.borderColor = bBtnColor.CGColor;
     
     _addrLbl = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, frame.size.width - 10, frame.size.height - 10)];
     _addrLbl.numberOfLines = 1;

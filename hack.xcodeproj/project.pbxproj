@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00A3B1A7110DDDD98FA7BB8D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95BE1F6A29D873A659762491 /* libPods.a */; };
 		455483871B5DEC4700400E48 /* hk_51_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 455483821B5DEC4700400E48 /* hk_51_icon.png */; };
 		455483881B5DEC4700400E48 /* hk_didi_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 455483831B5DEC4700400E48 /* hk_didi_icon.png */; };
 		455483891B5DEC4700400E48 /* hk_kuaidi_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 455483841B5DEC4700400E48 /* hk_kuaidi_icon.png */; };
@@ -27,6 +28,7 @@
 		45599E381B5CE8510023CA02 /* hk_focus_8.png in Resources */ = {isa = PBXBuildFile; fileRef = 45599E371B5CE8510023CA02 /* hk_focus_8.png */; };
 		45599E3B1B5D4C270023CA02 /* HKCarTypeCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45599E3A1B5D4C270023CA02 /* HKCarTypeCollectionView.m */; };
 		45599E3E1B5D4DD30023CA02 /* HKCarTypeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 45599E3D1B5D4DD30023CA02 /* HKCarTypeCollectionViewCell.m */; };
+		455B25091B5F4432007876AA /* HKRideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 455B25081B5F4432007876AA /* HKRideViewController.m */; };
 		456223931B57392E00F31AE5 /* HKPaopaoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 456223921B57392E00F31AE5 /* HKPaopaoView.m */; };
 		456223961B57461800F31AE5 /* HKBottomMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 456223951B57461800F31AE5 /* HKBottomMenuView.m */; };
 		4565EF091B567A7F009D0BCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EF081B567A7F009D0BCD /* main.m */; };
@@ -79,6 +81,8 @@
 		4565EFAE1B56B02F009D0BCD /* NXOAuth2Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EFA11B56B02F009D0BCD /* NXOAuth2Request.m */; };
 		4565EFB61B56B23C009D0BCD /* UIButton+Bobtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EFB51B56B23C009D0BCD /* UIButton+Bobtn.m */; };
 		4565EFB91B56B2F5009D0BCD /* HKAddressTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4565EFB81B56B2F5009D0BCD /* HKAddressTVC.m */; };
+		45F5B9161B5F661900D64CED /* hk_driver_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F5B9151B5F661900D64CED /* hk_driver_avatar.png */; };
+		45F5B9181B5F6A1600D64CED /* hk_vehicle_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 45F5B9171B5F6A1600D64CED /* hk_vehicle_avatar.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +122,8 @@
 		45599E3A1B5D4C270023CA02 /* HKCarTypeCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKCarTypeCollectionView.m; sourceTree = "<group>"; };
 		45599E3C1B5D4DD30023CA02 /* HKCarTypeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKCarTypeCollectionViewCell.h; sourceTree = "<group>"; };
 		45599E3D1B5D4DD30023CA02 /* HKCarTypeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKCarTypeCollectionViewCell.m; sourceTree = "<group>"; };
+		455B25071B5F4432007876AA /* HKRideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKRideViewController.h; sourceTree = "<group>"; };
+		455B25081B5F4432007876AA /* HKRideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKRideViewController.m; sourceTree = "<group>"; };
 		456223911B57392E00F31AE5 /* HKPaopaoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKPaopaoView.h; sourceTree = "<group>"; };
 		456223921B57392E00F31AE5 /* HKPaopaoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKPaopaoView.m; sourceTree = "<group>"; };
 		456223941B57461800F31AE5 /* HKBottomMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKBottomMenuView.h; sourceTree = "<group>"; };
@@ -216,6 +222,11 @@
 		4565EFB51B56B23C009D0BCD /* UIButton+Bobtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Bobtn.m"; sourceTree = "<group>"; };
 		4565EFB71B56B2F5009D0BCD /* HKAddressTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HKAddressTVC.h; sourceTree = "<group>"; };
 		4565EFB81B56B2F5009D0BCD /* HKAddressTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HKAddressTVC.m; sourceTree = "<group>"; };
+		45F5B9151B5F661900D64CED /* hk_driver_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_driver_avatar.png; sourceTree = "<group>"; };
+		45F5B9171B5F6A1600D64CED /* hk_vehicle_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hk_vehicle_avatar.png; sourceTree = "<group>"; };
+		626B85DFC28656F27B12ADDD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		95BE1F6A29D873A659762491 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9D68FD8DE0BBE6502E8F388 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +246,7 @@
 				4565EF311B56A943009D0BCD /* CoreText.framework in Frameworks */,
 				4565EF2F1B56A93B009D0BCD /* OpenGLES.framework in Frameworks */,
 				4565EF2D1B56A8F0009D0BCD /* BaiduMapAPI.framework in Frameworks */,
+				00A3B1A7110DDDD98FA7BB8D /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +334,8 @@
 				4565EF051B567A7F009D0BCD /* hack */,
 				4565EF1F1B567A7F009D0BCD /* hackTests */,
 				4565EF041B567A7F009D0BCD /* Products */,
+				AD49811A16C061AB43C067A6 /* Pods */,
+				520DA63CA4DAE05B55C670A4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -502,6 +516,8 @@
 				4565EFB81B56B2F5009D0BCD /* HKAddressTVC.m */,
 				455483981B5E353B00400E48 /* HKDetailViewController.h */,
 				455483991B5E353B00400E48 /* HKDetailViewController.m */,
+				455B25071B5F4432007876AA /* HKRideViewController.h */,
+				455B25081B5F4432007876AA /* HKRideViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -524,10 +540,29 @@
 				455483911B5E1CD800400E48 /* hk_voice_icon.png */,
 				45599E301B5CC60B0023CA02 /* hk_settings.png */,
 				45599E371B5CE8510023CA02 /* hk_focus_8.png */,
+				45F5B9151B5F661900D64CED /* hk_driver_avatar.png */,
 				45599E1E1B5C98C60023CA02 /* hk_profile_4.png */,
+				45F5B9171B5F6A1600D64CED /* hk_vehicle_avatar.png */,
 				45599E2E1B5CC4960023CA02 /* Default@3x-2.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		520DA63CA4DAE05B55C670A4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				95BE1F6A29D873A659762491 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AD49811A16C061AB43C067A6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				626B85DFC28656F27B12ADDD /* Pods.debug.xcconfig */,
+				E9D68FD8DE0BBE6502E8F388 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -537,9 +572,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4565EF261B567A7F009D0BCD /* Build configuration list for PBXNativeTarget "hack" */;
 			buildPhases = (
+				7D1CC29ED6DD4FDB181D040D /* Check Pods Manifest.lock */,
 				4565EEFF1B567A7F009D0BCD /* Sources */,
 				4565EF001B567A7F009D0BCD /* Frameworks */,
 				4565EF011B567A7F009D0BCD /* Resources */,
+				5678628A7938A29CE5DD379D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -614,6 +651,7 @@
 				4565EF451B56AB2E009D0BCD /* mapapi.bundle in Resources */,
 				45599E2F1B5CC4960023CA02 /* Default@3x-2.png in Resources */,
 				455483881B5DEC4700400E48 /* hk_didi_icon.png in Resources */,
+				45F5B9181B5F6A1600D64CED /* hk_vehicle_avatar.png in Resources */,
 				4554838A1B5DEC4700400E48 /* hk_shenzhou_icon.png in Resources */,
 				4554838E1B5DEF0100400E48 /* hk_center_3.png in Resources */,
 				4565EF171B567A7F009D0BCD /* LaunchScreen.xib in Resources */,
@@ -623,6 +661,7 @@
 				45599E381B5CE8510023CA02 /* hk_focus_8.png in Resources */,
 				4565EF141B567A7F009D0BCD /* Images.xcassets in Resources */,
 				4554838B1B5DEC4700400E48 /* hk_uber_icon.png in Resources */,
+				45F5B9161B5F661900D64CED /* hk_driver_avatar.png in Resources */,
 				45599E311B5CC60B0023CA02 /* hk_settings.png in Resources */,
 				455483901B5DEFBC00400E48 /* hk_cur_12.png in Resources */,
 				455483891B5DEC4700400E48 /* hk_kuaidi_icon.png in Resources */,
@@ -637,6 +676,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5678628A7938A29CE5DD379D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D1CC29ED6DD4FDB181D040D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4565EEFF1B567A7F009D0BCD /* Sources */ = {
@@ -674,6 +746,7 @@
 				4565EF781B56AFFF009D0BCD /* UberLocation.m in Sources */,
 				4565EF6F1B56AFEA009D0BCD /* UberEstimatedPrice.m in Sources */,
 				4565EF7F1B56B014009D0BCD /* UberCharge.m in Sources */,
+				455B25091B5F4432007876AA /* HKRideViewController.m in Sources */,
 				4565EF791B56AFFF009D0BCD /* UberVehicle.m in Sources */,
 				455680AE1B5BBE0500CDB9A1 /* HKCenterPinView.m in Sources */,
 				4565EF621B56AFCF009D0BCD /* UberProfile.m in Sources */,
@@ -803,6 +876,7 @@
 		};
 		4565EF271B567A7F009D0BCD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 626B85DFC28656F27B12ADDD /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -818,6 +892,7 @@
 		};
 		4565EF281B567A7F009D0BCD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9D68FD8DE0BBE6502E8F388 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (

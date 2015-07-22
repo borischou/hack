@@ -232,6 +232,7 @@
 
     [_menuView.destLbl addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDestinationLabel:)]];
     [_menuView.requestBtn addTarget:self action:@selector(requestButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [_menuView.compareBtn addTarget:self action:@selector(compareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)loadFloatViews
@@ -331,6 +332,11 @@
 }
 
 #pragma mark - UIButtons & Gesture callbacks
+
+-(void)compareButtonPressed:(UIButton *)sender
+{
+    [[[UIAlertView alloc] initWithTitle:@"尚未开通" message:@"功能研发中。" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+}
 
 -(void)requestButtonPressed:(UIButton *)sender
 {

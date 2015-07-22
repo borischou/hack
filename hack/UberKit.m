@@ -291,7 +291,7 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
 - (void) getRequestEstimateWithProductId:(NSString *)productId andStartLocation:(CLLocation *)start endLocation:(CLLocation *)end withCompletionHandler:(EstimateHandler)handler
 {
     //POST /v1/requests/estimate
-    NSString *url = [NSString stringWithFormat:@"%@/requests/estimate", sandBoxURL];
+    NSString *url = [NSString stringWithFormat:@"%@/requests/estimate", baseURL];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
     [request addValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     [request addValue:[NSString stringWithFormat:@"Bearer %@", _accessToken] forHTTPHeaderField:@"Authorization"];
@@ -318,7 +318,7 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
 - (void) cancelRequestForId:(NSString *)requestId withCompletionHandler:(CancelHandler)handler
 {
     //DELETE /v1/requests/{request_id}
-    NSString *url = [NSString stringWithFormat:@"%@/requests/%@", sandBoxURL, requestId];
+    NSString *url = [NSString stringWithFormat:@"%@/requests/%@", baseURL, requestId];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
     [request addValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     [request addValue:[NSString stringWithFormat:@"Bearer %@", _accessToken] forHTTPHeaderField:@"Authorization"];
@@ -335,7 +335,7 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
 - (void) getDetailsFromRequestId:(NSString *)requestId withCompletionHandler:(RequestHandler)handler
 {
     //GET /v1/requests/{request_id}
-    NSString *url = [NSString stringWithFormat:@"%@/requests/%@?access_token=%@", sandBoxURL, requestId, _accessToken];
+    NSString *url = [NSString stringWithFormat:@"%@/requests/%@?access_token=%@", baseURL, requestId, _accessToken];
     [self performNetworkOperationWithURL:url completionHandler:^(NSDictionary *detailDictionary, NSURLResponse *response, NSError *error) {
         if(detailDictionary)
         {

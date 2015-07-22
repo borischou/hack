@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D74CD172-F678-4AB5-89B1-EC3084B60E75</string>
+	<key>IDESourceControlProjectName</key>
+	<string>hack</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>8D5EF706E59B8137F5AFC9448AB3FC00CD970D04</key>
+		<string>github.com:borischou/hack.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>hack.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>8D5EF706E59B8137F5AFC9448AB3FC00CD970D04</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:borischou/hack.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8D5EF706E59B8137F5AFC9448AB3FC00CD970D04</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8D5EF706E59B8137F5AFC9448AB3FC00CD970D04</string>
+			<key>IDESourceControlWCCName</key>
+			<string>hack</string>
+		</dict>
+	</array>
+</dict>
+</plist>
