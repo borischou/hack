@@ -50,6 +50,10 @@
 @property (strong, nonatomic) BMKReverseGeoCodeResult *reversedPickupResult;
 @property (strong, nonatomic) BMKPoiInfo *userSelectedPoiInfo;
 
+#pragma mark - Uber
+
+@property (strong, nonatomic) UberTime *estimateTime;
+
 #pragma mark - Custom
 
 @property (copy, nonatomic) NSString *curAddress;
@@ -121,6 +125,9 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    NSLog(@"uber token: %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"uber_token"]);
+    
     _mapView.delegate = self;
     _searcher.delegate = self;
     _searcherForDestination.delegate = self;
@@ -166,17 +173,16 @@
         if(!error)
         {
             if ([times count]) {
-                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSMutableArray *estimatedTimes = @[].mutableCopy;
                     for (UberTime *time in times) {
-                        [estimatedTimes addObject:@(time.estimate)];
+                        [estimatedTimes addObject:time];
                     }
-                    NSSortDescriptor *sortedDescriptor = [[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES];
+                    NSSortDescriptor *sortedDescriptor = [[NSSortDescriptor alloc] initWithKey:@"estimate" ascending:YES];
                     NSArray *sortedTimes = [estimatedTimes sortedArrayUsingDescriptors:@[sortedDescriptor]];
-                    
-                    NSNumber *soonest = [sortedTimes firstObject];
-                    _uberWaitingMins = [NSString stringWithFormat:@"%.1f分后可接驾", soonest.floatValue/60];
+                    UberTime *soonest = [sortedTimes firstObject];
+                    _estimateTime = soonest;
+                    _uberWaitingMins = [NSString stringWithFormat:@"%.1f分后可接驾", soonest.estimate/60];
                     [_carTypeCollectionView reloadData];
                 });
             }
@@ -333,6 +339,7 @@
         detailVC.view.backgroundColor = [UIColor whiteColor];
         detailVC.startLocation = [[NSDictionary alloc] initWithDictionary:_startLocation];
         detailVC.destLocation = [[NSDictionary alloc] initWithDictionary:_destLocation];
+        detailVC.estimateTime = _estimateTime;
         [self.navigationController pushViewController:detailVC animated:YES];
     } else {
         [[[UIAlertView alloc] initWithTitle:@"信息不完整" message:@"请确认上车地点和目的地。" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
@@ -421,7 +428,6 @@
         }
 
         BMKPoiInfo *pickupInfo = [sortedPoiList firstObject];
-        
         if ([searcher isEqual:_searcherForDestination]) {
             [_destLocation[@"dest_array"] addObject:pickupInfo.address];
         }
@@ -497,7 +503,6 @@
         _curPinView.image = [UIImage imageNamed:@"hk_cur_12"];
         return _curPinView;
     }
-    
     return nil;
 }
 
@@ -587,7 +592,7 @@
             [_alertView show];
         } else {
             //可跳转Uber 设置优步绿色标志位
-            [[[UIAlertView alloc] initWithTitle:@"已授权" message:@"您已授权打车神器使用您的优步账号，请点击叫车按键进行叫车。" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+            [[[UIAlertView alloc] initWithTitle:@"已授权" message:@"您已授权打车神器使用您的优步账号，请点击叫车按键进行叫车（暂时仅支持人民优步车型）。" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         }
     }
 }

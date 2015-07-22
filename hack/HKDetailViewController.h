@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UberKit.h"
 
 @interface HKDetailViewController : UIViewController
 
 @property (strong, nonatomic) NSDictionary *startLocation;
 @property (strong, nonatomic) NSDictionary *destLocation;
+@property (strong, nonatomic) UberTime *estimateTime;
 
 @end
