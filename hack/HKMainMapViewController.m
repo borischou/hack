@@ -19,6 +19,7 @@
 #import "HKCarTypeCollectionView.h"
 #import "HKCarTypeCollectionViewCell.h"
 #import "HKDetailViewController.h"
+#import "HKUtilities.h"
 
 #define uClientId @"VieNQg1vwK3c-bs5Tcl9topkGNvY1eVT"
 #define uServerToken @"Qi84DnjRVqadY7adLowTCFJU6Swa_8N-eVMdhzfU"
@@ -198,6 +199,12 @@ static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
     _uberWaitingMins = @"计算中..";
     [_carTypeCollectionView reloadData];
     
+    CLLocationCoordinate2D mars_coords = [HKUtilities transformToMarsCoordsFromBaiduCoords:bd_coords];
+    CLLocationCoordinate2D gps_coords = [HKUtilities transformToGPSCoordsFromBaiduCoords:bd_coords];
+    NSLog(@"百度坐标：%f %f", bd_coords.latitude, bd_coords.longitude);
+    NSLog(@"火星坐标：%f %f", mars_coords.latitude, mars_coords.longitude);
+    NSLog(@"GPS坐标：%f %f", gps_coords.latitude, gps_coords.longitude);
+
     UberKit *uberKit = [[UberKit alloc] initWithServerToken:uServerToken];
     
     CLLocation *pickupLocation = [[CLLocation alloc] initWithLatitude:bd_coords.latitude longitude:bd_coords.longitude];
@@ -214,12 +221,12 @@ static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
                             _estimateTime = time;
                         }
                     }
-                    NSLog(@"Time count: %ld", [times count]);
-                    if ([times count]) {
-                        for (UberTime *time in times) {
-                            NSLog(@"Time estimate: %f Type: %@ Id: %@", time.estimate, time.displayName, time.productID);
-                        }
-                    }
+//                    NSLog(@"Time count: %ld", [times count]);
+//                    if ([times count]) {
+//                        for (UberTime *time in times) {
+//                            NSLog(@"Time estimate: %f Type: %@ Id: %@", time.estimate, time.displayName, time.productID);
+//                        }
+//                    }
                     
 //                    NSSortDescriptor *sortedDescriptor = [[NSSortDescriptor alloc] initWithKey:@"estimate" ascending:YES];
 //                    NSArray *sortedTimes = [estimatedTimes sortedArrayUsingDescriptors:@[sortedDescriptor]];

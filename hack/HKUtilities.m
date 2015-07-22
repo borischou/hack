@@ -19,15 +19,6 @@ static double ee = 0.00669342162296594323;
 // 计算百度坐标参数
 static double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
 
-//百度->火星
-+(CLLocationCoordinate2D)transformToMarsCoordsFromBaiduCoords:(CLLocationCoordinate2D)bd_coords
-{
-    double x = bd_coords.latitude - 0.0065, y = bd_coords.longitude - 0.006;
-    double z = sqrt(x * x + y * y) - 0.00002 * sin(y * x_pi);
-    double theta = atan2(y, x) - 0.000003 * cos(x * x_pi);
-    return CLLocationCoordinate2DMake(z * cos(theta), z * sin(theta));
-}
-
 //地球->火星
 +(CLLocationCoordinate2D)transformToMarsCoordsFromGPSCoords:(CLLocationCoordinate2D)gps_coords
 {
@@ -49,15 +40,30 @@ static double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
     return CLLocationCoordinate2DMake(gps_coords.latitude+dLat, gps_coords.longitude+dLon);
 }
 
+//百度->火星
++(CLLocationCoordinate2D)transformToMarsCoordsFromBaiduCoords:(CLLocationCoordinate2D)bd_coords
+{
+    double x = bd_coords.latitude - 0.0065, y = bd_coords.longitude - 0.006;
+    double z = sqrt(x * x + y * y) - 0.00002 * sin(y * x_pi);
+    double theta = atan2(y, x) - 0.000003 * cos(x * x_pi);
+    return CLLocationCoordinate2DMake(z * cos(theta), z * sin(theta));
+}
+
 //火星->地球
 +(CLLocationCoordinate2D)transformToGPSCoordsFromMarsCoords:(CLLocationCoordinate2D)mars_coords
 {
     double gLat, gLon;
-    CLLocationCoordinate2D gpsCoords = CLLocationCoordinate2DMake(mars_coords.latitude, mars_coords.longitude);
+    CLLocationCoordinate2D gpsCoords = [self transformToMarsCoordsFromGPSCoords:mars_coords];
     gLat = mars_coords.latitude - (gpsCoords.latitude - mars_coords.latitude);
     gLon = mars_coords.longitude - (gpsCoords.longitude - mars_coords.longitude);
     
     return CLLocationCoordinate2DMake(gLat, gLon);
+}
+
+//百度->地球
++(CLLocationCoordinate2D)transformToGPSCoordsFromBaiduCoords:(CLLocationCoordinate2D)bd_coords
+{
+    return [self transformToGPSCoordsFromMarsCoords:[self transformToMarsCoordsFromBaiduCoords:bd_coords]];
 }
 
 +(double)transformLatitudeX:(double)x Y:(double)y

@@ -20,4 +20,7 @@
 //火星->地球
 +(CLLocationCoordinate2D)transformToGPSCoordsFromMarsCoords:(CLLocationCoordinate2D)mars_coords;
 
+//百度->地球
++(CLLocationCoordinate2D)transformToGPSCoordsFromBaiduCoords:(CLLocationCoordinate2D)bd_coords;
+
 @end
