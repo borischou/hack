@@ -38,6 +38,8 @@
 #define bFocusBtnHeight 40
 #define bPaopaoViewHeight 40
 
+static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
+
 @interface HKMainMapViewController () <UberKitDelegate, BMKMapViewDelegate, BMKLocationServiceDelegate, BMKGeoCodeSearchDelegate, BMKPoiSearchDelegate, HKAddressTVDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UIAlertViewDelegate>
 
 #pragma mark - BaiduMap
@@ -81,8 +83,6 @@
 @end
 
 @implementation HKMainMapViewController
-
-static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
 
 #pragma mark - Lazy boys
 
