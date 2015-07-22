@@ -39,7 +39,7 @@
     _driverAvatarView.backgroundColor = bBtnColor;
     [self.view addSubview:_driverAvatarView];
     
-    _driverInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, bHeight*2/10+bWidth/5+5, bWidth-100, bWidth/4)];
+    _driverInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, bHeight*2/10/2+bWidth/5+5, bWidth-100, bWidth/4)];
     _driverInfoLabel.textColor = [UIColor blackColor];
     _driverInfoLabel.text = @"司机信息..";
     [self.view addSubview:_driverInfoLabel];
