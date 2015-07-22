@@ -50,9 +50,8 @@
 @property (strong, nonatomic) BMKReverseGeoCodeResult *reversedPickupResult;
 @property (strong, nonatomic) BMKPoiInfo *userSelectedPoiInfo;
 
-#pragma mark - Uber
-
 @property (strong, nonatomic) UberTime *estimateTime;
+@property (strong, nonatomic) UberProfile *profile;
 
 #pragma mark - Custom
 
@@ -108,6 +107,22 @@
     return _destLocation;
 }
 
+-(UberProfile *)profile
+{
+    if (!_profile) {
+        _profile = [[UberProfile alloc] init];
+    }
+    return _profile;
+}
+
+-(UberTime *)estimateTime
+{
+    if (!_estimateTime) {
+        _estimateTime = [[UberTime alloc] init];
+    }
+    return _estimateTime;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"打车神器(内测版)";
@@ -161,6 +176,21 @@
 
 #pragma mark - Uber
 
+-(void)uberRequestProfile
+{
+    [[UberKit sharedInstance] setAuthTokenWith:[[NSUserDefaults standardUserDefaults] objectForKey:@"uber_token"]];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[UberKit sharedInstance] getUserProfileWithCompletionHandler:^(UberProfile *profile, NSURLResponse *response, NSError *error) {
+            if (!error) {
+                self.profile = profile;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[[UIAlertView alloc] initWithTitle:@"My Profile" message:[NSString stringWithFormat:@"response: %@\nProfile object: %@\nFirst name: %@\nLast name: %@\nEmail: %@\nPicture URL: %@\nPromotion code: %@\nUUID: %@", response, profile, profile.first_name, profile.last_name, profile.email, profile.picture, profile.promo_code, profile.uuid] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+                });
+            } else NSLog(@"error: %@", error);
+        }];
+    });
+}
+
 -(void)calculateUberEstimatePickupTime:(CLLocationCoordinate2D)bd_coords
 {
     _uberWaitingMins = @"计算中..";
@@ -193,6 +223,15 @@
             [[[UIAlertView alloc] initWithTitle:@"错误" message:[NSString stringWithFormat:@"错误信息：\n%@", error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
         }
     }];
+}
+
+-(BOOL)isUberTokenAvailable
+{
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"uber_token"]) {
+        return NO;
+    } else {
+        return YES;
+    }
 }
 
 #pragma mark - Helpers
@@ -260,15 +299,6 @@
         [[[UIAlertView alloc] initWithTitle:@"Login Status" message:@"Please log in first." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Login", nil] show];
     } else {
         //login success
-    }
-}
-
--(BOOL)isUberTokenAvailable
-{
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"uber_token"]) {
-        return NO;
-    } else {
-        return YES;
     }
 }
 
@@ -355,6 +385,13 @@
 -(void)profileBarButtonPressed
 {
     NSLog(@"profileBarButtomPressed");
+    if (!_profile.uuid) {
+        [self uberRequestProfile];
+    }
+    else
+    {
+        [[[UIAlertView alloc] initWithTitle:@"My Profile" message:[NSString stringWithFormat:@"First name: %@\nLast name: %@\nEmail: %@\nPicture URL: %@\nPromotion code: %@\nUUID: %@", _profile.first_name, _profile.last_name, _profile.email, _profile.picture, _profile.promo_code, _profile.uuid] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    }
 }
 
 -(void)settingsBarbuttonPressed
