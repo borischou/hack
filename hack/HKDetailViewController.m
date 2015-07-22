@@ -72,7 +72,7 @@
         [[UberKit sharedInstance] getRequestEstimateWithProductId:_estimateTime.productID andStartLocation:[_startLocation objectForKey:@"start_pt"] endLocation:[_destLocation objectForKey:@"dest_pt"] withCompletionHandler:^(UberEstimate *estimateResult, NSURLResponse *response, NSError *error) {
             if (!error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    _estimateLabel.text = [NSString stringWithFormat:@"预估信息：%ld分钟后可接驾；费用：%@%@，倍率：%.1f；行程耗时：%.1f分钟，里程：%.1f%@", estimateResult.pickup_estimate, estimateResult.price.display, estimateResult.price.currency_code, estimateResult.price.surge_multiplier, @(estimateResult.trip.duration_estimate).floatValue/60, estimateResult.trip.distance_estimate, estimateResult.trip.distance_unit];
+                    _estimateLabel.text = [NSString stringWithFormat:@"预估信息：优步车型：%@，%ld分钟后可接驾；费用：%@%@，倍率：%.1f；行程耗时：%.1f分钟，里程：%.1f%@", _estimateTime.displayName, estimateResult.pickup_estimate, estimateResult.price.display, estimateResult.price.currency_code, estimateResult.price.surge_multiplier, @(estimateResult.trip.duration_estimate).floatValue/60, estimateResult.trip.distance_estimate, estimateResult.trip.distance_unit];
                 });
             }
             else
@@ -90,18 +90,15 @@
     CLLocation *destLoc = [_destLocation objectForKey:@"dest_pt"];
     [[UberKit sharedInstance] setAuthTokenWith:[[NSUserDefaults standardUserDefaults] objectForKey:@"uber_token"]];
 
-    NSDictionary *parameters = @{@"product_id": _estimateTime.productID, @"start_latitude": @(startLoc.coordinate.latitude), @"start_longitude": @(startLoc.coordinate.longitude), @"end_latitude": @(destLoc.coordinate.latitude), @"end_longitude": @(destLoc.coordinate.longitude), @"surge_confirmation_id": [NSNull null]};
+    NSDictionary *parameters = @{@"product_id": _estimateTime.productID, @"start_latitude": @(startLoc.coordinate.latitude), @"start_longitude": @(startLoc.coordinate.longitude), @"end_latitude": @(destLoc.coordinate.latitude), @"end_longitude": @(destLoc.coordinate.longitude)};
         
     [[UberKit sharedInstance] getResponseFromRequestWithParameters:parameters withCompletionHandler:^(UberRequest *requestResult, NSURLResponse *response, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             _request = requestResult;
-            NSLog(@"got result");
-            
             HKRideViewController *rideVC = [[HKRideViewController alloc] init];
             rideVC.view.backgroundColor = [UIColor whiteColor];
             rideVC.title = @"请求详情";
             rideVC.request = _request;
-            
             [self.navigationController pushViewController:rideVC animated:YES];
             
             //[[[UIAlertView alloc] initWithTitle:@"Uber Response" message:[NSString stringWithFormat:@"UberResponse:\nrequest_id: %@\nstatus: %@\neta: %ld\nsurge_multiplier: %f\nvehicle:\nmake: %@\nmodel: %@\nlicense_plate: %@\ndriver:\nphone_number: %@\nname: %@\nrating: %f\nlocation:\nlat: %f lon: %f bearing: %ld\nresponse: %@\nerror: %@", requestResult.request_id, requestResult.status, requestResult.eta, requestResult.surge_multiplier, requestResult.vehicle.make, requestResult.vehicle.model, requestResult.vehicle.license_plate, requestResult.driver.phone_number, requestResult.driver.name, requestResult.driver.rating, requestResult.location.latitude, requestResult.location.longitude, requestResult.location.bearing, response, error] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];

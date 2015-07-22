@@ -266,7 +266,7 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
 
 - (void) getResponseFromRequestWithParameters:(NSDictionary *)params withCompletionHandler:(RequestHandler)handler
 {
-    NSString *url = [NSString stringWithFormat:@"%@/requests", sandBoxURL];
+    NSString *url = [NSString stringWithFormat:@"%@/requests", baseURL];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
     [request addValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     [request addValue:[NSString stringWithFormat:@"Bearer %@", _accessToken] forHTTPHeaderField:@"Authorization"];
@@ -354,7 +354,7 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
 - (void) getMapForRequestId:(NSString *)requestId withCompletionHandler:(MapHandler)handler
 {
     //GET /v1/requests/{request_id}/map
-    NSString *url = [NSString stringWithFormat:@"%@/requests/%@/map?access_token=%@", sandBoxURL, requestId, _accessToken];
+    NSString *url = [NSString stringWithFormat:@"%@/requests/%@/map?access_token=%@", baseURL, requestId, _accessToken];
     [self performNetworkOperationWithURL:url completionHandler:^(NSDictionary *mapDictionary, NSURLResponse *response, NSError *error) {
         if (mapDictionary) {
             UberMap *mapResult = [[UberMap alloc] initWithDictionary:mapDictionary];

@@ -15,6 +15,7 @@
 #define bScaleBarHeight 30
 #define bFocusBtnHeight 40
 #define bPaopaoViewHeight 40
+#define bBtnColor [UIColor colorWithRed:0.f green:187/255.f blue:156/255.f alpha:1]
 
 @interface HKFocusView ()
 
@@ -35,7 +36,7 @@
         self.userInteractionEnabled = YES;
         self.layer.cornerRadius = 8;
         self.layer.borderWidth = 1;
-        self.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        self.layer.borderColor = bBtnColor.CGColor;
     }
     return self;
 }

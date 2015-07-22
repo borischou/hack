@@ -12,6 +12,5 @@
 @interface HKRideViewController : UIViewController
 
 @property (strong, nonatomic) UberRequest *request;
-@property (nonatomic) BOOL isProcessing;
 
 @end

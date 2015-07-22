@@ -81,6 +81,8 @@
 
 @implementation HKMainMapViewController
 
+static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
+
 #pragma mark - Lazy boys
 
 -(BMKReverseGeoCodeResult *)reversedPickupResult
@@ -208,6 +210,14 @@
                     for (UberTime *time in times) {
                         [estimatedTimes addObject:time];
                     }
+                    
+                    NSLog(@"Time count: %ld", [times count]);
+                    if ([times count]) {
+                        for (UberTime *time in times) {
+                            NSLog(@"Time estimate: %f Type: %@ Id: %@", time.estimate, time.displayName, time.productID);
+                        }
+                    }
+                    
                     NSSortDescriptor *sortedDescriptor = [[NSSortDescriptor alloc] initWithKey:@"estimate" ascending:YES];
                     NSArray *sortedTimes = [estimatedTimes sortedArrayUsingDescriptors:@[sortedDescriptor]];
                     UberTime *soonest = [sortedTimes firstObject];
@@ -277,7 +287,7 @@
 -(void)loadFloatViews
 {
     _centerPinView = [[HKCenterPinView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-    _centerPinView.center = CGPointMake(_mapView.center.x, _mapView.center.y-20);
+    _centerPinView.center = CGPointMake(_mapView.center.x, _mapView.center.y-25);
     [self.view addSubview:_centerPinView];
     
     _paopaoView = [[HKPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];

@@ -31,9 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    _isProcessing = NO;
-    
+        
     _driverAvatarView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, bWidth/5, bWidth/5)];
     _driverAvatarView.center = CGPointMake(bWidth/2, bHeight*2/10);
     _driverAvatarView.backgroundColor = bBtnColor;
@@ -70,19 +68,17 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if (!_isProcessing) {
-        NSString *driverAvatarUrl = _request.driver.picture_url;
-        if (driverAvatarUrl) {
-            [_driverAvatarView sd_setImageWithURL:[NSURL URLWithString:driverAvatarUrl] placeholderImage:[UIImage imageNamed:@"hk_driver_avatar"]];
-        }
-        NSString *vehicleImageUrl = _request.vehicle.picture_url;
-        if (vehicleImageUrl) {
-            [_vehicleView sd_setImageWithURL:[NSURL URLWithString:vehicleImageUrl] placeholderImage:[UIImage imageNamed:@"hk_vehicle_avatar"]];
-        }
-        
-        _driverInfoLabel.text = [NSString stringWithFormat:@"司机信息：\n请求状态：%@，名称：%@，电话：%@，评分：%.1f，%ld后可接驾", _request.status, _request.driver.name, _request.driver.phone_number, _request.driver.rating, _request.eta];
-        _vehicleInfoLabel.text = [NSString stringWithFormat:@"车辆信息：\n品牌：%@，型号：%@，车牌号：%@", _request.vehicle.make, _request.vehicle.model, _request.vehicle.license_plate];
+    NSString *driverAvatarUrl = _request.driver.picture_url;
+    if (driverAvatarUrl) {
+        [_driverAvatarView sd_setImageWithURL:[NSURL URLWithString:driverAvatarUrl] placeholderImage:[UIImage imageNamed:@"hk_driver_avatar"]];
     }
+    NSString *vehicleImageUrl = _request.vehicle.picture_url;
+    if (vehicleImageUrl) {
+        [_vehicleView sd_setImageWithURL:[NSURL URLWithString:vehicleImageUrl] placeholderImage:[UIImage imageNamed:@"hk_vehicle_avatar"]];
+    }
+        
+    _driverInfoLabel.text = [NSString stringWithFormat:@"司机信息：\n请求状态：%@，名称：%@，电话：%@，评分：%.1f，%ld后可接驾", _request.status, _request.driver.name, _request.driver.phone_number, _request.driver.rating, _request.eta];
+    _vehicleInfoLabel.text = [NSString stringWithFormat:@"车辆信息：\n品牌：%@，型号：%@，车牌号：%@", _request.vehicle.make, _request.vehicle.model, _request.vehicle.license_plate];
 }
 
 #pragma mark - UIButtons
