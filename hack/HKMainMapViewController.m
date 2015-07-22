@@ -206,23 +206,24 @@ static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
         {
             if ([times count]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    NSMutableArray *estimatedTimes = @[].mutableCopy;
+                    //NSMutableArray *estimatedTimes = @[].mutableCopy;
                     for (UberTime *time in times) {
-                        [estimatedTimes addObject:time];
+                        //[estimatedTimes addObject:time];
+                        if ([time.productID isEqualToString:peopleUberId]) {
+                            _estimateTime = time;
+                        }
                     }
-                    
                     NSLog(@"Time count: %ld", [times count]);
                     if ([times count]) {
                         for (UberTime *time in times) {
                             NSLog(@"Time estimate: %f Type: %@ Id: %@", time.estimate, time.displayName, time.productID);
                         }
                     }
-                    
-                    NSSortDescriptor *sortedDescriptor = [[NSSortDescriptor alloc] initWithKey:@"estimate" ascending:YES];
-                    NSArray *sortedTimes = [estimatedTimes sortedArrayUsingDescriptors:@[sortedDescriptor]];
-                    UberTime *soonest = [sortedTimes firstObject];
-                    _estimateTime = soonest;
-                    _uberWaitingMins = [NSString stringWithFormat:@"%.1f分后可接驾", soonest.estimate/60];
+//                    NSSortDescriptor *sortedDescriptor = [[NSSortDescriptor alloc] initWithKey:@"estimate" ascending:YES];
+//                    NSArray *sortedTimes = [estimatedTimes sortedArrayUsingDescriptors:@[sortedDescriptor]];
+//                    UberTime *soonest = [sortedTimes firstObject];
+//                    _estimateTime = soonest;
+                    _uberWaitingMins = [NSString stringWithFormat:@"%.1f分后可接驾", _estimateTime.estimate/60];
                     [_carTypeCollectionView reloadData];
                 });
             }
