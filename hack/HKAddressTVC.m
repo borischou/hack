@@ -104,7 +104,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (_suggestionResult) {
         return [_suggestionResult.keyList count];
-    } else
+    }
+    else
     {
         return [_pickupResult.poiList count];
     }
@@ -129,7 +130,6 @@
             cell.textLabel.text = poiInfo.name;
         }
     }
-    
     return cell;
 }
 
@@ -138,7 +138,15 @@
     if (_suggestionResult) {
         CLLocationCoordinate2D pt;
         [[_suggestionResult.ptList objectAtIndex:indexPath.row] getValue:&pt];
-        
+//        for (NSValue *rpt in _suggestionResult.ptList) {
+//            CLLocationCoordinate2D point;
+//            [rpt getValue:&point];
+//            NSLog(@"each one: %f, %f", point.latitude, point.longitude);
+//        }
+        NSInteger next = indexPath.row;
+        while (pt.latitude < 0.01 || pt.longitude < 0.01) {
+            [[_suggestionResult.ptList objectAtIndex:next++] getValue:&pt];
+        }
         [self.delegate userSelectedPoiPt:pt poiName:[_suggestionResult.keyList objectAtIndex:indexPath.row] forDestination:_isDestination];
     }
     else

@@ -90,7 +90,7 @@
     CLLocation *destLoc = [_destLocation objectForKey:@"dest_pt"];
     [[UberKit sharedInstance] setAuthTokenWith:[[NSUserDefaults standardUserDefaults] objectForKey:@"uber_token"]];
 
-    NSDictionary *parameters = @{@"product_id": _estimateTime.productID, @"start_latitude": @(startLoc.coordinate.latitude), @"start_longitude": @(startLoc.coordinate.longitude), @"end_latitude": @(destLoc.coordinate.latitude), @"end_longitude": @(destLoc.coordinate.longitude)};
+    NSDictionary *parameters = @{@"product_id": _estimateTime.productID, @"start_latitude": @(startLoc.coordinate.latitude), @"start_longitude": @(startLoc.coordinate.longitude), @"end_latitude": @(destLoc.coordinate.latitude), @"end_longitude": @(destLoc.coordinate.longitude), @"surge_confirmation_id": [NSNull null]};
         
     [[UberKit sharedInstance] getResponseForRequestWithParameters:parameters withCompletionHandler:^(UberRequest *requestResult, UberSurgeErrorResponse *surgeErrorResponse, NSURLResponse *response, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -104,7 +104,7 @@
                 if (200 <= httpResponse.statusCode && 300 >= httpResponse.statusCode) { //无倍率确认
                     _request = requestResult;
                     HKRideViewController *rideVC = [[HKRideViewController alloc] init];
-                    //rideVC.view.backgroundColor = [UIColor whiteColor];
+                    rideVC.view.backgroundColor = [UIColor whiteColor];
                     rideVC.title = @"请求详情";
                     rideVC.request = _request;
                     [self.navigationController pushViewController:rideVC animated:YES];
@@ -136,9 +136,9 @@
 
 -(void)openWebViewWithURL:(NSString *)url
 {
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, bWidth, bHeight)];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    //NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+[UIApplication sharedApplication].statusBarFrame.size.height, bWidth, bHeight)];
+    //NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.baidu.com"]];
     [self.view addSubview:webView];
     [webView loadRequest:request];
 }

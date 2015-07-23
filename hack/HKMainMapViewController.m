@@ -393,27 +393,31 @@ static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
 {
     if (_startLocation[@"start_array"] && _destLocation[@"dest_array"]) {
         HKDetailViewController *detailVC = [[HKDetailViewController alloc] init];
-        //detailVC.view.backgroundColor = [UIColor whiteColor];
+        detailVC.view.backgroundColor = [UIColor whiteColor];
         
         CLLocation *bd_start = [_startLocation objectForKey:@"start_pt"];
         CLLocation *bd_dest = [_destLocation objectForKey:@"dest_pt"];
-
-        //CLLocationCoordinate2D mars_coords = [HKUtilities transformToMarsCoordsFromBaiduCoords:bd_start.coordinate];
-        //CLLocationCoordinate2D mars_coords_dest = [HKUtilities transformToMarsCoordsFromBaiduCoords:bd_dest.coordinate];
         
-        CLLocationCoordinate2D gps_coords = [HKUtilities transformToGPSCoordsFromBaiduCoords:bd_start.coordinate];
-        CLLocationCoordinate2D gps_coords_dest = [HKUtilities transformToGPSCoordsFromBaiduCoords:bd_dest.coordinate];
-
-        CLLocation *gps_start = [[CLLocation alloc] initWithLatitude:gps_coords.latitude longitude:gps_coords.longitude];
-        CLLocation *gps_dest = [[CLLocation alloc] initWithLatitude:gps_coords_dest.latitude longitude:gps_coords_dest.longitude];
-
-        [_startLocation setObject:gps_start forKey:@"start_pt"];
-        [_destLocation setObject:gps_dest forKey:@"dest_pt"];
+        //转火星坐标
+        CLLocationCoordinate2D mars_coords = [HKUtilities transformToMarsCoordsFromBaiduCoords:bd_start.coordinate];
+        CLLocationCoordinate2D mars_coords_dest = [HKUtilities transformToMarsCoordsFromBaiduCoords:bd_dest.coordinate];
+        CLLocation *mars_start = [[CLLocation alloc] initWithLatitude:mars_coords.latitude longitude:mars_coords.longitude];
+        CLLocation *mars_dest = [[CLLocation alloc] initWithLatitude:mars_coords_dest.latitude longitude:mars_coords_dest.longitude];
+        [_startLocation setObject:mars_start forKey:@"start_pt"];
+        [_destLocation setObject:mars_dest forKey:@"dest_pt"];
+        
+        //转地球坐标
+        //CLLocationCoordinate2D gps_coords = [HKUtilities transformToGPSCoordsFromBaiduCoords:bd_start.coordinate];
+        //CLLocationCoordinate2D gps_coords_dest = [HKUtilities transformToGPSCoordsFromBaiduCoords:bd_dest.coordinate];
+        //CLLocation *gps_start = [[CLLocation alloc] initWithLatitude:gps_coords.latitude longitude:gps_coords.longitude];
+        //CLLocation *gps_dest = [[CLLocation alloc] initWithLatitude:gps_coords_dest.latitude longitude:gps_coords_dest.longitude];
+        //[_startLocation setObject:gps_start forKey:@"start_pt"];
+        //[_destLocation setObject:gps_dest forKey:@"dest_pt"];
         
         NSLog(@"起点百度坐标：%f %f", bd_start.coordinate.latitude, bd_start.coordinate.longitude);
-        NSLog(@"起点火星坐标：%f %f", gps_coords.latitude, gps_coords.longitude);
+        NSLog(@"起点火星坐标：%f %f", mars_coords.latitude, mars_coords.longitude);
         NSLog(@"终点百度坐标：%f %f", bd_dest.coordinate.latitude, bd_dest.coordinate.longitude);
-        NSLog(@"终点火星坐标：%f %f", gps_coords_dest.latitude, gps_coords_dest.longitude);
+        NSLog(@"终点火星坐标：%f %f", mars_coords_dest.latitude, mars_coords_dest.longitude);
         
         detailVC.startLocation = [[NSDictionary alloc] initWithDictionary:_startLocation];
         detailVC.destLocation = [[NSDictionary alloc] initWithDictionary:_destLocation];
@@ -514,7 +518,11 @@ static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
 
         BMKPoiInfo *pickupInfo = [sortedPoiList firstObject];
         if ([searcher isEqual:_searcherForDestination]) {
-            [_destLocation[@"dest_array"] addObject:pickupInfo.address];
+            if (pickupInfo) {
+                [_destLocation[@"dest_array"] addObject:pickupInfo.address];
+            } else {
+                
+            }
         }
         else
         {

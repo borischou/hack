@@ -36,8 +36,7 @@
     }
     
     HKMainMapViewController *mmvc = [[HKMainMapViewController alloc] init];
-    mmvc.title = @"Hack";
-    //mmvc.view.backgroundColor = [UIColor whiteColor];
+    mmvc.view.backgroundColor = [UIColor whiteColor];
     UINavigationController *mapNvc = [[UINavigationController alloc] initWithRootViewController:mmvc];
     
     self.window.rootViewController = mapNvc;
