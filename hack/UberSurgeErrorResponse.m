@@ -19,6 +19,12 @@
                 _surge_confirmation = dictionary[@"meta"][@"surge_confirmation"];
             }
         }
+        if (![[dictionary objectForKey:@"errors"] isEqual:[NSNull null]]) {
+            for (NSDictionary *error in [dictionary objectForKey:@"errors"]) {
+                UberSurgeError *surgeError = [[UberSurgeError alloc] initWithDictionary:error];
+                [_errors addObject:surgeError];
+            }
+        }
     }
     return self;
 }
