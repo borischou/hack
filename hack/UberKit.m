@@ -264,7 +264,7 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
 
 #pragma mark - Request
 
-- (void) getResponseFromRequestWithParameters:(NSDictionary *)params withCompletionHandler:(RequestHandler)handler
+- (void) getResponseForRequestWithParameters:(NSDictionary *)params withCompletionHandler:(RequestHandler)handler
 {
     NSString *url = [NSString stringWithFormat:@"%@/requests", baseURL];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
@@ -338,7 +338,7 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
 
 #pragma mark - Request - Details
 
-- (void) getDetailsFromRequestId:(NSString *)requestId withCompletionHandler:(RequestHandler)handler
+- (void) getDetailsForRequestId:(NSString *)requestId withCompletionHandler:(RequestHandler)handler
 {
     //GET /v1/requests/{request_id}
     NSString *url = [NSString stringWithFormat:@"%@/requests/%@?access_token=%@", baseURL, requestId, _accessToken];

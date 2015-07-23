@@ -626,6 +626,7 @@
 				TargetAttributes = {
 					4565EF021B567A7F009D0BCD = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 445YPWSVZ8;
 					};
 					4565EF1B1B567A7F009D0BCD = {
 						CreatedOnToolsVersion = 6.4;
@@ -891,6 +892,7 @@
 			baseConfigurationReference = 626B85DFC28656F27B12ADDD /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/hack",
@@ -907,6 +909,7 @@
 			baseConfigurationReference = E9D68FD8DE0BBE6502E8F388 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/hack",

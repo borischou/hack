@@ -112,11 +112,11 @@ typedef void (^ReceiptHandler) (UberReceipt *receiptResult, NSURLResponse *respo
 
 #pragma mark - Request
 
-- (void) getResponseFromRequestWithParameters:(NSDictionary *)params withCompletionHandler:(RequestHandler)handler;
+- (void) getResponseForRequestWithParameters:(NSDictionary *)params withCompletionHandler:(RequestHandler)handler;
 
 #pragma mark - Request Details
 
-- (void) getDetailsFromRequestId:(NSString *)requestId withCompletionHandler:(RequestHandler)handler;
+- (void) getDetailsForRequestId:(NSString *)requestId withCompletionHandler:(RequestHandler)handler;
 
 #pragma mark - Request Estimate
 
