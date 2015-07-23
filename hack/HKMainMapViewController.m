@@ -449,7 +449,6 @@ static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
 {
     if (_isCenter) {
         _addressTVC = [[HKAddressTVC alloc] init];
-        //_addressTVC.view.backgroundColor = [UIColor whiteColor];
         _addressTVC.pickupResult = _reversedPickupResult;
         _addressTVC.delegate = self;
         _addressTVC.searchBar.placeholder = @"您想去哪？";
@@ -462,7 +461,6 @@ static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
 -(void)tapLabel:(UITapGestureRecognizer *)tap
 {
     _addressTVC = [[HKAddressTVC alloc] init];
-    //_addressTVC.view.backgroundColor = [UIColor whiteColor];
     _addressTVC.pickupResult = _reversedPickupResult;
     _addressTVC.delegate = self;
     _addressTVC.searchBar.placeholder = @"您想从哪上车？";
