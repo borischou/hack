@@ -200,10 +200,10 @@ static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
     [_carTypeCollectionView reloadData];
     
     CLLocationCoordinate2D mars_coords = [HKUtilities transformToMarsCoordsFromBaiduCoords:bd_coords];
-    CLLocationCoordinate2D gps_coords = [HKUtilities transformToGPSCoordsFromBaiduCoords:bd_coords];
-    NSLog(@"百度坐标：%f %f", bd_coords.latitude, bd_coords.longitude);
-    NSLog(@"火星坐标：%f %f", mars_coords.latitude, mars_coords.longitude);
-    NSLog(@"GPS坐标：%f %f", gps_coords.latitude, gps_coords.longitude);
+    //CLLocationCoordinate2D gps_coords = [HKUtilities transformToGPSCoordsFromBaiduCoords:bd_coords];
+    //NSLog(@"百度坐标：%f %f", bd_coords.latitude, bd_coords.longitude);
+    //NSLog(@"火星坐标：%f %f", mars_coords.latitude, mars_coords.longitude);
+    //NSLog(@"GPS坐标：%f %f", gps_coords.latitude, gps_coords.longitude);
 
     UberKit *uberKit = [[UberKit alloc] initWithServerToken:uServerToken];
     
@@ -375,7 +375,7 @@ static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
     CLLocationCoordinate2D centerCoor = [_mapView convertPoint:_centerPinView.center toCoordinateFromView:_mapView];
     BMKReverseGeoCodeOption *reverseGeoCodeOption = [[BMKReverseGeoCodeOption alloc] init];
     reverseGeoCodeOption.reverseGeoPoint = centerCoor;
-    [self calculateUberEstimatePickupTime:centerCoor];
+    //[self calculateUberEstimatePickupTime:centerCoor];
     BOOL aflag = [_searcher reverseGeoCode:reverseGeoCodeOption];
     if (!aflag) {
         NSLog(@"reverseGeoCode failure, flag = %d", aflag);
@@ -515,6 +515,7 @@ static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
         }
         else
         {
+            [self calculateUberEstimatePickupTime:pickupInfo.pt];
             NSString *pickupAddress = pickupInfo.name;
             _paopaoView.addrLbl.text = [NSString stringWithFormat:@"从%@上车", pickupAddress];
             [_paopaoView.addrLbl sizeToFit];
