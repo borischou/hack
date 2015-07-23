@@ -12,6 +12,8 @@
 #import "HKMainMapViewController.h"
 #import "UberKit.h"
 
+#import "UIViewController+Extension.h"
+
 #define bWidth [UIScreen mainScreen].bounds.size.width
 #define bHeight [UIScreen mainScreen].bounds.size.height
 
@@ -37,7 +39,7 @@
     
     HKMainMapViewController *mmvc = [[HKMainMapViewController alloc] init];
     mmvc.title = @"Hack";
-    mmvc.view.backgroundColor = [UIColor whiteColor];
+    //mmvc.view.backgroundColor = [UIColor whiteColor];
     UINavigationController *mapNvc = [[UINavigationController alloc] initWithRootViewController:mmvc];
     
     self.window.rootViewController = mapNvc;

@@ -104,7 +104,7 @@
                 if (200 <= httpResponse.statusCode && 300 >= httpResponse.statusCode) { //无倍率确认
                     _request = requestResult;
                     HKRideViewController *rideVC = [[HKRideViewController alloc] init];
-                    rideVC.view.backgroundColor = [UIColor whiteColor];
+                    //rideVC.view.backgroundColor = [UIColor whiteColor];
                     rideVC.title = @"请求详情";
                     rideVC.request = _request;
                     [self.navigationController pushViewController:rideVC animated:YES];
