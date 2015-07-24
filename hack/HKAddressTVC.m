@@ -138,11 +138,7 @@
     if (_suggestionResult) {
         CLLocationCoordinate2D pt;
         [[_suggestionResult.ptList objectAtIndex:indexPath.row] getValue:&pt];
-//        for (NSValue *rpt in _suggestionResult.ptList) {
-//            CLLocationCoordinate2D point;
-//            [rpt getValue:&point];
-//            NSLog(@"each one: %f, %f", point.latitude, point.longitude);
-//        }
+
         NSInteger next = indexPath.row;
         while (pt.latitude < 0.01 || pt.longitude < 0.01) {
             [[_suggestionResult.ptList objectAtIndex:next++] getValue:&pt];
