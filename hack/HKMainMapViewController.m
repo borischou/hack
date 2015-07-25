@@ -73,9 +73,6 @@ static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
 @property (strong, nonatomic) NSMutableDictionary *startLocation;
 @property (strong, nonatomic) NSMutableDictionary *destLocation;
 
-@property (nonatomic) CGPoint paopaoCenter;
-@property (nonatomic) CGRect mapRect;
-
 @property (nonatomic) BOOL isCenter;
 @property (nonatomic) BOOL isCenterMoved;
 @property (nonatomic) BOOL isInitLoad;
@@ -284,8 +281,7 @@ static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
     [self.view addSubview:_centerPinView];
     
     _paopaoView = [[HKPaopaoView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
-    _paopaoCenter = CGPointMake(_centerPinView.center.x, _centerPinView.center.y - 35);
-    _paopaoView.center = _paopaoCenter;
+    _paopaoView.center = CGPointMake(_centerPinView.center.x, _centerPinView.center.y - 35);
     _paopaoView.addrLbl.text = _curAddress;
     [_paopaoView.addrLbl addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapLabel:)]];
     [self.view addSubview:_paopaoView];
@@ -315,8 +311,7 @@ static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
 -(void)initBaiduMapView
 {
     _isCenter = NO;
-    _mapRect = CGRectMake(0, 0, bWidth, bHeight - bMenuHeight);
-    _mapView = [[BMKMapView alloc] initWithFrame:_mapRect];
+    _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 0, bWidth, bHeight - bMenuHeight)];
     [self.view addSubview:_mapView];
     _mapView.showMapScaleBar = YES;
     _mapView.mapScaleBarPosition = CGPointMake(10, bHeight - bMenuHeight - 30);
@@ -349,18 +344,6 @@ static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
     BOOL flag = [_searcherForDestination reverseGeoCode:reverseDestOption];
     if (!flag) {
         NSLog(@"destination reverseGeoCode failure, flag = %d", flag);
-    }
-}
-
--(void)startReverseGeoCode
-{
-    CLLocationCoordinate2D centerCoor = [_mapView convertPoint:_centerPinView.center toCoordinateFromView:_mapView];
-    BMKReverseGeoCodeOption *reverseGeoCodeOption = [[BMKReverseGeoCodeOption alloc] init];
-    reverseGeoCodeOption.reverseGeoPoint = centerCoor;
-    //[self calculateUberEstimatePickupTime:centerCoor];
-    BOOL aflag = [_searcher reverseGeoCode:reverseGeoCodeOption];
-    if (!aflag) {
-        NSLog(@"reverseGeoCode failure, flag = %d", aflag);
     }
 }
 
@@ -448,7 +431,17 @@ static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
     }
 }
 
-#pragma mark - BMKGeoCodeSearchDelegate
+#pragma mark - BMKGeoCodeSearchDelegate & Helpers
+
+-(void)startReGeoSearchWithCoordinate:(CLLocationCoordinate2D)coords
+{
+    BMKReverseGeoCodeOption *reverseGeoCodeOption = [[BMKReverseGeoCodeOption alloc] init];
+    reverseGeoCodeOption.reverseGeoPoint = coords;
+    BOOL flag = [_searcher reverseGeoCode:reverseGeoCodeOption];
+    if (!flag) {
+        NSLog(@"反向地理编码检索失败。");
+    }
+}
 
 - (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
 {
@@ -489,7 +482,7 @@ static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
             
             [UIView animateWithDuration:0.5 delay:0.0 usingSpringWithDamping:0.7 initialSpringVelocity:10.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 _paopaoView.frame = CGRectMake(0, 0, _paopaoView.addrLbl.frame.size.width + 10, _paopaoView.addrLbl.frame.size.height + 10);
-                _paopaoView.center = _paopaoCenter;
+                _paopaoView.center = CGPointMake(_centerPinView.center.x, _centerPinView.center.y - 35);
             } completion:^(BOOL finished) {
             }];
             NSMutableArray *startArray = [NSMutableArray array];
@@ -519,12 +512,9 @@ static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
     }
     
     if (_isCenterMoved) {
-        
-        [self startReverseGeoCode];
         if (_destLocation[@"dest_pt"]) {
             [self startDestReverseGeoCode];
         }
-        
         _isCenterMoved = NO;
     }
 }
@@ -542,7 +532,7 @@ static NSString *peopleUberId = @"6bf8dc3b-c8b0-4f37-9b61-579e64016f7a";
         [self loadFloatViews];
         _isInitLoad = NO;
     }
-    _isCenterMoved = YES;
+    [self startReGeoSearchWithCoordinate:_mapView.centerCoordinate];
 }
 
 -(BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id<BMKAnnotation>)annotation

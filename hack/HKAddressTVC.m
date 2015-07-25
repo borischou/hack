@@ -14,11 +14,12 @@
 #define bTableViewHeight bHeight/2
 #define bMapViewHeight bHeight - bTableViewHeight
 
-@interface HKAddressTVC () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, BMKMapViewDelegate, BMKSuggestionSearchDelegate>
+@interface HKAddressTVC () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, BMKMapViewDelegate, BMKSuggestionSearchDelegate, BMKGeoCodeSearchDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) BMKSuggestionSearch *searcher;
 @property (strong, nonatomic) BMKSuggestionResult *suggestionResult;
+@property (strong, nonatomic) BMKGeoCodeSearch *geoSearcher;
 
 @end
 
@@ -26,18 +27,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     _searchBar = [[UISearchBar alloc] init];
     _searchBar.delegate = self;
     self.navigationItem.titleView = _searchBar;
     
     _searcher = [[BMKSuggestionSearch alloc] init];
+    _geoSearcher = [[BMKGeoCodeSearch alloc] init];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, bWidth, bHeight) style:UITableViewStylePlain];
     [self.view addSubview:_tableView];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,25 +51,17 @@
 {
     [super viewWillAppear:animated];
     _searcher.delegate = self;
+    _geoSearcher.delegate = self;
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     _searcher.delegate = nil;
+    _geoSearcher.delegate = nil;
 }
 
 #pragma mark - UISearchBarDelegate
-
--(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
-{
-    NSLog(@"searchBarTextDidBeginEditing");
-}
-
--(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
-{
-    NSLog(@"searchBarTextDidEndEditing");
-}
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
@@ -81,6 +75,11 @@
     }
 }
 
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+}
+
 #pragma mark - BMKSuggestionSearchDelegate
 
 -(void)onGetSuggestionResult:(BMKSuggestionSearch *)searcher result:(BMKSuggestionResult *)result errorCode:(BMKSearchErrorCode)error
@@ -89,6 +88,37 @@
         //在此处理正常结果
         _suggestionResult = result;
         [self.tableView reloadData];
+        
+        for (NSValue *value in result.ptList) {
+            CLLocationCoordinate2D pt;
+            [value getValue:&pt];
+            [self startReverseGeoCodeSearchWithCoords:pt];
+        }
+    }
+    else {
+        NSLog(@"抱歉，未找到结果");
+    }
+}
+
+#pragma mark - BMKGeoCodeSearchDelegate & Helpers
+
+-(void)startReverseGeoCodeSearchWithCoords:(CLLocationCoordinate2D)pt
+{
+    BMKReverseGeoCodeOption *reverseGeoCodeOption = [[BMKReverseGeoCodeOption alloc] init];
+    reverseGeoCodeOption.reverseGeoPoint = pt;
+    BOOL flag = [_geoSearcher reverseGeoCode:reverseGeoCodeOption];
+    if (!flag) {
+        NSLog(@"反向编码检索失败");
+    } else {
+        NSLog(@"反向编码检索成功");
+    }
+}
+
+-(void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
+{
+    if (error == BMK_SEARCH_NO_ERROR) {
+        //在此处理正常结果
+        NSLog(@"address: %@", result.address);
     }
     else {
         NSLog(@"抱歉，未找到结果");
@@ -112,9 +142,12 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"reuse"];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuse" forIndexPath:indexPath];
-    cell.textLabel.textColor = [UIColor darkGrayColor];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reuse"];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"reuse"];
+    }
+    cell.textLabel.textColor = [UIColor blackColor];
+    cell.detailTextLabel.textColor = [UIColor darkGrayColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     if (_suggestionResult) {

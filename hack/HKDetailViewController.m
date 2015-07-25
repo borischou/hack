@@ -86,10 +86,11 @@
 
 -(void)rideRequest
 {
+    _request = nil;
     CLLocation *startLoc = [_startLocation objectForKey:@"start_pt"];
     CLLocation *destLoc = [_destLocation objectForKey:@"dest_pt"];
     [[UberKit sharedInstance] setAuthTokenWith:[[NSUserDefaults standardUserDefaults] objectForKey:@"uber_token"]];
-
+    
     NSDictionary *parameters = @{@"product_id": _estimateTime.productID, @"start_latitude": @(startLoc.coordinate.latitude), @"start_longitude": @(startLoc.coordinate.longitude), @"end_latitude": @(destLoc.coordinate.latitude), @"end_longitude": @(destLoc.coordinate.longitude), @"surge_confirmation_id": [NSNull null]};
         
     [[UberKit sharedInstance] getResponseForRequestWithParameters:parameters withCompletionHandler:^(UberRequest *requestResult, UberSurgeErrorResponse *surgeErrorResponse, NSURLResponse *response, NSError *error) {
@@ -102,12 +103,15 @@
                     [self openWebViewWithURL:surgeErrorResponse.surge_confirmation.href];
                 }
                 if (200 <= httpResponse.statusCode && 300 >= httpResponse.statusCode) { //无倍率确认
-                    _request = requestResult;
-                    HKRideViewController *rideVC = [[HKRideViewController alloc] init];
-                    rideVC.view.backgroundColor = [UIColor whiteColor];
-                    rideVC.title = @"请求详情";
-                    rideVC.request = _request;
-                    [self.navigationController pushViewController:rideVC animated:YES];
+                    if (!_request) {
+                        _request = requestResult;
+                        HKRideViewController *rideVC = [[HKRideViewController alloc] init];
+                        rideVC.view.backgroundColor = [UIColor whiteColor];
+                        rideVC.title = @"请求详情";
+                        rideVC.request = _request;
+                        [self.navigationController pushViewController:rideVC animated:YES];
+                    }
+                    
                 }
             }
             else

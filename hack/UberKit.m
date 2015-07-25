@@ -266,7 +266,7 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
 
 - (void) getResponseForRequestWithParameters:(NSDictionary *)params withCompletionHandler:(RequestHandler)handler
 {
-    NSString *url = [NSString stringWithFormat:@"%@/requests", baseURL];
+    NSString *url = [NSString stringWithFormat:@"%@/requests", sandBoxURL];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
     [request addValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     [request addValue:[NSString stringWithFormat:@"Bearer %@", _accessToken] forHTTPHeaderField:@"Authorization"];
@@ -341,7 +341,7 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
 - (void) getDetailsForRequestId:(NSString *)requestId withCompletionHandler:(RequestHandler)handler
 {
     //GET /v1/requests/{request_id}
-    NSString *url = [NSString stringWithFormat:@"%@/requests/%@?access_token=%@", baseURL, requestId, _accessToken];
+    NSString *url = [NSString stringWithFormat:@"%@/requests/%@?access_token=%@", sandBoxURL, requestId, _accessToken];
     [self performNetworkOperationWithURL:url completionHandler:^(NSDictionary *detailDictionary, NSURLResponse *response, NSError *error) {
         if(detailDictionary)
         {
